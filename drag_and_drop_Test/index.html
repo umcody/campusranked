@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        .tier_table,tr,th{
+            border:1px solid black;
+        }
+        .droppable{
+            width: 300px;
+            height: 150px;
+        }
+
+        #ditto{
+            width:100px;
+        }
+    </style>
+<body>
+    <table class = "tier_table"> 
+        <tr>
+            <th>TIER</th>
+            <th> Drop Down </th>
+        </tr>
+        <tr>
+            <th>1</th>
+            <th> 
+                <div class= "droppable"></div>
+            </th>
+        </tr>
+        <tr>
+            <th>2</th>
+            <th>
+                <div class = "droppable"></div>
+            </th>
+        </tr>
+        <tr>
+            <th>3</th>
+            <th>
+                <div class = "droppable"></div>
+            </th>
+        </tr>
+    </table>
+    <div>
+        <img id = "ditto" src="ditto.png" draggable= "true" ondragstart="drag(event)"/>
+    </div>
+</body>
+
+<script>
+    function drag(event){
+        event.dataTransfer.setData("text", event.target.id);
+        console.log("DRAGGING");
+    }
+    function allowDrop(event) {
+        event.preventDefault();
+        console.log("Allowed");
+    }
+    function drop(event) {
+        console.log("DROPPING");
+        event.preventDefault();
+        console.log(event.dataTransfer.getData("text"));
+        event.target.appendChild(document.getElementById(event.dataTransfer.getData("text")));
+    }
+
+    const droppable = document.querySelectorAll(".droppable");
+    console.log(droppable);
+    droppable.forEach(element=>{
+        element.addEventListener("dragover", allowDrop,false);
+        element.addEventListener("drop", drop,false);
+        console.log("ADDED");
+    })
+
+</script>
+
+</html>
