@@ -18,9 +18,7 @@ function downClick(event){
 
 function switchUp(event){
     let table = document.querySelector(".myTable");
-    console.log(table);
     let row = table.querySelectorAll("tr");
-    console.log(row);
     for(i = 0; i < row.length-1; i++){
 
         var countU =row[i].getElementsByClassName("count")[0];
@@ -28,8 +26,11 @@ function switchUp(event){
         var objU =row[i].getElementsByClassName("name")[0];
         var objD =row[i+1].getElementsByClassName("name")[0];
 
+        
 
-        if(countU.innerHTML < countD.innerHTML){ // SWITCH ROWS
+        if(parseInt(countU.innerHTML) < parseInt(countD.innerHTML)){ // SWITCH ROWS
+            console.log("SWITCH");
+            console.log(countU.innerHTML+" is smaller than" +countD.innerHTML);
             temp  = objU.innerHTML;
             objU.innerHTML = objD.innerHTML;
             objD.innerHTML = temp;
