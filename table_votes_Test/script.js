@@ -17,15 +17,43 @@ function downClick(event){
 }
 
 function switchUp(event){
-    
+    let table = document.querySelector(".myTable");
+    console.log(table);
+    let row = table.querySelectorAll("tr");
+    console.log(row);
+    for(i = 0; i < row.length-1; i++){
+
+        var countU =row[i].getElementsByClassName("count")[0];
+        var countD =row[i+1].getElementsByClassName("count")[0];
+        var objU =row[i].getElementsByClassName("name")[0];
+        var objD =row[i+1].getElementsByClassName("name")[0];
+
+
+        if(countU.innerHTML < countD.innerHTML){ // SWITCH ROWS
+            temp  = objU.innerHTML;
+            objU.innerHTML = objD.innerHTML;
+            objD.innerHTML = temp;
+
+            temp = countU.innerHTML;
+            countU.innerHTML = countD.innerHTML;
+            countD.innerHTML = temp;
+        }
+    }
+
 }
 
 console.log(upVoteBtn);
 
 upVoteBtn.forEach(element=>{
-    element.addEventListener("click", upClick);
+    element.addEventListener("click", ()=> {
+        upClick(event);
+        switchUp(event);
+    });
 })
 
 downVoteBtn.forEach(element=>{
-    element.addEventListener("click", downClick);
+    element.addEventListener("click", ()=>{
+        downClick(event);
+        switchUp(event);
+    })
 })
