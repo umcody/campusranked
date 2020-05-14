@@ -8,6 +8,7 @@ html,body{
     border-right:none;
     border-bottom: solid;
     border-color: green;
+    font-weight: 600;
     
 }
 .search::placeholder{
