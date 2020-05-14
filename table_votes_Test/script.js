@@ -1,6 +1,7 @@
 const upVoteBtn = document.querySelectorAll(".upVote");
 const downVoteBtn = document.querySelectorAll(".downVote");
 
+// Increments the count when the Upvote button is clicked
 function upClick(event){
     var count = event.target.parentElement.parentElement.getElementsByClassName("count")[0];
     countVal = count.innerHTML;
@@ -8,6 +9,7 @@ function upClick(event){
     count.innerHTML= countVal;
     
 }
+// Decrements the count when the Upvote button is clicked
 function downClick(event){
     var count = event.target.parentElement.parentElement.getElementsByClassName("count")[0];
     countVal = count.innerHTML;
@@ -15,7 +17,7 @@ function downClick(event){
     count.innerHTML= countVal;
     
 }
-
+// Sorts the rows according to the count
 function switchUp(event){
     let table = document.querySelector(".myTable");
     let row = table.querySelectorAll("tr");
@@ -44,6 +46,7 @@ function switchUp(event){
 }
 
 console.log(upVoteBtn);
+
 
 upVoteBtn.forEach(element=>{
     element.addEventListener("click", ()=> {
