@@ -1,16 +1,19 @@
 {
     "body":[
         {
+            "image": "/Users/codyum/Desktop/Github/tier-creator/tier-creator/react_test/public/asset/kobeBryant.jpg",
             "name": "Michael Jordan",
-            "count": 0
+            "count": 4718
         },
         {
+            "image":"../public/asset/kobeBryant.jpg",
             "name": "Lebron James",
-            "count": 0
+            "count": 4601
         },
         {
+            "image": "../public/asset/kobeBryant.jpg",
             "name": "Kobe Bryant",
-            "count":0
+            "count": 2701
         }
 
     ]
