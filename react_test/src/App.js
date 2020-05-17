@@ -6,11 +6,14 @@ import Cell from "./Cell.js";
 
 function App (){
     return(
-        <table className= "ranked_table">
-            <tbody>
-            {data.body.map(player => React.createElement(Cell,player))}
-            </tbody>
-            </table>
+        <div>
+            <table className= "ranked_table">
+                <tbody>
+                {data.body.map(player => React.createElement(Cell,player))}
+                </tbody>
+                </table>
+                <button id="vote_btn"><a>RANK</a></button>
+        </div>
     );
 }
 export default App;
