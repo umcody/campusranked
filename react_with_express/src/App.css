@@ -86,13 +86,26 @@ html,body{
 .voteContainer{
     position: relative;
     z-index: -1;
+    display:flex;
 }
-.vote{
+.vote1{
     background-color: #F62459;
     width:50px;
-    height:20px;
+    height:15px;
     position: absolute;
     left:-75px;
     border-radius: 5px 0px 0px 5px ;
 }
+.vote2{
+    background-color: #F62459;
+    width:50px;
+    height:15px;
+    position: absolute;
+    left:-75px;
+    border-radius: 5px 0px 0px 5px ;
+    top: 20px;
+}
 
+.voteSVG:active{
+    opacity: 0.5;
+}
