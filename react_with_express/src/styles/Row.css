@@ -1,0 +1,78 @@
+/* **** CELL DESIGN **** */
+
+
+.name{
+    text-align: left;
+}
+
+.medal{
+    position: relative;
+    background-color: gold;
+    width:45px;
+    height:45px;
+    border-radius: 50%;
+    top:-47.5px;
+    left:15px;
+    z-index: 0;
+}
+
+.image_border{
+    padding:0;
+    margin:0px 15px 0px 0px;
+    border-image: linear-gradient(to right, #12c2e9,#c471ed,#f64f59);
+    
+    width:55px;
+    height:55px;
+    border-radius:50%;
+}
+
+
+.profile_pic{
+    position:relative;
+    padding:0;
+    margin:0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    z-index: 1;
+}
+.voteContainer{
+    position: relative;
+    z-index: -1;
+    display:flex;
+}
+.vote1{
+    background-color: #F62459;
+    width:50px;
+    height:15px;
+    position: absolute;
+    left:-75px;
+    border-radius: 5px 0px 0px 5px ;
+}
+.vote2{
+    background-color: #F62459;
+    width:50px;
+    height:15px;
+    position: absolute;
+    left:-75px;
+    border-radius: 5px 0px 0px 5px ;
+    top: 20px;
+}
+
+.voteSVG:active{
+    opacity: 0.5;
+}
+.test{
+    position: absolute;
+    background-color: #F62459;
+    height: 50px;
+    animation-name: testAni;
+    animation-duration: 2s;
+    z-index: -1;
+}
+
+@keyframes testAni{
+    from{width: 0%};
+    to{width: 100%};
+}

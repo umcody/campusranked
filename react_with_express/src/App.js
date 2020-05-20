@@ -19,6 +19,7 @@ class App extends React.Component{
         .then(res=> res.json())
         .then(body=>{
             this.setState({body});
+            console.log(this.state);
         });
         
     }
@@ -28,7 +29,11 @@ class App extends React.Component{
             <div>
             <SearchBar searchBody={this.state.body}/>
             <Route exact path = "/ranked" component ={Dummy}/>
-            <Route exact path = "/ranked/:item" component ={Ranked}/>
+            <Route exact path = "/ranked/:item"
+            render={
+                props=> <Ranked {...props}/>
+            }
+            />
             </div>
         );
     }

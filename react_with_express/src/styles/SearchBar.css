@@ -1,0 +1,57 @@
+/* **** Search BAR **** */
+.logo{
+    width: 160px;
+    position: absolute;
+    left:50px;
+}
+.searchBar{
+    background-color:black;
+    width: 100%;
+    height:55px;
+    position: fixed;
+    top:0;
+    left:0;
+    color: white;
+    display:flex;
+    z-index: 1;
+    justify-content: center;
+}
+.search{
+    outline: none;
+    border: none;
+    height:40px;
+    border-radius: 5px;
+    min-width: 400px;
+    font-size: 15px;
+    font-weight: 700;
+    position: relative;
+}
+.searchDropDownItem{
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width:380px;
+    min-height: 50px;
+    position: relative;
+    color:#3f3f3f;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+.searchDropDownItem:hover{
+    background-color: #f7f7f7;
+}
+.searchItems{
+    top:7px;
+    position: absolute;
+    display:block;
+    margin-left:10px;
+    border-radius: 10px 10px 10px 10px;
+    background-color: #e0e0e0;
+
+}
+.searchDropDownItem a{
+    color:#3f3f3f;
+    text-decoration: none;
+}
