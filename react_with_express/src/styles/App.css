@@ -1,10 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 @import "./Row.css";
 @import "./SearchBar.css";
+@import "./RankedTable.css";
+
 *{
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
     text-align: center;
+    z-index: 0;
 }
 html,body{
     display:flex;
@@ -14,40 +17,7 @@ html,body{
     background-color: #f1f1f1;
 }
 
-.Ranked{
-    justify-content: center;
-    align-items: center;
-}
 
-/* **** TABLE STYLES **** */
-.ranked_table{
-    z-index: 1;
-    background-color: white;
-    padding-top:10px;
-    padding-bottom:10px;
-    padding-left:20px;
-    padding-right:20px;
-    border-radius: 10%;
-    border-spacing: 10px 20px;
-    -webkit-box-shadow: 25px 28px 54px -28px rgba(25,66,12,0.5);
-    -moz-box-shadow: 25px 28px 54px -28px rgba(25,66,12,0.5);
-    box-shadow: 25px 28px 54px -28px rgba(25,66,12,0.5);
-}
-#vote_btn{
-    left:80%;
-    top:15px;
-    position: relative;
-    border:none;
-    outline:none;
-    height:30px;
-    width:60px;
-    justify-content: center;
-    background-color:#F62459;
-    color: white;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-}
 .title{
     background-color: #F62459;
     color: white;

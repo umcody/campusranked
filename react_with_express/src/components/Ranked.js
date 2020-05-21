@@ -41,11 +41,8 @@ class Ranked extends React.Component {
                 this.setState({ title: body[0].name});
                 index =1;
             });
-
-
         
         index =1;
-        console.log(this.props);
     }
 
 
@@ -53,14 +50,14 @@ class Ranked extends React.Component {
     render() {
         return (
             <div className = "Ranked">
-                <div className="title"><a>{this.state.title}</a></div>
+                <div className="title"><p>{this.state.title}</p></div>
                 <table className="ranked_table">
                     <tbody>
                         {/* Creates row cell for every item in the body */}
                         {this.state.body.map(item => React.createElement(Cell, [item, index++,(item.count/this.state.totalCount)]))}
                     </tbody>
                 </table>
-                <a className="notice">The rank will be sorted once you refresh/exit the page</a>
+                <div className="notice">The rank will be sorted once you refresh/exit the page</div>
             </div>
         );
     }

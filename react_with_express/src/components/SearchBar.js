@@ -22,7 +22,7 @@ function SearchBar(props) {
     return (
 
         <div className="searchBar">
-            <img src = "/asset/temp_logo.png" className="logo"/>
+            <img src = "/asset/temp_logo.png" className="logo" alt = "campus ranked logo"/>
                 <div className="searchItems">
                     <input className="search" placeholder="Search Any Noun" onChange={handleChange}></input>
                     {dropDown.map(dropDownItems => React.createElement(SearchDropDown, dropDownItems))}

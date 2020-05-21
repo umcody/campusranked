@@ -1,6 +1,5 @@
 /* **** CELL DESIGN **** */
 
-
 .name{
     text-align: left;
 }
@@ -69,7 +68,12 @@
     height: 50px;
     animation-name: testAni;
     animation-duration: 2s;
+}
+.testContainer{
     z-index: -1;
+    display:flex;
+    position: relative;
+    left: 30px;
 }
 
 @keyframes testAni{

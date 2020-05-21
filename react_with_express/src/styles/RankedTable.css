@@ -1,0 +1,22 @@
+/* **** TABLE STYLES **** */
+.Ranked{
+    justify-content: center;
+    align-items: center;
+}
+
+.ranked_table{
+    background-color: white;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left:20px;
+    padding-right:20px;
+    border-radius: 10%;
+    border-spacing: 10px 20px;
+    -webkit-box-shadow: 25px 28px 54px -28px rgba(25,66,12,0.5);
+    -moz-box-shadow: 25px 28px 54px -28px rgba(25,66,12,0.5);
+    box-shadow: 25px 28px 54px -28px rgba(25,66,12,0.5);
+}
+
+tbody{
+    z-index: 2;
+}

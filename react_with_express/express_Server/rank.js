@@ -1,3 +1,4 @@
+var Search = require('./searchModel.js');
 
 module.exports = function (app, mongoose) {
 
@@ -7,6 +8,7 @@ module.exports = function (app, mongoose) {
         name: String,
         count: Number
     })
+
 
     app.get("/ranked/:item", (req, res) => {
         let item = req.params.item;
@@ -21,29 +23,51 @@ module.exports = function (app, mongoose) {
 
 
 
-    app.post("/ranked/:item/upvote/:player", function (req, res) {
-        let item = req.params.item.toString;
-        const Item = new mongoose.model(item, itemSchema);
-        let player = req.params.player;
+    app.post("/ranked/:title/upvote/:item", function (req, res) {
+        let title = req.params.title;
+        console.log(req.params);
+        let item = req.params.item;
+        console.log(req);
+
+        const Item = new mongoose.model(title, itemSchema);
         console.log("accessed");
-        Item.findOneAndUpdate({ name: player }, { $inc: { count: 1 } }, function (err, data) {
+
+        Item.findOneAndUpdate({ name: item }, { $inc: { count: 1 } }, function (err, data) {
+            if (err) {
+                return console.log(err);
+            }
+            console.log("UPDATED: " + data);
+        });
+    
+        Search.findOneAndUpdate({ url: title }, { $inc: {totalCount: 1} }, function (err, data) {
             if (err) {
                 return console.log(err);
             }
             console.log("UPDATED: " + data);
         });
     })
-    app.post("/ranked/:item/downvote/:player", function (req, res) {
-        let item = req.params.item;
-        const Item = new mongoose.model(item, itemSchema);
 
-        let player = req.params.player;
+    app.post("/ranked/:title/downvote/:item", function (req, res) {
+        let title = req.params.title;
+        console.log(req.params);
+        let item = req.params.item;
+        console.log(req);
+
+        const Item = new mongoose.model(title, itemSchema);
         console.log("accessed");
-        Item.findOneAndUpdate({ name: player }, { $inc: { count: -1 } }, function (err, data) {
+
+        Item.findOneAndUpdate({ name: item }, { $inc: { count: -1 } }, function (err, data) {
             if (err) {
                 return console.log(err);
             }
             console.log("UPDATED: " + data);
         });
-    });
+    
+        Search.findOneAndUpdate({ url: title }, { $inc: {totalCount: -1} }, function (err, data) {
+            if (err) {
+                return console.log(err);
+            }
+            console.log("UPDATED: " + data);
+        });
+    })
 }

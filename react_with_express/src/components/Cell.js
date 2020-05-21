@@ -27,7 +27,6 @@ class Cell extends React.Component {
             clickCount:0,
         }
         this.handleClick = this.handleClick.bind(this);
-        console.log(props[2]);
     }
 
     // vote CLICKED HANDLER to Toggle animation 
@@ -57,25 +56,30 @@ class Cell extends React.Component {
     componentDidMount() {
         const current = ReactDOM.findDOMNode(this);
         let button = current.querySelector(".upVote");
-        let player = this.props[0].name;
-        console.log(player);
-        console.log(this.props[2]);
+        let {name} = this.props[0];
+        let url = this.props[0].category;
 
         // Updates the count value of the players. Upvote and Downvote(implicit). 
         button.addEventListener("click", (e) => {
             if (this.state.clicked === false) {
-                fetch("ranked/nba/upvote/" + player, {
+                fetch(url+"/upvote/"+name, {
                     method: "post",
-                    body: {
-                        "name": player
+                    header: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        "name": {name}
+                      })
+
+                },function(err,data){
+                    if(err){
+                        console.log(err);
                     }
                 });
                 this.setState({ count: this.state.count + 1, clicked: true });
             }else{
-                fetch("ranked/nba/downvote/" + player, {
+                fetch("ranked/nba/downvote/" + name, {
                     method: "post",
                     body: {
-                        "name": player
+                        "name": name
                     }
                 });
                 this.setState({ count: this.state.count -1, clicked: false});
@@ -108,14 +112,14 @@ class Cell extends React.Component {
                 <th><div className="name">{this.props[0].name}</div></th>
                 <th>
                     {/* VOTE LOGO/ BUTTON */}
-                    <a className="upVote" onClick={this.handleClick}>
-                        <img src="/asset/vote_btn.svg" className = "voteSVG"></img>
-                    </a>
+                    <div className="upVote" onClick={this.handleClick}>
+                        <img src="/asset/vote_btn.svg" className = "voteSVG" alt = "vote button"></img>
+                    </div>
                 </th>
                 <th className="count">{this.state.count}</th>
-                <th>
+                <th className = "testContainer">
                     {/* *** UNDER DEVELOPMENT VOTE PERCENTAGE BAR */}
-                    <div className = "test" style = {{width:(this.props[2]*500)}} ></div>
+                    <div className = "test" style = {{width:(this.props[2]*document.body.clientWidth/2)}}></div>
                 </th>
             </tr>
         );

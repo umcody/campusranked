@@ -1,3 +1,4 @@
+var Search = require('./searchModel.js');
 
 module.exports=function(app,mongoose){
 
@@ -6,10 +7,10 @@ module.exports=function(app,mongoose){
         name:String
     })
 
-    const SearchModel = new mongoose.model("item", searchSchema);
 
     app.get("/search",function(req,res){
-        SearchModel.find({},function(err,data){
+
+        Search.find({},function(err,data){
             if(err){
                 return err;
             }
@@ -19,8 +20,9 @@ module.exports=function(app,mongoose){
         });
     });
     app.get("/search/:item",function(req,res){
+
         const item = req.params.item;
-        SearchModel.find({url:item},function(err,data){
+        Search.find({url:item},function(err,data){
             if(err){
                 return err;
             }
@@ -31,9 +33,10 @@ module.exports=function(app,mongoose){
     });
 
     app.get("/getTitle/:item",function(req,res){
+
         const item = req.params.item;
 
-        SearchModel.find({url:item},function(err,data){
+        Search.find({url:item},function(err,data){
             if(err){
                 return err;
             }

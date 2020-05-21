@@ -1,6 +1,6 @@
 import React from "react";
 import Ranked from "./components/Ranked.js"
-import { Route ,withRouter} from "react-router-dom";
+import { Route} from "react-router-dom";
 import SearchBar from "./components/SearchBar";
 import Dummy from "./components/dummy";
 
@@ -21,7 +21,6 @@ class App extends React.Component{
             this.setState({body});
             console.log(this.state);
         });
-        
     }
 
     render(){
