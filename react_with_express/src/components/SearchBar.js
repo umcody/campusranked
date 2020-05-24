@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SearchDropDown from "./SearchDropDown";
 import Fuse from "fuse.js";
+import AccountBtn from "./AccountBtn";
 
 const options = {
     includeScore: true,
@@ -27,6 +28,7 @@ function SearchBar(props) {
                     <input className="search" placeholder="Search Any Noun" onChange={handleChange}></input>
                     {dropDown.map(dropDownItems => React.createElement(SearchDropDown, dropDownItems))}
                 </div>
+                <AccountBtn/>
         </div>
 
     );
