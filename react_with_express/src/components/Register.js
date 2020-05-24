@@ -31,12 +31,15 @@ class Register extends React.Component{
 
     render(){
         return(
-            <form>
-                <input placeholder = "username" onChange = {this.handleChange}></input>
-                <input placeholder = "email" onChange = {this.handleChange}></input>
-                <input placeholder = "password" onChange = {this.handleChange}></input>
-                <button onClick = {this.handleSubmit}>SUBMIT</button>
-            </form>
+            <div>
+                <form>
+                    <input placeholder = "username" onChange = {this.handleChange}></input>
+                    <input placeholder = "email" onChange = {this.handleChange}></input>
+                    <input placeholder = "password" onChange = {this.handleChange}></input>
+                    <button onClick = {this.handleSubmit}>SUBMIT</button>
+                </form>
+                <a href ="/loginUser"> Already have an account? Click Here </a>
+            </div>
         )
     }
 }

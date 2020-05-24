@@ -23,7 +23,7 @@ class AccountBtn extends React.Component {
 
             const content = await response.json();
             this.setState({
-                username : content.username
+                username: content.username
             });
         }
     }
@@ -31,11 +31,20 @@ class AccountBtn extends React.Component {
 
 
     render() {
-        return (
-            <div className = "accountBtn">
-                {`It's time to Rank, ${this.state.username}`}
-            </div>
-        )
+
+        if (this.state.username === "") {
+            return (
+                <div className="accountBtn">
+                    <a href="/registerUser"> Log In / Sign Up</a>
+                </div>
+            );
+        } else {
+            return (
+                <div className="accountBtn">
+                    {`It's time to Rank, ${this.state.username}`}
+                </div>
+            );
+        }
     }
 
 

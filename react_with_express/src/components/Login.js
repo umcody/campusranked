@@ -1,4 +1,5 @@
 import React from "react";
+import { Route } from "react-router-dom";
 
 class Login extends React.Component{
     constructor(props){
@@ -26,17 +27,26 @@ class Login extends React.Component{
             body: JSON.stringify(this.state)
         });
         const temp = await data.json();
-        localStorage.setItem("JWT", temp.token);
+        if(temp.token === null){
+            console.log("COULD NOT LOGIN");
+        }else{
+            localStorage.setItem("JWT", temp.token);
+            window.location.href=("/");
+        }
+        
     }
 
 
     render(){
         return(
-            <form>
+            <div>
+                <form>
                 <input placeholder = "email" onChange = {this.handleChange}></input>
                 <input placeholder = "password" onChange = {this.handleChange}></input>
                 <button onClick = {this.handleSubmit}>SUBMIT</button>
-            </form>
+                </form>
+                <a href="/registerUser"> Don't have an Account? Click here</a>
+            </div>
         )
     }
 }
