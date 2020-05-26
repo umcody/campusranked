@@ -1,5 +1,7 @@
 /* **** TABLE STYLES **** */
 .Ranked{
+    position: relative;
+    top:150px;
     justify-content: center;
     align-items: center;
 }
@@ -10,7 +12,7 @@
     padding-bottom:10px;
     padding-left:20px;
     padding-right:20px;
-    border-radius: 10%;
+    border-radius: 30px;
     border-spacing: 10px 20px;
     -webkit-box-shadow: 25px 28px 54px -28px rgba(25,66,12,0.5);
     -moz-box-shadow: 25px 28px 54px -28px rgba(25,66,12,0.5);

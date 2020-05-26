@@ -83,9 +83,9 @@ module.exports = function (app, mongoose) {
                                     }
                                     console.log("Count successfully incremented");
                                     shouldInc = true; // set to True to update all the doc.
-                                    res.send({ count: data.voted[i].count++ });
+                                    res.send({ count: data.voted[i].count++, increment: true});
                                 })
-                            } else res.send({ count: data.voted[i].count });
+                            } else res.send({ count: data.voted[i].count, increment: false});
                         }
 
                     }

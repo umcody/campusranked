@@ -40,12 +40,13 @@ class Login extends React.Component{
     render(){
         return(
             <div>
-                <form>
+                <form className="authForm">
+                <img src = "../asset/temp_logo.png"/>
                 <input placeholder = "email" onChange = {this.handleChange}></input>
                 <input placeholder = "password" onChange = {this.handleChange}></input>
-                <button onClick = {this.handleSubmit}>SUBMIT</button>
+                <button onClick = {this.handleSubmit}>Let's Rank!</button>
+                <a className = "redirect" href="/registerUser"> Don't have an Account? Click here</a>
                 </form>
-                <a href="/registerUser"> Don't have an Account? Click here</a>
             </div>
         )
     }

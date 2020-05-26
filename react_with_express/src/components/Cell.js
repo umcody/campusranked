@@ -32,7 +32,6 @@ class Cell extends React.Component {
 
     // vote CLICKED HANDLER to Toggle animation 
     controlVote(count) {
-        
         if(count === 1){
             this.setState({
                 isVisible: true
@@ -53,20 +52,22 @@ class Cell extends React.Component {
         const JWToken = localStorage.getItem("JWT");
 
         // Updates the count value of the players. Upvote and Downvote(implicit). 
-        button.addEventListener("click", (e) => {
+        button.addEventListener("click", async (e) => {
             
             console.log(url+"/upvote/"+name);
 
             if (this.state.clicked === false) {
 
-                fetch(url+"/upvote/"+name, {
+                let fetched = await fetch(url+"/upvote/"+name, {
                     headers: { Authorization: `JWT ${JWToken}` }
-                })
-                .then(res=>res.json())
-                .then(res=>this.controlVote(res.count));
-                
+                });
+                fetched = await fetched.json();
+                this.controlVote(fetched.count);
+                if(fetched.increment === true){ // If vote limit is met
+                    this.setState({ count: this.state.count + 1, clicked: false });
+                }else{ // else alert the user ** NEED TO WORK ON
 
-                this.setState({ count: this.state.count + 1, clicked: false });
+                }
 
             }else{
                 fetch("ranked/nba/downvote/" + name, {

@@ -5,6 +5,7 @@ import SearchBar from "./components/SearchBar";
 import Dummy from "./components/dummy";
 import Register from "./components/Register"
 import Login from "./components/Login"
+import Footer from "./components/Footer";
 
 
 
@@ -42,7 +43,7 @@ class App extends React.Component{
             />
             <Route exact path = "/registeruser" component = {Register}/>
             <Route exact path = "/loginuser" component = {Login}/>
-
+            {/* <Footer/> */}
             </div>
         );
     }

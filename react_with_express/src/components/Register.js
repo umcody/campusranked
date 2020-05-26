@@ -7,6 +7,7 @@ class Register extends React.Component{
             username:"",
             email: "",
             password: "",
+            hasError: "none"
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,6 +29,9 @@ class Register extends React.Component{
         const temp = await data.json();
         if(temp.auth === false){ //USER EXISTS, LOG. *** NEED TO PERFORM AN ACTION TO LET THE USER KNOW OF THE INVALID INPUT**
             console.log(temp.message);
+            this.setState({
+                hasError:"grid"
+            })
         }else{
             window.location("/loginUser")
         }
@@ -37,13 +41,19 @@ class Register extends React.Component{
     render(){
         return(
             <div>
-                <form>
+                <form className = "authForm">
+                    <img src = "../asset/temp_logo.png"/>
                     <input placeholder = "username" onChange = {this.handleChange}></input>
                     <input placeholder = "email" onChange = {this.handleChange}></input>
                     <input placeholder = "password" onChange = {this.handleChange}></input>
+
                     <button onClick = {this.handleSubmit}>SUBMIT</button>
+
+                    <a href ="/loginUser"> Already have an account?</a>
+
+
+                    <p className="regError" style = {{display: this.state.hasError}}>The email already exists in our System</p>
                 </form>
-                <a href ="/loginUser"> Already have an account? Click Here </a>
             </div>
         )
     }
