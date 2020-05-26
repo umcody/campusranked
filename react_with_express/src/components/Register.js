@@ -18,14 +18,19 @@ class Register extends React.Component{
         });
     }
 
-     handleSubmit(event){
-
-        fetch("/register",{
+     async handleSubmit(event){
+        event.preventDefault();
+        const data =  await fetch("/register",{ // FETCH to Register
             method:"post",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(this.state)
-        })
-        console.log(this.state);
+        });
+        const temp = await data.json();
+        if(temp.auth === false){ //USER EXISTS, LOG. *** NEED TO PERFORM AN ACTION TO LET THE USER KNOW OF THE INVALID INPUT**
+            console.log(temp.message);
+        }else{
+            window.location("/loginUser")
+        }
     }
 
 

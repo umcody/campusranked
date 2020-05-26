@@ -15,33 +15,6 @@ module.exports = function (app, mongoose) {
         count: Number
     })
 
-    app.get("/create", function (req, res) {
-        const Item = mongoose.model("uwmadisonlibrary", itemSchema);
-        let libraries = ["College Library", "Steenbock Library", "Ebling Library",
-            "Business Library", "Social Work Library", "Woodman Astronomical Library",
-            "Law Library", "Math Library", "Memorial Library", "AMP Library", "Art Library",
-            "Mills Music Library", "Geology and Geophysics Library",
-            "Arboretum Research Library"];
-
-        let librariesmodified =[];
-
-        for (let i = 0; i < libraries.length; i++) {
-            librariesmodified[i] = libraries[i].toLowerCase().replace(/\s/g, "");
-        }
-
-        for (let i = 0; i < libraries.length; i++) {
-            Item.create({
-                rank: 1,
-                image: "../asset/" + librariesmodified[i] + ".jpg",
-                name: libraries[i],
-                category: "uwmadisonlibrary",
-                count: 0,
-                __v: 1
-            })
-        }
-    })
-
-
 
     //Get information of the items in the appropriate title
     app.get("/ranked/:title", (req, res) => {

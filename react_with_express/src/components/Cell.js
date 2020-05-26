@@ -33,11 +33,11 @@ class Cell extends React.Component {
     // vote CLICKED HANDLER to Toggle animation 
     controlVote(count) {
         
-        if(count == 1){
+        if(count === 1){
             this.setState({
                 isVisible: true
             });
-        }else if(count == 2){
+        }else if(count === 2){
             this.setState({
                 isVisible1:true
             });

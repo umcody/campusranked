@@ -27,7 +27,7 @@ class Login extends React.Component{
             body: JSON.stringify(this.state)
         });
         const temp = await data.json();
-        if(temp.auth == false){ // IF INVALID INPUT, LOG. *** NEED TO PERFORM AN ACTION TO LET THE USER KNOW OF THE INVALID INPUT**
+        if(temp.auth === false){ // IF INVALID INPUT, LOG. *** NEED TO PERFORM AN ACTION TO LET THE USER KNOW OF THE INVALID INPUT**
             console.log("COULD NOT LOG IN");
         }else{
             localStorage.setItem("JWT", temp.token);
