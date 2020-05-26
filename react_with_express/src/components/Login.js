@@ -19,16 +19,16 @@ class Login extends React.Component{
         });
     }
 
-    async handleSubmit(event){
+    async handleSubmit(event){ 
         event.preventDefault();
-        const data =  await fetch("/login",{
+        const data =  await fetch("/login",{ // FETCH TO LOGIN
             method:"post",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(this.state)
         });
         const temp = await data.json();
-        if(temp.token === null){
-            console.log("COULD NOT LOGIN");
+        if(temp.auth == false){ // IF INVALID INPUT, LOG. *** NEED TO PERFORM AN ACTION TO LET THE USER KNOW OF THE INVALID INPUT**
+            console.log("COULD NOT LOG IN");
         }else{
             localStorage.setItem("JWT", temp.token);
             window.location.href=("/");

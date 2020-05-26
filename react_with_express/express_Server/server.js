@@ -7,6 +7,8 @@ const search = require("./Route/search.js")
 const bodyParser = require("body-parser");
 const authRoute = require("./Route/authRoute");
 const passport = require("passport");
+const passportAuth = require("./auth_config/passport.js");
+
 
 
 app.use(Cors());
@@ -15,14 +17,15 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 
 
+
 const port = process.env.PORT || 8000;
 
 mongoose.connect("mongodb+srv://codyum:appalanchia@cluster0-tfxwi.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true })
 
-
-rank(app,mongoose);
+passportAuth(app,mongoose);
 search(app,mongoose);
 authRoute(app,mongoose);
+rank(app,mongoose);
 
 
 app.listen(port, () => {

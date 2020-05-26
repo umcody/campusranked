@@ -12,8 +12,13 @@ class App extends React.Component{
     constructor(props){
         super(props);
         this.state={
+            isLoggedIn:false,
             body:[]
         }
+    }
+
+    logIn (){
+        this.setState({isLoggedIn:true});
     }
 
     componentDidMount(){

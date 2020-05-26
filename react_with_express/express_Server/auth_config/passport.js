@@ -55,13 +55,11 @@ module.exports = function (app, mongoose) {
                 console.log("NO SUCH USER")
                 done(null,false);
             }else{
-                console.log(password+" "+ account.password);
                 bcrypt.compare(password,account.password,function(err,response){
                     if(err){
                         done(err);
                         console.log(err);
                     }
-                    console.log(response);
                     if(!response){
                         console.log("Password does not match");
                         done(null,false);
@@ -91,5 +89,5 @@ module.exports = function (app, mongoose) {
                 done(null,false);
             }
         })
-    }))
+    }));
 }

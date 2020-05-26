@@ -22,34 +22,26 @@ class Cell extends React.Component {
         super(props);
         this.state = {
             isVisible: false,
+            isVisible1: false,
             count: props[0].count,
             clicked: false,
             clickCount:0,
         }
-        this.handleClick = this.handleClick.bind(this);
+        this.controlVote = this.controlVote.bind(this);
     }
 
     // vote CLICKED HANDLER to Toggle animation 
-    handleClick(event) {
+    controlVote(count) {
         
-        if(this.state.clickCount === 0){
+        if(count == 1){
             this.setState({
-                isVisible: !this.state.isVisible,
-                clickCount: 1
+                isVisible: true
             });
-        }else if(this.state.clickCount === 1){
+        }else if(count == 2){
             this.setState({
-                isVisible1: !this.state.isVisible1,
-                clickCount: 2
-            });
-        }else{
-            this.setState({
-                isVisible: false,
-                isVisible1: false,
-                clickCount: 0
+                isVisible1:true
             });
         }
-        
     }
 
     // POSTS to Server that the item is voted
@@ -58,23 +50,24 @@ class Cell extends React.Component {
         let button = current.querySelector(".upVote");
         let {name} = this.props[0];
         let url = this.props[0].category;
+        const JWToken = localStorage.getItem("JWT");
 
         // Updates the count value of the players. Upvote and Downvote(implicit). 
         button.addEventListener("click", (e) => {
-            if (this.state.clicked === false) {
-                fetch(url+"/upvote/"+name, {
-                    method: "post",
-                    header: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        "name": {name}
-                      })
+            
+            console.log(url+"/upvote/"+name);
 
-                },function(err,data){
-                    if(err){
-                        console.log(err);
-                    }
-                });
-                this.setState({ count: this.state.count + 1, clicked: true });
+            if (this.state.clicked === false) {
+
+                fetch(url+"/upvote/"+name, {
+                    headers: { Authorization: `JWT ${JWToken}` }
+                })
+                .then(res=>res.json())
+                .then(res=>this.controlVote(res.count));
+                
+
+                this.setState({ count: this.state.count + 1, clicked: false });
+
             }else{
                 fetch("ranked/nba/downvote/" + name, {
                     method: "post",

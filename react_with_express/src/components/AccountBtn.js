@@ -26,6 +26,7 @@ class AccountBtn extends React.Component {
                 username: content.username
             });
         }
+
     }
 
 
