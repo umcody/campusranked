@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "cody um",
   "license": "ISC",
   "dependencies": {
@@ -19,5 +16,9 @@
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0"
+  },
+  "scripts":{
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"node server.js"
   }
 }
