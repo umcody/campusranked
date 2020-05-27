@@ -20,16 +20,20 @@ app.use(passport.initialize());
 
 const port = process.env.PORT || 8000;
 
-mongoose.connect("mongodb+srv://codyum:appalanchia@cluster0-tfxwi.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true })
+mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://codyum:appalanchia@cluster0-tfxwi.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true })
 
 passportAuth(app,mongoose);
 search(app,mongoose);
 authRoute(app,mongoose);
 rank(app,mongoose);
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname+'/client/build/index.html'));
-});
+
+if(process.env.NODE_ENV === 'production'){
+
+    app.use(express.static('client/build'));
+
+}
+
 
 
 app.listen(port, () => {
