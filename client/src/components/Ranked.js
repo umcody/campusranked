@@ -12,7 +12,13 @@ class Ranked extends React.Component {
       link: props.location.pathname,
       title: "DEFAULT",
       totalCount: 0,
+      showVoteLimitAlert: "none"
     };
+    this.toggleVoteLimitAlert = this.toggleVoteLimitAlert.bind(this);
+  }
+
+  toggleVoteLimitAlert(){
+    this.setState({showVoteLimitAlert:" "});
   }
 
   // When mounted, fetch all necessary data such as Items, Title, total Count respectively
@@ -49,6 +55,7 @@ class Ranked extends React.Component {
         <div className="title">
           <p>{this.state.title}</p>
         </div>
+        <p  id = "voteLimitAlert" style = {{display:this.state.showVoteLimitAlert}}>Vote Limit has Been Reached!</p>
         <table className="ranked_table">
           <tbody>
             {/* Creates row cell for every item in the body */}
@@ -57,6 +64,7 @@ class Ranked extends React.Component {
                 item,
                 index++,
                 item.count / this.state.totalCount,
+                this.toggleVoteLimitAlert
               ])
             )}
           </tbody>
@@ -64,7 +72,7 @@ class Ranked extends React.Component {
         <div className="notice">
           The rank will be sorted once you refresh/exit the page
         </div>
-        <div class="spacer"></div>
+        <div className="spacer"></div>
         {/* <footer>Created by me</footer> */}
         <Footer />
       </div>

@@ -66,7 +66,7 @@ class Cell extends React.Component {
                 if(fetched.increment === true){ // If vote limit is met
                     this.setState({ count: this.state.count + 1, clicked: false });
                 }else{ // else alert the user ** NEED TO WORK ON
-
+                    this.props[3]();
                 }
 
             }else{
@@ -87,7 +87,7 @@ class Cell extends React.Component {
         const { isVisible } = this.state;
         const { isVisible1 } = this.state;
         return (
-
+            
             <tr className="row">
                 <th className="voteContainer">
                     {/* DIV cannot exist inside TR so the vote indicator is in TH with pos. abs*/}

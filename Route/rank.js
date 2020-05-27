@@ -30,7 +30,7 @@ module.exports = function (app, mongoose) {
 
 
     // API call when the user votes up for the selected item. 
-    app.get("/ranked/api/:title/upvote/:item", function (req, res) {
+    app.get("/ranked/:title/api/upvote/:item", function (req, res) {
 
         let title = req.params.title;
         let item = req.params.item;
@@ -85,7 +85,23 @@ module.exports = function (app, mongoose) {
                                     shouldInc = true; // set to True to update all the doc.
                                     res.send({ count: data.voted[i].count++, increment: true});
                                 })
-                            } else res.send({ count: data.voted[i].count, increment: false});
+                            } else {
+                                if((new Date().getDate() - data.voted[i].lastVoted.getDate())!== 0){ // If it has been a day since last reached maximum, reset.
+                                    UserModel.findOneAndUpdate({email:data.email, "voted.title":title},{
+                                        $set: {"voted.$.count":1,
+                                                "voted.$.lastVoted": new Date()}
+                                    },function(err,doc){
+                                        if(err){
+                                            console.log(err);
+                                        }else{
+                                            res.send({ count: 1, increment: true});
+                                        }
+                                    })
+                                }else{
+                                    res.send({ count: data.voted[i].count, increment: false});
+                                }
+
+                            }
                         }
 
                     }
