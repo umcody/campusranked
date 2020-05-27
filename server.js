@@ -29,13 +29,11 @@ rank(app,mongoose);
 
 
 if(process.env.NODE_ENV === 'production'){
-
     app.use(express.static('client/build'));
-
 }
 
 
 
 app.listen(port, () => {
-    console.log("Listening on Port 8000");
+    console.log("Listening on Port"+port);
 })
