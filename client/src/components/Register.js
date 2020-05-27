@@ -33,7 +33,7 @@ class Register extends React.Component{
                 hasError:"grid"
             })
         }else{
-            window.location("/loginUser")
+            window.location="/loginUser";
         }
     }
 

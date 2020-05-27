@@ -27,6 +27,10 @@ search(app,mongoose);
 authRoute(app,mongoose);
 rank(app,mongoose);
 
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
+
 
 app.listen(port, () => {
     console.log("Listening on Port 8000");
