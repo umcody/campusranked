@@ -25,7 +25,7 @@ class Ranked extends React.Component {
                 this.setState({totalCount: body[0].totalCount});
             });
 
-        fetch("/api/"+this.state.link)
+        fetch("/ranked/api/"+this.state.link)
 
             .then(res => res.json())
             .then(body => {
