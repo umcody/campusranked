@@ -17,7 +17,7 @@ module.exports = function (app, mongoose) {
 
 
     //Get information of the items in the appropriate title
-    app.get("/ranked/api/:title", (req, res) => {
+    app.get("/api/ranked/:title", (req, res) => {
         let title = req.params.title;
         const Item = new mongoose.model(title, itemSchema);
         Item.find({}).sort({ count: -1 }).exec(function (err, docs) {

@@ -15,23 +15,51 @@ class Ranked extends React.Component {
     };
   }
 
+<<<<<<< HEAD
+    constructor(props) {
+        super(props);
+        this.state = {
+            body: [],
+            link: (props.location.pathname),
+            title: "DEFAULT",
+            totalCount: 0
+        }
+    }
+
+    // When mounted, fetch all necessary data such as Items, Title, total Count respectively
+    componentDidMount() {
+
+        fetch("/search/" + this.props.match.params.item)
+            .then(res => res.json())
+            .then(body => {
+                this.setState({totalCount: body[0].totalCount});
+            });
+
+        fetch("/ranked/api/"+this.state.link)
+
+            .then(res => res.json())
+            .then(body => {
+                this.setState({ body })
+                index =1;
+            });
+
+
+=======
   // When mounted, fetch all necessary data such as Items, Title, total Count respectively
   componentDidMount() {
-
     fetch("/search/" + this.props.match.params.item)
-      .then(res => res.json())
-      .then(body => {
+      .then((res) => res.json())
+      .then((body) => {
         this.setState({ totalCount: body[0].totalCount });
       });
+>>>>>>> 99a51c1a9379285afc9ada349b885baa35e99e24
 
-    fetch("/api" + this.state.link)
-
-      .then(res => res.json())
-      .then(body => {
+    fetch(this.state.link)
+      .then((res) => res.json())
+      .then((body) => {
         this.setState({ body });
         index = 1;
       });
-
 
     fetch("/getTitle/" + this.props.match.params.item)
       .then((res) => res.json())
