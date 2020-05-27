@@ -54,11 +54,11 @@ class Cell extends React.Component {
         // Updates the count value of the players. Upvote and Downvote(implicit). 
         button.addEventListener("click", async (e) => {
             
-            console.log(url+"/upvote/"+name);
+            console.log(url+"/api/upvote/"+name);
 
             if (this.state.clicked === false) {
 
-                let fetched = await fetch(url+"/upvote/"+name, {
+                let fetched = await fetch(url+"/api/upvote/"+name, {
                     headers: { Authorization: `JWT ${JWToken}` }
                 });
                 fetched = await fetched.json();

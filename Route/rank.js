@@ -17,7 +17,7 @@ module.exports = function (app, mongoose) {
 
 
     //Get information of the items in the appropriate title
-    app.get("/ranked/:title", (req, res) => {
+    app.get("/ranked/api/:title", (req, res) => {
         let title = req.params.title;
         const Item = new mongoose.model(title, itemSchema);
         Item.find({}).sort({ count: -1 }).exec(function (err, docs) {
@@ -30,7 +30,7 @@ module.exports = function (app, mongoose) {
 
 
     // API call when the user votes up for the selected item. 
-    app.get("/ranked/:title/upvote/:item", function (req, res) {
+    app.get("/ranked/api/:title/upvote/:item", function (req, res) {
 
         let title = req.params.title;
         let item = req.params.item;
@@ -117,7 +117,7 @@ module.exports = function (app, mongoose) {
     })
 
     // TO BE DEVELOPED. DOWN VOTE SYSTEM.
-    app.post("/ranked/:title/downvote/:item", function (req, res) {
+    app.post("/ranked/api/:title/downvote/:item", function (req, res) {
         let title = req.params.title;
         console.log(req.params);
         let item = req.params.item;
