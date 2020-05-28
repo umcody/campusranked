@@ -5,6 +5,7 @@ import SearchBar from "./components/SearchBar";
 import Dummy from "./components/dummy";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import Rating from "./components/ratingSystem/RateDiningHall";
 
 class App extends React.Component {
   constructor(props) {
@@ -40,6 +41,7 @@ class App extends React.Component {
         />
         <Route exact path="/registeruser" component={Register} />
         <Route exact path="/loginuser" component={Login} />
+        <Route exact path="/rating" component = {Rating}/>
       </div>
     );
   }
