@@ -33,8 +33,7 @@
   width: 100%;
   overflow: visible;
   margin-bottom: -330px;
-  justify-content: center;
-  align-items: center;
+  vertical-align: middle;
 }
 
 input {
@@ -47,7 +46,6 @@ input {
 
 html,
 body {
-  display: flex;
   width: 100%;
   background-color: #f1f1f1;
   height: 100vh;

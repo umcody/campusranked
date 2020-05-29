@@ -2,11 +2,29 @@
 
 fieldset, label { margin: 0; padding: 0; }
 
+
+.rateContainer{
+  text-align: center;
+  display: block;
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  background-color: white;
+}
+
+
+
+
+
+
+
 /****** Style Star Rating Widget *****/
 
 .rating { 
   border: none;
   float: left;
+  display: block;
 }
 
 .rating > input { display: none; } 
@@ -20,7 +38,8 @@ fieldset, label { margin: 0; padding: 0; }
 
 .rating > .half:before { 
   content: "\f089";
-  position: absolute;
+  position: absolute
+  ;
 }
 
 .rating > label { 

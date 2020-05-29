@@ -1,5 +1,4 @@
 import React from "react";
-import "./rateStar.css";
 
 class RateStars extends React.Component {
     constructor() {

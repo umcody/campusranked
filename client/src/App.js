@@ -1,7 +1,7 @@
 import React from "react";
 import Ranked from "./components/Ranked.js";
 import { Route } from "react-router-dom";
-import SearchBar from "./components/SearchBar";
+import SearchBar from "./components/searchBar/SearchBar.js";
 import Dummy from "./components/dummy";
 import Register from "./components/Register";
 import Login from "./components/Login";

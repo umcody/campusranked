@@ -1,6 +1,8 @@
 import React from "react";
 import Cell from "./Cell.js";
 import Footer from "../components/Footer";
+import Popup from "reactjs-popup";
+import Login from "./Login";
 
 // THIS INDEX SYSTEM NEEDS TO BE FIXED. Sometimes, the rank is repeated -- refresh the page multiple times.
 let index = 1;
@@ -12,9 +14,19 @@ class Ranked extends React.Component {
       link: props.location.pathname,
       title: "DEFAULT",
       totalCount: 0,
-      showVoteLimitAlert: "none"
+      showVoteLimitAlert: "none",
+      loginPopup: false
     };
     this.toggleVoteLimitAlert = this.toggleVoteLimitAlert.bind(this);
+    this.openPopup = this.openPopup.bind(this);
+    this.closePopup = this.closePopup.bind(this);
+  }
+
+  openPopup(){
+    this.setState({loginPopup:true});
+  }
+  closePopup(){
+    this.setState({loginPopup:false});
   }
 
   toggleVoteLimitAlert(){
@@ -52,6 +64,16 @@ class Ranked extends React.Component {
   render() {
     return (
       <div className="ranked">
+
+        <Popup 
+        open = {this.state.loginPopup}
+        closeOnDocumentClick
+        onClose = {this.closePopup}>
+          <Login/>
+        </Popup>
+
+
+
         <div className="title">
           <p>{this.state.title}</p>
         </div>
@@ -64,7 +86,8 @@ class Ranked extends React.Component {
                 item,
                 index++,
                 item.count / this.state.totalCount,
-                this.toggleVoteLimitAlert
+                this.toggleVoteLimitAlert,
+                this.openPopup
               ])
             )}
           </tbody>

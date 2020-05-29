@@ -40,7 +40,7 @@ class Register extends React.Component{
 
     render(){
         return(
-            <div>
+            <div id = "authFormContainer">
                 <form className = "authForm">
                     <img src = "../asset/temp_logo.png"/>
                     <input placeholder = "username" onChange = {this.handleChange}></input>

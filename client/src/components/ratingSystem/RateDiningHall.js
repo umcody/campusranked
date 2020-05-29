@@ -1,5 +1,7 @@
 import React from "react";
 import RateStars from "./RateStars";
+import "./rateStar.css";
+
 
 class Rate extends React.Component{
     constructor(props){
@@ -17,13 +19,13 @@ class Rate extends React.Component{
 
     render(){
         return(
-            <div>
-                <RateStars/>
-                <RateStars/>
-                <RateStars/>
-                <RateStars/>
-                <RateStars/>
-                <RateStars/>
+            <div className = "rateContainer">
+                <table>
+                    <tr><th>Taste: </th><th><RateStars/></th></tr>
+                    <tr><th>Hygiene: </th><th><RateStars/></th></tr>
+                    <tr><th>Variety: </th><th><RateStars/></th></tr>
+                </table>
+                
             </div>
         )
     }
