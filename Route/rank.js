@@ -11,8 +11,9 @@ module.exports = function (app, mongoose) {
         rank: Number,
         image: String,
         name: String,
-        category: String,
-        count: Number
+        title: String,
+        count: Number,
+        category: String
     })
 
 

@@ -5,9 +5,10 @@ const Cors = require("cors");
 const rank = require("./Route/rank.js")
 const search = require("./Route/search.js")
 const bodyParser = require("body-parser");
-const authRoute = require("./Route/authRoute");
+const authRoute = require("./Auth/authRoute");
 const passport = require("passport");
 const passportAuth = require("./auth_config/passport.js");
+const reviewPage = require("./Route/itemPage");
 
 
 
@@ -26,6 +27,7 @@ passportAuth(app,mongoose);
 search(app,mongoose);
 authRoute(app,mongoose);
 rank(app,mongoose);
+reviewPage(app,mongoose);
 
 
 if(process.env.NODE_ENV === 'production'){

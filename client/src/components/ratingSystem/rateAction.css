@@ -1,0 +1,43 @@
+.rateFormContainer{
+    display: block;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+    width:fit-content;
+    padding:60px;
+    text-align: center;
+}
+
+
+#title{
+    font-size: 35px;
+    font-weight: 400;
+    color:#3f3f3f;
+    margin-bottom: 20px;
+}
+
+#rateForm{
+    display:block;
+    margin-right: 30px;
+    margin-bottom: 30px;
+}
+
+#writingAreaContainer{
+    display:block;
+    
+}
+
+#writingArea{
+    padding:15px;
+    width:400px;
+    height:150px;
+    text-align: left;
+    font-size: 18px;
+    color: #3f3f3f
+}
+
+#writingArea:focus{
+    outline:none;
+}

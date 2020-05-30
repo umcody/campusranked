@@ -2,10 +2,6 @@ var Search = require('../Model/searchModel.js');
 
 module.exports=function(app,mongoose){
 
-    let searchSchema = new mongoose.Schema({
-        url:String,
-        name:String
-    })
 
 
     app.get("/search",function(req,res){

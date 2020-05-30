@@ -1,0 +1,7 @@
+{
+    "Library":["size","noise","spacious","resources"],
+    "Residential Hall":["cleanliness","accessiblity","noise","privacy","bathroom"],
+    "Dining Hall":["taste","hygiene","variety","nutrition","space","price"],
+    "Gym":["space, popularity, resources, equipments, cleanliness"],
+    "Building":["space, design, structure"]
+}
