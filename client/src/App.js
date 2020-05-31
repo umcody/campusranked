@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import Rating from "./components/ratingSystem/RateDiningHall";
 import Review from "./components/ratingSystem/RateDiningHall";
 import Rate from "./components/ratingSystem/RateAction";
+import Home from "./components/Home";
 
 class App extends React.Component {
   constructor(props) {
@@ -35,6 +36,13 @@ class App extends React.Component {
     return (
       <div id="content">
         <SearchBar searchBody={this.state.body} />
+        {/* <Route exact path="/home" component={Home} options={this.state.body} /> */}
+        <Route
+          exact
+          path="/home"
+          component={() => <Home options={this.state.body} />}
+        />
+
         <Route exact path="/ranked" component={Dummy} />
         <Route
           exact
@@ -43,9 +51,9 @@ class App extends React.Component {
         />
         <Route exact path="/registeruser" component={Register} />
         <Route exact path="/loginuser" component={Login} />
-        <Route exact path="/rating" component = {Rating}/>
-        <Route path = "/detailed/dininghall/:title/:item" component = {Review}/>
-        <Route path = "/rate/gym/:title/:item" component = {Rate}/>
+        <Route exact path="/rating" component={Rating} />
+        <Route path="/detailed/dininghall/:title/:item" component={Review} />
+        <Route path="/rate/gym/:title/:item" component={Rate} />
       </div>
     );
   }

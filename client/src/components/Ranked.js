@@ -15,41 +15,38 @@ class Ranked extends React.Component {
       title: "DEFAULT",
       totalCount: 0,
       showVoteLimitAlert: "none",
-      loginPopup: false
+      loginPopup: false,
     };
     this.toggleVoteLimitAlert = this.toggleVoteLimitAlert.bind(this);
     this.openPopup = this.openPopup.bind(this);
     this.closePopup = this.closePopup.bind(this);
   }
 
-  openPopup(){
-    this.setState({loginPopup:true});
+  openPopup() {
+    this.setState({ loginPopup: true });
   }
-  closePopup(){
-    this.setState({loginPopup:false});
+  closePopup() {
+    this.setState({ loginPopup: false });
   }
 
-  toggleVoteLimitAlert(){
-    this.setState({showVoteLimitAlert:" "});
+  toggleVoteLimitAlert() {
+    this.setState({ showVoteLimitAlert: " " });
   }
 
   // When mounted, fetch all necessary data such as Items, Title, total Count respectively
   componentDidMount() {
-
     fetch("/search/" + this.props.match.params.item)
-      .then(res => res.json())
-      .then(body => {
+      .then((res) => res.json())
+      .then((body) => {
         this.setState({ totalCount: body[0].totalCount });
       });
 
     fetch("/api" + this.state.link)
-
-      .then(res => res.json())
-      .then(body => {
+      .then((res) => res.json())
+      .then((body) => {
         this.setState({ body });
         index = 1;
       });
-
 
     fetch("/getTitle/" + this.props.match.params.item)
       .then((res) => res.json())
@@ -64,20 +61,23 @@ class Ranked extends React.Component {
   render() {
     return (
       <div className="ranked">
-
-        <Popup 
-        open = {this.state.loginPopup}
-        closeOnDocumentClick
-        onClose = {this.closePopup}>
-          <Login/>
+        <Popup
+          open={this.state.loginPopup}
+          closeOnDocumentClick
+          onClose={this.closePopup}
+        >
+          <Login />
         </Popup>
-
-
 
         <div className="title">
           <p>{this.state.title}</p>
         </div>
-        <p  id = "voteLimitAlert" style = {{display:this.state.showVoteLimitAlert}}>Vote Limit has Been Reached!</p>
+        <p
+          id="voteLimitAlert"
+          style={{ display: this.state.showVoteLimitAlert }}
+        >
+          Vote Limit has Been Reached!
+        </p>
         <table className="ranked_table">
           <tbody>
             {/* Creates row cell for every item in the body */}
@@ -87,7 +87,7 @@ class Ranked extends React.Component {
                 index++,
                 item.count / this.state.totalCount,
                 this.toggleVoteLimitAlert,
-                this.openPopup
+                this.openPopup,
               ])
             )}
           </tbody>

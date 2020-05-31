@@ -1,0 +1,23 @@
+#home {
+  padding-top: 10vh;
+}
+
+li {
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 380px;
+  min-height: 50px;
+  position: relative;
+  color: #3f3f3f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+a:visited,
+a:link {
+  text-decoration: none;
+  color: #3f3f3f;
+}
