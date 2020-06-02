@@ -15,7 +15,8 @@ class Ranked extends React.Component {
       title: "DEFAULT",
       totalCount: 0,
       showVoteLimitAlert: "none",
-      loginPopup: false
+      loginPopup: false,
+      category:""
     };
     this.toggleVoteLimitAlert = this.toggleVoteLimitAlert.bind(this);
     this.openPopup = this.openPopup.bind(this);
@@ -39,7 +40,10 @@ class Ranked extends React.Component {
     fetch("/search/" + this.props.match.params.item)
       .then(res => res.json())
       .then(body => {
-        this.setState({ totalCount: body[0].totalCount });
+        this.setState({
+          totalCount: body[0].totalCount,
+          category: body[0].category
+        });
       });
 
     fetch("/api" + this.state.link)
@@ -48,6 +52,7 @@ class Ranked extends React.Component {
       .then(body => {
         this.setState({ body });
         index = 1;
+        console.log(body);
       });
 
 
@@ -87,7 +92,8 @@ class Ranked extends React.Component {
                 index++,
                 item.count / this.state.totalCount,
                 this.toggleVoteLimitAlert,
-                this.openPopup
+                this.openPopup,
+                this.state.category
               ])
             )}
           </tbody>

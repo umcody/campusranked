@@ -13,14 +13,21 @@ module.exports = function (app, mongoose) {
         name: String,
         title: String,
         count: Number,
-        category: String
+        category: String,
+        ratings: Object,
+        reviews: Array
     })
 
 
     //Get information of the items in the appropriate title
     app.get("/api/ranked/:title", (req, res) => {
         let title = req.params.title;
-        const Item = new mongoose.model(title, itemSchema);
+        let Item
+        try{
+            Item = mongoose.model(title);
+        }catch(error){
+            Item =  mongoose.model(title, itemSchema);
+        }
         Item.find({}).sort({ count: -1 }).exec(function (err, docs) {
             if (err) {
                 return console.log(err);
@@ -111,8 +118,11 @@ module.exports = function (app, mongoose) {
         })(req, res);
 
         if (shouldInc == true) { // IF shouldInc is true, update the documents.
-
-            const Item = new mongoose.model(title, itemSchema);
+            try{
+                const Item = mongoose.model(title);
+            }catch(error){
+                const Item = new mongoose.model(title, itemSchema);
+            }
             console.log("accessed");
 
             //Update the item votes

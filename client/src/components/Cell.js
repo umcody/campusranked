@@ -28,6 +28,7 @@ class Cell extends React.Component {
             clickCount: 0,
         }
         this.controlVote = this.controlVote.bind(this);
+        console.log(props[5]);
     }
 
     // vote CLICKED HANDLER to Toggle animation 
@@ -50,6 +51,7 @@ class Cell extends React.Component {
         let { name } = this.props[0];
         let url = this.props[0].category;
         const JWToken = localStorage.getItem("JWT");
+
 
         // Updates the count value of the players. Upvote and Downvote(implicit). 
         button.addEventListener("click", async (e) => {
@@ -109,7 +111,14 @@ class Cell extends React.Component {
                         </img>
                         <div className="medal"></div>
                     </div></th>
-                <th><div className="name">{this.props[0].name}</div></th>
+                <th>
+                    <a href = {`/detailed/${this.props[5]}/${this.props[0].category}/${this.props[0].name}`}>
+                        <div className="name">{this.props[0].name}</div>
+                    </a>
+                </th>
+                <th>
+                    <div>{this.props[0].ratings.Overall/100}</div>
+                </th>
                 <th>
                     {/* VOTE LOGO/ BUTTON */}
                     <div className="upVote" onClick={this.handleClick}>
