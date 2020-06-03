@@ -17,7 +17,8 @@ class RateAction extends React.Component {
             friendliness: 0,
             review: "",
             name: "",
-            loginPopup: false
+            loginPopup: false,
+            showAlert:"none"
         }
         this.changeOverall = this.changeOverall.bind(this);
         this.changeSpace = this.changeSpace.bind(this);
@@ -50,19 +51,15 @@ class RateAction extends React.Component {
     }
 
     handleSubmit(event) {
-        this.setState({});
         console.log(this.state.body);
 
+        // CONDITIONS BEFORE SUBMITN THE REVIEW
         if (this.state.overall === 0) {
-            //ALERT THE USER
+            this.setState({showAlert:" "})
         } else if (this.state.space === 0) {
-            //ALERT THE USER
-
+            this.setState({showAlert:" "})
         } else if (this.state.friendliness === 0) {
-            //ALERT THE USER
-
-        } else if (this.state.review === "" && this.state.name !== "") {
-            //ALERT THE USER
+            this.setState({showAlert:" "})
         } else {
             fetch("/api/rate/gym/" + this.state.body.category + "/" + this.state.body.name, {
                 method: "post",
@@ -148,7 +145,7 @@ class RateAction extends React.Component {
                     </div>
 
                     <btn className="submitBtn" onClick={this.handleSubmit}> Submit </btn>
-
+                    <p style = {{display:this.state.showAlert}}>You must rate on all criterions!</p>
                 </form>
             </div>
         )

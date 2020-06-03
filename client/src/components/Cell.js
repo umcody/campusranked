@@ -28,7 +28,7 @@ class Cell extends React.Component {
             clickCount: 0,
         }
         this.controlVote = this.controlVote.bind(this);
-        console.log(props[5]);
+        console.log(props[0]);
     }
 
     // vote CLICKED HANDLER to Toggle animation 
@@ -112,12 +112,12 @@ class Cell extends React.Component {
                         <div className="medal"></div>
                     </div></th>
                 <th>
-                    <a href = {`/detailed/${this.props[5]}/${this.props[0].category}/${this.props[0].name}`}>
-                        <div className="name">{this.props[0].name}</div>
+                    <a className="name" href = {`/detailed/${this.props[5]}/${this.props[0].category}/${this.props[0].name}`}>
+                        <div>{this.props[0].name}</div>
                     </a>
                 </th>
-                <th>
-                    <div>{this.props[0].ratings.Overall/100}</div>
+                <th> {/* RATINGS */}
+                    <div>{this.props[0].ratings.overall/100}</div>
                 </th>
                 <th>
                     {/* VOTE LOGO/ BUTTON */}

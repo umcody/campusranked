@@ -1,7 +1,7 @@
 import React from "react";
-import "./ratePage.css";
-import ReviewCell from "./ReviewCell.js";
-import RateCell from "./RateCell.js";
+import "../ratePage.css";
+import ReviewCell from "../ReviewCell.js";
+import RateCell from "../RateCell.js";
 
 
 
@@ -11,7 +11,8 @@ class RateGym extends React.Component {
         this.state = {
             body: {},
             ratings: [],
-            reviews: []
+            reviews: [],
+            category:""
         }
     }
 
@@ -19,6 +20,8 @@ class RateGym extends React.Component {
         const { match: { params } } = this.props;
         const title = params.title;
         const item = params.item;
+        const category = params.category // NOTE this.state.category != this.state.body.category. For now, the former means the actual category, and the latter is the title
+        this.setState({category:category});
 
         const data = await fetch("/api/detailed/" + title + "/" + item);
         const json = await data.json();
@@ -29,7 +32,7 @@ class RateGym extends React.Component {
 
         const tempRatings = await Object.entries(this.state.body.ratings);
         this.setState({ ratings: tempRatings });
-        this.ratings = Math.floor(this.state.body.ratings.Overall)
+        this.ratings = Math.floor(this.state.body.ratings.overall)
         if (this.state.body.reviews) {
             const tempReview = await Object.entries(this.state.body.reviews);
             console.log(tempReview);
@@ -60,7 +63,7 @@ class RateGym extends React.Component {
                         </div>
                     </div>
                     <div style={{ width: "100%" }}>
-                        <a id="rateBtn" href={`/rate/gym/${this.state.body.category}/${this.state.body.name}`}>RATE NOW!</a>
+                        <a id="rateBtn" href={`/rate/${this.state.category}/${this.state.body.category}/${this.state.body.name}`}>RATE NOW!</a>
                     </div>
                 </div>
             )

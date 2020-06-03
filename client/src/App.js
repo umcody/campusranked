@@ -5,8 +5,8 @@ import SearchBar from "./components/searchBar/SearchBar.js";
 import Dummy from "./components/dummy";
 import Register from "./components/Register";
 import Login from "./components/Login";
-import Rating from "./components/ratingSystem/RateGym";
-import ReviewGym from "./components/ratingSystem/RateGym";
+import Rating from "./components/ratingSystem/rateRoutes/RateGym";
+import ReviewGym from "./components/ratingSystem/rateRoutes/RateGym";
 import RateGym from "./components/ratingSystem/RateAction";
 
 class App extends React.Component {
@@ -44,8 +44,8 @@ class App extends React.Component {
         <Route exact path="/registeruser" component={Register} />
         <Route exact path="/loginuser" component={Login} />
         <Route exact path="/rating" component = {Rating}/>
-        <Route path = "/detailed/gym/:title/:item" component = {ReviewGym}/>
-        <Route path = "/rate/gym/:title/:item" component = {RateGym}/>
+        <Route path = "/detailed/:category/:title/:item" component = {ReviewGym}/>
+        <Route path = "/rate/:category/:title/:item" component = {RateGym}/>
       </div>
     );
   }

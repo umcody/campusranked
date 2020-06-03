@@ -20,6 +20,7 @@ class Register extends React.Component{
     }
 
      async handleSubmit(event){
+        console.log("WHAT");
         event.preventDefault();
         const data =  await fetch("/register",{ // FETCH to Register
             method:"post",
@@ -41,13 +42,15 @@ class Register extends React.Component{
     render(){
         return(
             <div id = "authFormContainer">
-                <form className = "authForm">
+                <form className = "authForm" onSubmit = {this.handleSubmit}>
                     <img src = "../asset/temp_logo.png"/>
-                    <input placeholder = "username" onChange = {this.handleChange}></input>
-                    <input placeholder = "email" onChange = {this.handleChange}></input>
-                    <input placeholder = "password" onChange = {this.handleChange}></input>
+                    <input id = "username" placeholder = "username" onChange = {this.handleChange} type="text" 
+                    pattern = "^[a-z0-9]{3,12}$"  title="The username must only be of lower-case letters or numbers"></input>
+                    <input id = "email" placeholder = "email" onChange = {this.handleChange} type="email"></input>
+                    <input id = "password" placeholder = "password" onChange = {this.handleChange }
+                    pattern = "^[a-zA-Z0-9$!=+&^%*~]{5,15}$" title = "The password can be of any letters and digits and special characters($!=+&^%*~)"></input>
 
-                    <button onClick = {this.handleSubmit}>SUBMIT</button>
+                    <button type = "submit">REGISTER!</button>
 
                     <a href ="/loginUser"> Already have an account?</a>
 

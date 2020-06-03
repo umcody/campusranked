@@ -3,7 +3,7 @@ const passport = require("passport");
 const jwt = require("jsonwebtoken");
 var UserModel = require("../Model/userModel");
 const VOTELIMIT = 3;
-let shouldInc = false;
+
 
 module.exports = function (app, mongoose) {
 
@@ -22,16 +22,17 @@ module.exports = function (app, mongoose) {
     //Get information of the items in the appropriate title
     app.get("/api/ranked/:title", (req, res) => {
         let title = req.params.title;
-        let Item
-        try{
+        let Item;
+        try {
             Item = mongoose.model(title);
-        }catch(error){
-            Item =  mongoose.model(title, itemSchema);
+        } catch (error) {
+            Item = new mongoose.model(title, itemSchema);
         }
         Item.find({}).sort({ count: -1 }).exec(function (err, docs) {
             if (err) {
                 return console.log(err);
             }
+            console.log(docs);
             res.json(docs);
         })
     });
@@ -42,7 +43,7 @@ module.exports = function (app, mongoose) {
 
         let title = req.params.title;
         let item = req.params.item;
-
+        let shouldInc = false;
         console.log("LOOKING FOR IT");
 
 
@@ -51,6 +52,39 @@ module.exports = function (app, mongoose) {
             if (err) {
                 console.log(err);
             } else {
+                function incrementItem (){ // FUNCTION TO INCREMENT ITEM COUNT -- TO BE CALLED LATER WHEN CONDITION IS MET
+                        let Item;
+                        try {
+                            Item = mongoose.model(title);
+                        } catch (error) {
+                            Item = new mongoose.model(title, itemSchema);
+                        }
+                        console.log("accessed");
+
+                        //Update the item votes
+                        Item.findOneAndUpdate({ name: item }, { $inc: { count: 1 } }, function (err, data) {
+                            if (err) {
+                                return console.log(err);
+                            }
+                            if (data === null) {
+                                console.log("NO SUCH ITEM FOUND!!");
+                            } else {
+                                console.log(data + " is incrmented too")
+                            }
+                            console.log("UPDATED: " + data);
+                        });
+
+                        Search.findOneAndUpdate({ url: title }, { $inc: { totalCount: 1 } }, function (err, data) {
+                            if (err) {
+                                return console.log(err);
+                            }
+                            console.log("UPDATED: " + data);
+                        });
+                        shouldInc = false;
+                }
+
+
+
                 UserModel.findOne({ email: user.email, "voted.title": title }, function (err, data) {
                     console.log(data);
                     if (err) {
@@ -73,7 +107,9 @@ module.exports = function (app, mongoose) {
                                 console.log("User has not voted on this title yet. Created a new title");
                             })
                             shouldInc = true;
-                            res.json({ count: 1 });
+                            incrementItem();
+                            res.json({ count: 1 , increment : true});
+
                         } else { // If user has already voted on the title
                             let i = 0;
                             for (i; i < data.voted.length; i++) { // search for the index where the title resides
@@ -91,22 +127,28 @@ module.exports = function (app, mongoose) {
                                     }
                                     console.log("Count successfully incremented");
                                     shouldInc = true; // set to True to update all the doc.
-                                    res.send({ count: data.voted[i].count++, increment: true});
+                                    incrementItem();
+                                    console.log(shouldInc);
+                                    res.json({ count: data.voted[i].count++, increment: true });
                                 })
                             } else {
-                                if((new Date().getDate() - data.voted[i].lastVoted.getDate())!== 0){ // If it has been a day since last reached maximum, reset.
-                                    UserModel.findOneAndUpdate({email:data.email, "voted.title":title},{
-                                        $set: {"voted.$.count":1,
-                                                "voted.$.lastVoted": new Date()}
-                                    },function(err,doc){
-                                        if(err){
+                                if ((new Date().getDate() - data.voted[i].lastVoted.getDate()) !== 0) { // If it has been a day since last reached maximum, reset.
+                                    UserModel.findOneAndUpdate({ email: data.email, "voted.title": title }, {
+                                        $set: {
+                                            "voted.$.count": 1,
+                                            "voted.$.lastVoted": new Date()
+                                        }
+                                    }, function (err, doc) {
+                                        if (err) {
                                             console.log(err);
-                                        }else{
-                                            res.send({ count: 1, increment: true});
+                                        } else {
+                                            shouldInc = true; // Set to True to update the docs
+                                            incrementItem();
+                                            res.send({ count: 1, increment: true });
                                         }
                                     })
-                                }else{
-                                    res.send({ count: data.voted[i].count, increment: false});
+                                } else {
+                                    res.send({ count: data.voted[i].count, increment: false });
                                 }
 
                             }
@@ -117,30 +159,7 @@ module.exports = function (app, mongoose) {
             }
         })(req, res);
 
-        if (shouldInc == true) { // IF shouldInc is true, update the documents.
-            try{
-                const Item = mongoose.model(title);
-            }catch(error){
-                const Item = new mongoose.model(title, itemSchema);
-            }
-            console.log("accessed");
 
-            //Update the item votes
-            Item.findOneAndUpdate({ name: item }, { $inc: { count: 1 } }, function (err, data) {
-                if (err) {
-                    return console.log(err);
-                }
-                console.log("UPDATED: " + data);
-            });
-
-            Search.findOneAndUpdate({ url: title }, { $inc: { totalCount: 1 } }, function (err, data) {
-                if (err) {
-                    return console.log(err);
-                }
-                console.log("UPDATED: " + data);
-            });
-            shouldInc = false;
-        }
     })
 
     // TO BE DEVELOPED. DOWN VOTE SYSTEM.

@@ -16,6 +16,7 @@
 }
 .rightContainer{
     display: inline-block;
+    vertical-align: top;
 }
 
 #title{
