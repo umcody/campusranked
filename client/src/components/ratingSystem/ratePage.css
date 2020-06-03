@@ -16,6 +16,7 @@
 }
 .rightContainer{
     display: inline-block;
+    vertical-align: top;
 }
 
 #title{
@@ -39,6 +40,7 @@
     width:350px;
     background-color: aliceblue;
 }
+
 
 /****** Rating Section ******/
 .ratingsContainer{
@@ -84,4 +86,7 @@
     -webkit-text-fill-color: transparent;
   }
   
+  
+
+
   

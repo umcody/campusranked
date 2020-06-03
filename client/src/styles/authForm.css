@@ -21,6 +21,21 @@
     align-items: center;
     justify-content: center;
     justify-items: center;
+    
+}
+
+#email:invalid{
+    border:solid red 1px;
+}
+
+
+
+
+.alertText{
+    color:red;
+    font-size: 10px;
+    margin-left:10px;
+    margin-right:10px;
 }
 .authForm img{
     width:200px;

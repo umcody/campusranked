@@ -5,10 +5,12 @@ import SearchBar from "./components/searchBar/SearchBar.js";
 import Dummy from "./components/dummy";
 import Register from "./components/Register";
 import Login from "./components/Login";
-import Rating from "./components/ratingSystem/RateDiningHall";
-import Review from "./components/ratingSystem/RateDiningHall";
-import Rate from "./components/ratingSystem/RateAction";
+
 import Home from "./components/Home";
+import Rating from "./components/ratingSystem/rateRoutes/RateGym";
+import ReviewGym from "./components/ratingSystem/rateRoutes/RateGym";
+import RateGym from "./components/ratingSystem/RateAction";
+
 
 class App extends React.Component {
   constructor(props) {
@@ -51,9 +53,10 @@ class App extends React.Component {
         />
         <Route exact path="/registeruser" component={Register} />
         <Route exact path="/loginuser" component={Login} />
-        <Route exact path="/rating" component={Rating} />
-        <Route path="/detailed/dininghall/:title/:item" component={Review} />
-        <Route path="/rate/gym/:title/:item" component={Rate} />
+
+        <Route exact path="/rating" component = {Rating}/>
+        <Route path = "/detailed/:category/:title/:item" component = {ReviewGym}/>
+        <Route path = "/rate/:category/:title/:item" component = {RateGym}/>
       </div>
     );
   }

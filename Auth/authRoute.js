@@ -49,7 +49,7 @@ module.exports = function (app, mongoose) {
         })(req, res, next);
     });
 
-    app.get("/findUser", function (req, res) {
+    app.get("/findUser", function (req, res) { // Routing for authenticating through JWT
         passport.authenticate("jwt", { session: false }, function (err, user) {
             if (err) {
                 console.log(err)

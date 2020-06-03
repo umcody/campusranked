@@ -3,28 +3,6 @@
 fieldset, label { margin: 0; padding: 0; }
 
 
-/****** RATINGS STAR ******/
-
-
-
-
-.Stars{
-  --percent : calc(var(--rating)/5*100%);
-  display: inline-block;
-  font-size:20px;
-  font-family: Times;
-  line-height: 1;
-}
-.Stars::before{
-  content: "★★★★★";
-  background: linear-gradient(90deg, #fc0,var(--percent),#ffffff var(--percent));
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-
-
-
 
 
 /****** Style Star Rating Widget *****/

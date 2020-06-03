@@ -9,8 +9,8 @@ const authRoute = require("./Auth/authRoute");
 const passport = require("passport");
 const passportAuth = require("./auth_config/passport.js");
 const reviewPage = require("./Route/itemPage");
-
-
+const rate = require("./Route/rate");
+const temp = require("./Route/tempCreate");
 
 app.use(Cors());
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -28,6 +28,8 @@ search(app,mongoose);
 authRoute(app,mongoose);
 rank(app,mongoose);
 reviewPage(app,mongoose);
+rate(app,mongoose);
+temp(app,mongoose);
 
 
 if(process.env.NODE_ENV === 'production'){
