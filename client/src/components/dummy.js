@@ -1,8 +1,6 @@
-import React from "react"
+import React from "react";
 
-function dummy (props){
-    return(
-        <div>HELLOO</div>
-    )
+function dummy(props) {
+  return <div>HELLOO</div>;
 }
-export default dummy
+export default dummy;
