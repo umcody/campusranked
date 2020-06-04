@@ -88,8 +88,8 @@ module.exports = function(app,mongoose){
                             overall:0,
                             noise:0,
                             space:0,
-                            resources:0,
-                            size:0
+                            accessibility:0,
+                            resource:0,
                         },
                         count: 0,
                         reviewCounts:0,
@@ -104,6 +104,6 @@ module.exports = function(app,mongoose){
             })
 
             app.get("/api/create/gym",function(req,res){
-                
+
             })
     }

@@ -16,8 +16,8 @@ li {
   background-color: white;
 }
 
-a:visited,
-a:link {
+#home a:visited,
+#home a:link {
   text-decoration: none;
   color: #3f3f3f;
 }

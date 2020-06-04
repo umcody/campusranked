@@ -8,8 +8,10 @@ import Login from "./components/Login";
 
 import Home from "./components/Home";
 import Rating from "./components/ratingSystem/rateRoutes/RateGym";
-import ReviewGym from "./components/ratingSystem/rateRoutes/RateGym";
-import RateGym from "./components/ratingSystem/RateAction";
+import Review from "./components/ratingSystem/rateRoutes/RateGym";
+import RateGym from "./components/ratingSystem/rateActionRoutes/RateActionGym";
+import RateDiningHall from "./components/ratingSystem/rateActionRoutes/RateActionDiningHall";
+import RateLibrary from "./components/ratingSystem/rateActionRoutes/RateActionLibrary";
 
 
 class App extends React.Component {
@@ -55,8 +57,11 @@ class App extends React.Component {
         <Route exact path="/loginuser" component={Login} />
 
         <Route exact path="/rating" component = {Rating}/>
-        <Route path = "/detailed/:category/:title/:item" component = {ReviewGym}/>
-        <Route path = "/rate/:category/:title/:item" component = {RateGym}/>
+        <Route path = "/detailed/:category/:title/:item" component = {Review}/>
+        <Route path = "/rate/gym/:title/:item" component = {RateGym}/>
+        <Route path = "/rate/dininghall/:title/:item" component = {RateDiningHall}/>
+        <Route path = "/rate/library/:title/:item" component = {RateLibrary}/>
+
       </div>
     );
   }

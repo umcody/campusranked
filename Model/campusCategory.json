@@ -1,5 +1,5 @@
 {
-    "Library":["size","noise","spacce","resources"],
+    "Library":["size","noise","space","resources"],
     "Residential Hall":["cleanliness","location","noise","privacy","bathroom"],
     "Dining Hall":["taste","hygiene","variety","nutrition","price"],
     "Gym":["space, equipments, cleanliness, friendliness"],

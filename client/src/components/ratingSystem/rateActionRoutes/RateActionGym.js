@@ -1,8 +1,8 @@
 import React from "react";
-import RateStars from "./RateStars";
-import RateStarsTest from "./RateStarsTest";
+import RateStars from "../RateStars";
+import RateStarsTest from "../RateStarsTest";
 import Popup from "reactjs-popup";
-import Login from "../Login.js";
+import Login from "../../Login.js";
 
 import "./rateAction.css";
 
