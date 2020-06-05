@@ -1,0 +1,8 @@
+#graphics_eat{
+    position: absolute;
+    z-index: -1;
+    bottom:0px;
+    left:0px;
+    width:400px;
+    
+}

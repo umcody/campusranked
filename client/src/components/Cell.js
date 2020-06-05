@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import posed from "react-pose";
+import rateStar from "./ratingSystem/RateStars";
 //import image from "../public/asset/kobeBryant.jpg";
 
 
@@ -26,9 +27,11 @@ class Cell extends React.Component {
             count: props[0].count,
             clicked: false,
             clickCount: 0,
+            hasRatings: "none"
         }
         this.controlVote = this.controlVote.bind(this);
         console.log(props[0]);
+
     }
 
     // vote CLICKED HANDLER to Toggle animation 
@@ -51,7 +54,9 @@ class Cell extends React.Component {
         let { name } = this.props[0];
         let url = this.props[0].category;
         const JWToken = localStorage.getItem("JWT");
-
+        if (this.props[0].ratings.overall === 0) {
+            this.setState({ hasRatings: " " });
+        }
 
         // Updates the count value of the players. Upvote and Downvote(implicit). 
         button.addEventListener("click", async (e) => {
@@ -97,7 +102,7 @@ class Cell extends React.Component {
         return (
 
             <tr className="row">
-                
+
                 <th className="voteContainer">
                     {/* DIV cannot exist inside TR so the vote indicator is in TH with pos. abs*/}
                     <Vote className="vote1" pose={isVisible ? "visible" : "hidden"}></Vote>
@@ -113,12 +118,15 @@ class Cell extends React.Component {
                         <div className="medal"></div>
                     </div></th>
                 <th>
-                    <a className="name" href = {`/detailed/${this.props[5]}/${this.props[0].category}/${this.props[0].name}`}>
+                    <a className="name" href={`/detailed/${this.props[5]}/${this.props[0].category}/${this.props[0].name}`}>
                         <div>{this.props[0].name}</div>
                     </a>
                 </th>
                 <th> {/* RATINGS */}
-                    <div>{this.props[0].ratings.overall/100}</div>
+                    <div className="Stars" style={{ "--rating": this.props[0].ratings.overall / 100 }}></div>
+                    {/*<div style = {{display:this.state.hasRatings}}>
+                        NO RATINGS
+                    </div> ***** THIS DIV SHOWS WHEN THERE IS NO RATING -- WHETHER THIS WILL BE USED WILL BE DETERMINED  */}
                 </th>
                 <th>
                     {/* VOTE LOGO/ BUTTON */}

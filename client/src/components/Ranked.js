@@ -100,6 +100,7 @@ class Ranked extends React.Component {
             )}
           </tbody>
         </table>
+        <img id = "graphics_eat"src = "../asset/undraw_barbecue.svg"/>
         <div className="notice">
           The rank will be sorted once you refresh/exit the page
         </div>

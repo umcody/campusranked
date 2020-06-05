@@ -12,6 +12,7 @@ import Review from "./components/ratingSystem/rateRoutes/ReviewPage";
 import RateGym from "./components/ratingSystem/rateActionRoutes/RateActionGym";
 import RateDiningHall from "./components/ratingSystem/rateActionRoutes/RateActionDiningHall";
 import RateLibrary from "./components/ratingSystem/rateActionRoutes/RateActionLibrary";
+import "./components/ratingSystem/ratePage.css";
 
 
 class App extends React.Component {

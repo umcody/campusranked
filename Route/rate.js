@@ -121,10 +121,10 @@ module.exports = function (app, mongoose) {
             let tempVariety = tempRatings[3][1] * data.reviewCounts;
             tempVariety = (tempVariety + parseFloat(req.body.variety) * 100) / (data.reviewCounts + 1);
 
-            let tempNutrition = tempRatings[3][1] * data.reviewCounts;
+            let tempNutrition = tempRatings[4][1] * data.reviewCounts;
             tempNutrition = (tempNutrition + parseFloat(req.body.nutrition) * 100) / (data.reviewCounts + 1);
 
-            let tempPrice = tempRatings[3][1] * data.reviewCounts;
+            let tempPrice = tempRatings[5][1] * data.reviewCounts;
             tempPrice = (tempPrice + parseFloat(req.body.price) * 100) / (data.reviewCounts + 1);
 
 
@@ -211,7 +211,7 @@ module.exports = function (app, mongoose) {
             let tempAccessibility = tempRatings[3][1] * data.reviewCounts;
             tempAccessibility = (tempAccessibility + parseFloat(req.body.accessibility) * 100) / (data.reviewCounts + 1);
 
-            let tempResource = tempRatings[3][1] * data.reviewCounts;
+            let tempResource = tempRatings[4][1] * data.reviewCounts;
             tempResource = (tempResource + parseFloat(req.body.resource) * 100) / (data.reviewCounts + 1);
 
 

@@ -35,9 +35,11 @@ function SearchBar(props) {
           placeholder="Search Any Noun"
           onChange={handleChange}
         ></input>
-        {dropDown.map((dropDownItems) =>
-          React.createElement(SearchDropDown, dropDownItems)
-        )}
+        <div className = "dropDownContainer">
+          {dropDown.map((dropDownItems) =>
+            React.createElement(SearchDropDown, dropDownItems)
+          )}
+        </div>
       </div>
       <AccountBtn />
     </div>

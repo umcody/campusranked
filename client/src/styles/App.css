@@ -4,7 +4,7 @@
 @import "./RankedTable.css";
 @import "./authForm.css";
 @import "./Footer.css";
-
+@import "./Ranked.css";
 * {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
@@ -47,7 +47,6 @@ input {
 html,
 body {
   width: 100%;
-  background-color: #f1f1f1;
   height: 100vh;
   margin: 0px;
 }

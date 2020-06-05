@@ -1,5 +1,4 @@
 import React from "react";
-import "../ratePage.css";
 import ReviewCell from "../ReviewCell.js";
 import RateCell from "../RateCell.js";
 
@@ -73,6 +72,7 @@ class RateGym extends React.Component {
                     <div style={{ width: "100%" }}>
                         <a id="rateBtn" href={`/rate/${this.state.category}/${this.state.body.category}/${this.state.body.name}`}>RATE NOW!</a>
                     </div>
+                    <img id = "graphics_review" src="/asset/undraw_char.svg"/>
                 </div>
             )
         } else {

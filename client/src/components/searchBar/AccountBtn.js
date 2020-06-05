@@ -42,7 +42,8 @@ class AccountBtn extends React.Component {
         } else {
             return (
                 <div className="accountBtn">
-                    {`It's time to Rank, ${this.state.username}`}
+                    <div style = {{display: "inline-block"}}>{`It's time to Rank, `}</div>
+                    <div className = "username"> {` @${this.state.username}`}</div>
                 </div>
             );
         }
