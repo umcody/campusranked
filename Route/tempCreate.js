@@ -28,7 +28,7 @@ module.exports = function(app,mongoose){
                     image: "../asset/" + diningHallsModified[i] + ".jpg",
                     name: diningHalls[i],
                     category: "uwmadisondininghall",
-                    reviews: {Test:"test"},
+                    reviews: [],
                     ratings: {
                         overall:0,
                         taste:0,
@@ -83,7 +83,7 @@ module.exports = function(app,mongoose){
                         image: "../asset/" + diningHallsModified[i] + ".jpg",
                         name: diningHalls[i],
                         category: "uwmadisonlibrary",
-                        reviews: {Test:"test"},
+                        reviews: [],
                         ratings: {
                             overall:0,
                             noise:0,

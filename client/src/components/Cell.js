@@ -97,6 +97,7 @@ class Cell extends React.Component {
         return (
 
             <tr className="row">
+                
                 <th className="voteContainer">
                     {/* DIV cannot exist inside TR so the vote indicator is in TH with pos. abs*/}
                     <Vote className="vote1" pose={isVisible ? "visible" : "hidden"}></Vote>

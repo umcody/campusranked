@@ -7,8 +7,8 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 
 import Home from "./components/Home";
-import Rating from "./components/ratingSystem/rateRoutes/RateGym";
-import Review from "./components/ratingSystem/rateRoutes/RateGym";
+import Rating from "./components/ratingSystem/rateRoutes/ReviewPage";
+import Review from "./components/ratingSystem/rateRoutes/ReviewPage";
 import RateGym from "./components/ratingSystem/rateActionRoutes/RateActionGym";
 import RateDiningHall from "./components/ratingSystem/rateActionRoutes/RateActionDiningHall";
 import RateLibrary from "./components/ratingSystem/rateActionRoutes/RateActionLibrary";

@@ -12,7 +12,8 @@ class RateGym extends React.Component {
             body: {},
             ratings: [],
             reviews: [],
-            category:""
+            category:"",
+            hasReview: "none"
         }
     }
 
@@ -34,9 +35,13 @@ class RateGym extends React.Component {
         this.setState({ ratings: tempRatings });
         this.ratings = Math.floor(this.state.body.ratings.overall)
         if (this.state.body.reviews) {
-            const tempReview = await Object.entries(this.state.body.reviews);
-            console.log(tempReview);
-            this.setState({ reviews: tempReview });
+            if(this.state.body.reviews.length === 0){
+                this.setState({hasReview:" "});
+            }else{
+                const tempReview = await Object.entries(this.state.body.reviews);
+                console.log(tempReview);
+                this.setState({ reviews: tempReview });
+            }
         }
     }
 
@@ -60,6 +65,9 @@ class RateGym extends React.Component {
                             {this.state.body.reviews.map((item) =>
                                 React.createElement(ReviewCell, item)
                             )}
+                        </div>
+                        <div style = {{display:this.state.hasReview}}>
+                            <ReviewCell {...["","Unfortunately, there is no review yet. Maybe you can write one!"]}/>
                         </div>
                     </div>
                     <div style={{ width: "100%" }}>
