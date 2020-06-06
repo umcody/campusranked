@@ -42,7 +42,7 @@ class Login extends React.Component {
         return (
             <div>
                 <form className="authForm" onSubmit={this.handleSubmit}>
-                    <img src="../asset/temp_logo.png" />
+                    <img src="/asset/temp_logo.png" />
                     <input id="email" placeholder="email" onChange={this.handleChange} type="email"></input>
                     <input placeholder="password" onChange={this.handleChange}></input>
                     <div class="alertText" style={{ display: this.state.showAlert }}>Login Failed. The account either does not exist or your password is incorrect</div>

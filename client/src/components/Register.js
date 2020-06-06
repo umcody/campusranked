@@ -43,7 +43,7 @@ class Register extends React.Component{
         return(
             <div id = "authFormContainer">
                 <form className = "authForm" onSubmit = {this.handleSubmit}>
-                    <img src = "../asset/temp_logo.png"/>
+                    <img src = "/asset/temp_logo.png"/>
                     <input id = "username" placeholder = "username" onChange = {this.handleChange} type="text" 
                     pattern = "^[a-z0-9]{3,12}$"  title="The username must only be of lower-case letters or numbers"></input>
                     <input id = "email" placeholder = "email" onChange = {this.handleChange} type="email"></input>

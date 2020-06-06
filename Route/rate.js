@@ -105,12 +105,12 @@ module.exports = function (app, mongoose) {
             console.log(data);
             const tempRatings = Object.entries(data.ratings);
             console.log(tempRatings);
-            console.log(req.body.friendliness + req.body.space + req.body.overall);
 
             // Average calculations for each criterions
 
             let tempOverall = tempRatings[0][1] * data.reviewCounts;
             tempOverall = (tempOverall + parseFloat(req.body.overall) * 100) / (data.reviewCounts + 1);
+            console.log(tempOverall);
 
             let tempTaste = tempRatings[1][1] * data.reviewCounts;
             tempTaste = (tempTaste + parseFloat(req.body.taste) * 100) / (data.reviewCounts + 1);
@@ -130,8 +130,10 @@ module.exports = function (app, mongoose) {
 
 
             let name = req.body.name;
-            if (req.body.review === " " || req.body.review === "") { // If there is no review, empty the name too. 
+            if (req.body.review === ' ' || req.body.review === "") { // If there is no review, empty the name too.
+
                 name = "";
+                console.log("HEREEE");
                 Item.findOneAndUpdate({ name: item }, {
                     "ratings.overall": tempOverall,
                     "ratings.taste": tempTaste,
@@ -216,7 +218,7 @@ module.exports = function (app, mongoose) {
 
 
             let name = req.body.name;
-            if (req.body.review === " " || req.body.review === "") { // If there is no review, empty the name too. 
+            if (req.body.review === ' '  || req.body.review === "") { // If there is no review, empty the name too. 
                 name = "";
                 Item.findOneAndUpdate({ name: item }, {
                     "ratings.overall": tempOverall,

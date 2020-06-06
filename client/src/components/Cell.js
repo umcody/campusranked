@@ -30,7 +30,6 @@ class Cell extends React.Component {
             hasRatings: "none"
         }
         this.controlVote = this.controlVote.bind(this);
-        console.log(props[0]);
 
     }
 

@@ -3,9 +3,8 @@ import Cell from "./Cell.js";
 import Footer from "../components/Footer";
 import Popup from "reactjs-popup";
 import Login from "./Login";
-
+let index =1;
 // THIS INDEX SYSTEM NEEDS TO BE FIXED. Sometimes, the rank is repeated -- refresh the page multiple times.
-let index = 1;
 class Ranked extends React.Component {
   constructor(props) {
     super(props);
@@ -16,7 +15,8 @@ class Ranked extends React.Component {
       totalCount: 0,
       showVoteLimitAlert: "none",
       loginPopup: false,
-      category:""
+      category:"",
+      index:1,
     };
     this.toggleVoteLimitAlert = this.toggleVoteLimitAlert.bind(this);
     this.openPopup = this.openPopup.bind(this);
@@ -34,12 +34,17 @@ class Ranked extends React.Component {
     this.setState({ showVoteLimitAlert: " " });
   }
 
+
+  componentDidUpdate(){
+    index = 1;
+  }
   // When mounted, fetch all necessary data such as Items, Title, total Count respectively
   componentDidMount() {
     fetch("/search/" + this.props.match.params.item)
 
       .then(res => res.json())
       .then(body => {
+        
         this.setState({
           totalCount: body[0].totalCount,
           category: body[0].category
@@ -94,13 +99,12 @@ class Ranked extends React.Component {
                 item.count / this.state.totalCount,
                 this.toggleVoteLimitAlert,
                 this.openPopup,
-                this.state.category
-
+                this.state.category,
               ])
             )}
           </tbody>
         </table>
-        <img id = "graphics_eat"src = "../asset/undraw_barbecue.svg"/>
+        <img id = "graphics_ranked"src = {`../asset/undraw_${this.state.category}.svg`}/>
         <div className="notice">
           The rank will be sorted once you refresh/exit the page
         </div>
@@ -110,6 +114,5 @@ class Ranked extends React.Component {
       </div>
     );
   }
-  index = 1;
 }
 export default Ranked;
