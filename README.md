@@ -34,11 +34,11 @@
 * Added Home Page
 
 ### TODOs (In no order of priority)
-* ReDesign the voting page
+* ReDesign the voting page - In Progress
 * Design "Login/Sign Up" section in the search bar
-* Link login button (from Popup Login) to previous user location for better user experience
+* Link login button (from Popup Login) to previous user location for better user experience ***
 * Add Gyms and Residential Hall category
 * Make the web app mobile friendly
-* Set up Amazon S3 Buckets for media storage
+* Set up Amazon S3 Buckets for media storage - In Progress
 
 
