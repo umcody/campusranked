@@ -63,6 +63,7 @@ class Ranked extends React.Component {
       .then((res) => res.json())
       .then((body) => {
         this.setState({ title: body[0].name });
+        document.title= body[0].name;
         index = 1;
       });
 

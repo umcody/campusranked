@@ -136,7 +136,7 @@ class Cell extends React.Component {
                 <th className="count">{this.state.count}</th>
                 <th className="testContainer">
                     {/* *** UNDER DEVELOPMENT VOTE PERCENTAGE BAR */}
-                    <div className="test" style={{ width: (this.props[2] * document.body.clientWidth / 2) }}></div>
+                    <div className="test" style={{ width: (this.props[2] * document.body.clientWidth / 3) }}></div>
                 </th>
             </tr>
         );
