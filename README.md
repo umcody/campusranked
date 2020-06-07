@@ -32,13 +32,15 @@
 * Decided to go beyond just "ranking" and also have review and rating system.
 * Implemented review and rating system
 * Added Home Page
+* ReDesigned the voting page
+* Added Image banner
+* Modified the footer
 
 ### TODOs (In no order of priority)
-* ReDesign the voting page - In Progress
 * Design "Login/Sign Up" section in the search bar
 * Link login button (from Popup Login) to previous user location for better user experience ***
 * Add Gyms and Residential Hall category
 * Make the web app mobile friendly
-* Set up Amazon S3 Buckets for media storage - In Progress
+* Set up Amazon S3 Buckets for media storage - MOSTLY DONE
 
 
