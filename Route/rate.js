@@ -107,8 +107,9 @@ module.exports = function (app, mongoose) {
             console.log(tempRatings);
 
             // Average calculations for each criterions
-
+            
             let tempOverall = tempRatings[0][1] * data.reviewCounts;
+            console.log(tempOverall);
             tempOverall = (tempOverall + parseFloat(req.body.overall) * 100) / (data.reviewCounts + 1);
             console.log(tempOverall);
 

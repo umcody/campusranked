@@ -51,7 +51,7 @@ class Cell extends React.Component {
         const current = ReactDOM.findDOMNode(this);
         let button = current.querySelector(".upVote");
         let { name } = this.props[0];
-        let url = this.props[0].category;
+        let url = this.props[0].title;
         const JWToken = localStorage.getItem("JWT");
         if (this.props[0].ratings.overall === 0) {
             this.setState({ hasRatings: " " });
@@ -136,7 +136,10 @@ class Cell extends React.Component {
                 <th className="count">{this.state.count}</th>
                 <th className="testContainer">
                     {/* *** UNDER DEVELOPMENT VOTE PERCENTAGE BAR */}
-                    <div className="test" style={{ width: (this.props[2] * document.body.clientWidth / 3) }}></div>
+                    <div className = "perBarContainer">
+                        <div className="bar" style={{ width: (this.props[2] * document.body.clientWidth / 3.5) }}></div>
+                        <div className="per">{`  ${(this.props[2]*100).toFixed(1)}%`}</div>
+                    </div>
                 </th>
             </tr>
         );

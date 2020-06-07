@@ -11,6 +11,7 @@ const passportAuth = require("./auth_config/passport.js");
 const reviewPage = require("./Route/itemPage");
 const rate = require("./Route/rate");
 const temp = require("./Route/tempCreate");
+const update = require("./Route/tempUpdate");
 
 app.use(Cors());
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -30,6 +31,7 @@ rank(app,mongoose);
 reviewPage(app,mongoose);
 rate(app,mongoose);
 temp(app,mongoose);
+update(app,mongoose);
 
 
 if(process.env.NODE_ENV === 'production'){

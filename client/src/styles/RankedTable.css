@@ -1,16 +1,5 @@
 /* TABLE STYLES */
-.ranked {
-  position: relative;
-  top: 0;
-  padding-top: 150px;
-  padding-bottom: 10vh;
-  justify-content: center;
-  align-items: center;
-  display: inline-block;
-  height: fit-content;
-  width: 100%;  
-  overflow: hidden;
-}
+
 
 .ranked_table {
   background-color: white;

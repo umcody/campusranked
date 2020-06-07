@@ -64,22 +64,42 @@
 .voteSVG:active{
     opacity: 0.5;
 }
-.test{
-    position: absolute;
-    background-color: #F62459;
-    height: 50px;
+.bar{
+    position: relative;
+    height:40px;
+    background: rgb(127,127,213);
+    border-radius: 0px 5px 5px 0px;
+    background: linear-gradient(90deg, rgba(127,127,213,1) 0%, rgba(134,168,231,1) 20%, rgba(145,234,228,1) 100%);
     animation-name: testAni;
     animation-duration: 2s;
+    display: inline-block;
+    -webkit-box-shadow: 2px 9px 21px -22px rgba(0,0,0,0.43);
+-moz-box-shadow: 2px 9px 21px -22px rgba(0,0,0,0.43);
+box-shadow: 2px 9px 21px -22px rgba(0,0,0,0.43);
+
+
+}
+.perBarContainer{
+    position: absolute;
+    white-space: nowrap;
+    text-align: left;
+}
+.per{
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    margin-left:10px;
+    font-size: 15px;
 }
 .testContainer{
     z-index: -1;
     display:flex;
     position: relative;
-    left: 30px;
+    left: 20px;
 }
 
 
 @keyframes testAni{
-    from{width: 0%};
+    from{width: 0};
     to{width: 100%};
 }

@@ -1,0 +1,13 @@
+.overallRatingsContainer{
+    height: 30px;
+    width: 300px;
+    border-radius: 5px;
+    padding: 2px;
+    background-color: #4B0082;
+    display: block;
+    position: relative;
+    left:300px;
+    margin-bottom: 20px;
+    text-align: left;
+    color:white;
+}

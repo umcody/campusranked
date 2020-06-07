@@ -5,6 +5,8 @@ import SearchBar from "./components/searchBar/SearchBar.js";
 import Dummy from "./components/dummy";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import Footer from "./components/Footer";
+
 
 import Home from "./components/Home";
 import Rating from "./components/ratingSystem/rateRoutes/ReviewPage";
@@ -62,6 +64,7 @@ class App extends React.Component {
         <Route path = "/rate/gym/:title/:item" component = {RateGym}/>
         <Route path = "/rate/dininghall/:title/:item" component = {RateDiningHall}/>
         <Route path = "/rate/library/:title/:item" component = {RateLibrary}/>
+        <Footer />
 
       </div>
     );
