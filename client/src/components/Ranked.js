@@ -1,7 +1,7 @@
 import React from "react";
 import Cell from "./Cell.js";
 import Popup from "reactjs-popup";
-import Login from "./Login";
+import Login from "./auth/Login";
 import OverallRatings from "./overallRatings.js";
 
 

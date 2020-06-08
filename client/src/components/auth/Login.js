@@ -9,6 +9,7 @@ class Login extends React.Component {
             password: "",
             data: {},
             showAlert: "none",
+            redirectBack: "/"
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,6 +19,13 @@ class Login extends React.Component {
         this.setState({
             [event.target.placeholder]: event.target.value
         });
+    }
+
+    componentDidMount() {
+        if (this.props.location.state) {
+            const { redirectBack } = this.props.location.state;
+            this.setState({ redirectBack: redirectBack });
+        }
     }
 
     async handleSubmit(event) {
@@ -32,7 +40,7 @@ class Login extends React.Component {
             this.setState({ showAlert: " " });
         } else {
             localStorage.setItem("JWT", temp.token);
-            window.location.href = ("/");
+            window.location.href = this.state.redirectBack;
         }
 
     }

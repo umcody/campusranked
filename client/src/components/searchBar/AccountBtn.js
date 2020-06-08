@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"
 
 class AccountBtn extends React.Component {
 
@@ -26,6 +27,7 @@ class AccountBtn extends React.Component {
                 username: content.username
             });
         }
+        console.log(document.location.href);
 
     }
 
@@ -36,14 +38,21 @@ class AccountBtn extends React.Component {
         if (this.state.username === "") {
             return (
                 <div className="accountBtn">
-                    <a href="/registerUser"> Log In / Sign Up</a>
+                    <Link to={{
+                        pathname: "/registerUser",
+                        state: {
+                            redirectBack: document.location.href
+                        }
+                    }
+                    }> Log In / Sign Up</Link>
+
                 </div>
             );
         } else {
             return (
                 <div className="accountBtn">
-                    <div style = {{display: "inline-block"}}>{`It's time to Rank, `}</div>
-                    <div className = "username"> {` @${this.state.username}`}</div>
+                    <div style={{ display: "inline-block" }}>{`It's time to Rank, `}</div>
+                    <div className="username"> {` @${this.state.username}`}</div>
                 </div>
             );
         }

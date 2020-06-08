@@ -5,7 +5,7 @@ function overallRatings(props) {
     console.log(props);
     return (
         <div className="overallRatingsContainer">
-            {`Overall Campus Ranked Score: ${props.ratings}`}
+            {`Overall Score: ${props.ratings}`}
         </div>
     );
 }

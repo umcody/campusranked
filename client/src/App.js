@@ -3,9 +3,10 @@ import Ranked from "./components/Ranked.js";
 import { Route } from "react-router-dom";
 import SearchBar from "./components/searchBar/SearchBar.js";
 import Dummy from "./components/dummy";
-import Register from "./components/Register";
-import Login from "./components/Login";
-import Footer from "./components/Footer";
+import Register from "./components/auth/Register";
+import Login from "./components/auth/Login";
+import Footer from "./components/Footer"
+import RegisterComplete from "./components/auth/RegisterComplete";
 
 
 import Home from "./components/Home";
@@ -64,6 +65,7 @@ class App extends React.Component {
         <Route path = "/rate/gym/:title/:item" component = {RateGym}/>
         <Route path = "/rate/dininghall/:title/:item" component = {RateDiningHall}/>
         <Route path = "/rate/library/:title/:item" component = {RateLibrary}/>
+        <Route path = "/registerComplete/:username" component = {RegisterComplete}/>
         <Footer />
 
       </div>
