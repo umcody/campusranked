@@ -5,7 +5,7 @@ import Login from "./auth/Login";
 import OverallRatings from "./overallRatings.js";
 
 
-let index =1;
+let index = 1;
 // THIS INDEX SYSTEM NEEDS TO BE FIXED. Sometimes, the rank is repeated -- refresh the page multiple times.
 class Ranked extends React.Component {
   constructor(props) {
@@ -17,13 +17,15 @@ class Ranked extends React.Component {
       totalCount: 0,
       showVoteLimitAlert: "none",
       loginPopup: false,
-      category:"",
-      index:1,
-      averageRating:0,
+      category: "",
+      index: 1,
+      averageRating: 0,
+      collapseHeight: "600px"
     };
     this.toggleVoteLimitAlert = this.toggleVoteLimitAlert.bind(this);
     this.openPopup = this.openPopup.bind(this);
     this.closePopup = this.closePopup.bind(this);
+    this.handleExpandMore = this.handleExpandMore.bind(this);
   }
 
   openPopup() {
@@ -37,8 +39,12 @@ class Ranked extends React.Component {
     this.setState({ showVoteLimitAlert: " " });
   }
 
+  handleExpandMore(event){
+    this.setState({collapseHeight: "fit-content"});
+  }
 
-  componentDidUpdate(){
+
+  componentDidUpdate() {
     index = 1;
   }
   // When mounted, fetch all necessary data such as Items, Title, total Count respectively
@@ -47,7 +53,7 @@ class Ranked extends React.Component {
 
       .then(res => res.json())
       .then(body => {
-        
+
         this.setState({
           totalCount: body[0].totalCount,
           category: body[0].category
@@ -63,22 +69,22 @@ class Ranked extends React.Component {
         // Finding the average overall rating of the items. 
         let averageRating = 0;
         let validItemCount = 0;
-        this.state.body.map(item=>{
+        this.state.body.map(item => {
           console.log(item);
-          if(item.ratings.overall !== 0){
-            averageRating+=(item.ratings.overall*item.reviewCounts);
-            validItemCount+= item.reviewCounts;
+          if (item.ratings.overall !== 0) {
+            averageRating += (item.ratings.overall * item.reviewCounts);
+            validItemCount += item.reviewCounts;
           }
         })
-        averageRating = (averageRating/validItemCount/100).toFixed(2);
-        this.setState({averageRating:averageRating});
+        averageRating = (averageRating / validItemCount / 100).toFixed(2);
+        this.setState({ averageRating: averageRating });
       });
 
     fetch("/getTitle/" + this.props.match.params.item)
       .then((res) => res.json())
       .then((body) => {
         this.setState({ title: body[0].name });
-        document.title= body[0].name;
+        document.title = body[0].name;
         index = 1;
       });
     index = 1;
@@ -88,7 +94,7 @@ class Ranked extends React.Component {
   render() {
     return (
       <div className="ranked">
-        <img id = "imgBanner" src = "/asset/uwmadison_banner.jpg"/>
+        <img id="imgBanner" src="/asset/uwmadison_banner.jpg" />
         <Popup
           open={this.state.loginPopup}
           closeOnDocumentClick
@@ -107,23 +113,29 @@ class Ranked extends React.Component {
         >
           Vote Limit has Been Reached!
         </p>
-        <OverallRatings ratings = {this.state.averageRating}/>
-        <table className="ranked_table">
-          <tbody>
-            {/* Creates row cell for every item in the body */}
-            {this.state.body.map((item) =>
-              React.createElement(Cell, [
-                item,
-                index++,
-                item.count / this.state.totalCount,
-                this.toggleVoteLimitAlert,
-                this.openPopup,
-                this.state.category,
-              ])
-            )}
-          </tbody>
-        </table>
-        <img id = "graphics_ranked"src = {`../asset/undraw_${this.state.category}.svg`}/>
+        <OverallRatings ratings={this.state.averageRating} />
+        <div className="collapsable">
+          <table className="ranked_table" style = {{"max-height":this.state.collapseHeight}}>
+            <tbody>
+              {/* Creates row cell for every item in the body */}
+              {this.state.body.map((item) =>
+                React.createElement(Cell, [
+                  item,
+                  index++,
+                  item.count / this.state.totalCount,
+                  this.toggleVoteLimitAlert,
+                  this.openPopup,
+                  this.state.category,
+                ])
+              )}
+            </tbody>
+          </table>
+          <div className = "expandBtn" onClick = {this.handleExpandMore}>
+            <img className="expandImg" src="/asset/expandMore.svg"></img>
+            <div className="smallText">Show More</div>
+          </div>
+        </div>
+        <img id="graphics_ranked" src={`../asset/undraw_${this.state.category}.svg`} />
         <div className="notice">
           The rank will be sorted once you refresh/exit the page
         </div>
