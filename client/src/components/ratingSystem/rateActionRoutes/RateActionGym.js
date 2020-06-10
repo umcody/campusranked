@@ -61,7 +61,7 @@ class RateAction extends React.Component {
         } else if (this.state.friendliness === 0) {
             this.setState({showAlert:" "})
         } else {
-            fetch("/api/rate/gym/" + this.state.body.category + "/" + this.state.body.name, {
+            fetch("/api/rate/gym/" + this.state.body.title + "/" + this.state.body.name, {
                 method: "post",
                 headers: { 'Content-type': 'application/json' },
                 body: JSON.stringify(this.state)

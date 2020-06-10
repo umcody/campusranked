@@ -23,10 +23,12 @@ class Register extends React.Component {
 
 
     componentDidMount() {
-        if (this.props.location.state) {
-            console.log("YES!");
-            const { redirectBack } = this.props.location.state;
-            this.setState({ redirectBack: redirectBack });
+        if (this.props.location) {
+            if (this.props.location.state) {
+                console.log("YES!");
+                const { redirectBack } = this.props.location.state;
+                this.setState({ redirectBack: redirectBack });
+            }
         }
     }
 
@@ -64,7 +66,13 @@ class Register extends React.Component {
 
                     <button type="submit">REGISTER!</button>
 
-                    <a href= "/loginUser"> Already have an account?</a>
+                    <Link to={{
+                        pathname: "/loginUser",
+                        state: {
+                            redirectBack: this.state.redirectBack
+                        }
+
+                    }}> Already have an account?</Link>
 
 
                     <p className="regError" style={{ display: this.state.hasError }}>The email already exists in our System</p>

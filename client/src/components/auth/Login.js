@@ -22,9 +22,12 @@ class Login extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.location.state) {
-            const { redirectBack } = this.props.location.state;
-            this.setState({ redirectBack: redirectBack });
+        if (this.props.location) {
+            if (this.props.location.state) {
+                console.log("YES!");
+                const { redirectBack } = this.props.location.state;
+                this.setState({ redirectBack: redirectBack });
+            }
         }
     }
 

@@ -16,13 +16,13 @@ class RateActionDiningHall extends React.Component {
             overall: 0,
             noise: 0,
             space: 0,
-            accessibility:0,
-            resource:0,
-            title:"",
+            accessibility: 0,
+            resource: 0,
+            title: "",
             review: "",
             name: "",
             loginPopup: false,
-            showAlert:"none",
+            showAlert: "none",
         }
         this.changeOverall = this.changeOverall.bind(this);
         this.changeNoise = this.changeNoise.bind(this);
@@ -63,20 +63,36 @@ class RateActionDiningHall extends React.Component {
     }
     //
 
-    handleSubmit(event) {
-        // CONDITIONS BEFORE SUBMITN THE REVIEW
-        if (this.state.overall === 0) {
-            this.setState({showAlert:" "})
-        } else if (this.state.space === 0) {
-            this.setState({showAlert:" "})
-        } else if (this.state.friendliness === 0) {
-            this.setState({showAlert:" "})
+    async handleSubmit(event) {
+
+        const JWToken = localStorage.getItem("JWT");
+        if (JWToken !== null) {
+
+            const response = await fetch("/findUser", {
+                headers: { Authorization: `JWT ${JWToken}` }
+            });
+            const content = await response.json();
+            if (content == false) {
+                this.openPopup();
+            } else {
+                // CONDITIONS BEFORE SUBMITN THE REVIEW
+                if (this.state.overall === 0) {
+                    this.setState({ showAlert: " " })
+                } else if (this.state.space === 0) {
+                    this.setState({ showAlert: " " })
+                } else if (this.state.friendliness === 0) {
+                    this.setState({ showAlert: " " })
+                } else {
+                    fetch("/api/rate/library/" + this.state.body.title + "/" + this.state.body.name, {
+                        method: "post",
+                        headers: { 'Content-type': 'application/json' },
+                        body: JSON.stringify(this.state)
+                    })
+                }
+
+            }
         } else {
-            fetch("/api/rate/library/" + this.state.body.category + "/" + this.state.body.name, {
-                method: "post",
-                headers: { 'Content-type': 'application/json' },
-                body: JSON.stringify(this.state)
-            })
+            this.openPopup();
         }
 
     }
@@ -112,7 +128,7 @@ class RateActionDiningHall extends React.Component {
         const title = params.title;
         const item = params.item;
 
-        this.setState({title:item});
+        this.setState({ title: item });
 
         const data = await fetch("/api/detailed/" + title + "/" + item);
         const json = await data.json();
@@ -167,7 +183,7 @@ class RateActionDiningHall extends React.Component {
                     </div>
 
                     <btn className="submitBtn" onClick={this.handleSubmit}> Submit </btn>
-                    <div style = {{display:this.state.showAlert}}>You must rate on all criterions!</div>
+                    <div style={{ display: this.state.showAlert }}>You must rate on all criterions!</div>
                 </form>
             </div>
         )

@@ -117,7 +117,7 @@ class Cell extends React.Component {
                         <div className="medal"></div>
                     </div></th>
                 <th>
-                    <a className="name" href={`/detailed/${this.props[5]}/${this.props[0].category}/${this.props[0].name}`}>
+                    <a className="name" href={`/detailed/${this.props[5]}/${this.props[0].title}/${this.props[0].name}`}>
                         <div>{this.props[0].name}</div>
                     </a>
                 </th>

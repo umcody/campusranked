@@ -70,20 +70,36 @@ class RateActionDiningHall extends React.Component {
     }
     //
 
-    handleSubmit(event) {
+    async handleSubmit(event) {
         // CONDITIONS BEFORE SUBMITN THE REVIEW
-        if (this.state.overall === 0) {
-            this.setState({showAlert:" "})
-        } else if (this.state.space === 0) {
-            this.setState({showAlert:" "})
-        } else if (this.state.friendliness === 0) {
-            this.setState({showAlert:" "})
+        const JWToken = localStorage.getItem("JWT");
+        if (JWToken !== null) {
+
+            const response = await fetch("/findUser", {
+                headers: { Authorization: `JWT ${JWToken}` }
+            });
+            const content = await response.json();
+            if (content == false) {
+                this.openPopup();
+            }else{
+
+                if (this.state.overall === 0) {
+                    this.setState({showAlert:" "})
+                } else if (this.state.space === 0) {
+                    this.setState({showAlert:" "})
+                } else if (this.state.friendliness === 0) {
+                    this.setState({showAlert:" "})
+                } else {
+                    fetch("/api/rate/dininghall/" + this.state.body.title + "/" + this.state.body.name, {
+                        method: "post",
+                        headers: { 'Content-type': 'application/json' },
+                        body: JSON.stringify(this.state)
+                    })
+                }
+
+            }
         } else {
-            fetch("/api/rate/dininghall/" + this.state.body.category + "/" + this.state.body.name, {
-                method: "post",
-                headers: { 'Content-type': 'application/json' },
-                body: JSON.stringify(this.state)
-            })
+            this.openPopup();
         }
 
     }

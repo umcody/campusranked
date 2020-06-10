@@ -12,6 +12,7 @@ const reviewPage = require("./Route/itemPage");
 const rate = require("./Route/rate");
 const temp = require("./Route/tempCreate");
 const update = require("./Route/tempUpdate");
+const resetPassword = require("./Auth/resetPassword.js");
 
 app.use(Cors());
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -32,6 +33,7 @@ reviewPage(app,mongoose);
 rate(app,mongoose);
 temp(app,mongoose);
 update(app,mongoose);
+resetPassword(app,mongoose);
 
 
 if(process.env.NODE_ENV === 'production'){
