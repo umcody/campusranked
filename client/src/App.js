@@ -73,6 +73,12 @@ class App extends React.Component {
         <Route path = "/rate/library/:title/:item" component = {RateLibrary}/>
         <Route path = "/registerComplete/:username" component = {RegisterComplete}/>
 
+
+        <Route
+          exact
+          path="/"
+          component={() => <Home options={this.state.body} />}
+        />
         <Footer />
 
       </div>

@@ -50,7 +50,7 @@ class RateGym extends React.Component {
             return (
                 <div className="rateContainer">
                     <div className="leftContainer">
-                        <div id="title">{this.state.body.name}</div>
+                        <div id="title" style = {{"max-width":"600px"}}>{this.state.body.name}</div>
                         <div id="overallRating">Overall : {this.ratings / 100}</div>
                         <div className="ratingsContainer">
                             {this.state.ratings.map(item =>

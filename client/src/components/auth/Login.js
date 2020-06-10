@@ -58,7 +58,11 @@ class Login extends React.Component {
                     <input placeholder="password" onChange={this.handleChange}></input>
                     <div class="alertText" style={{ display: this.state.showAlert }}>Login Failed. The account either does not exist or your password is incorrect</div>
                     <button type="submit">Let's Rank!</button>
-                    <a className="redirect" href="/registerUser"> Don't have an Account? Click here</a>
+                    <div>
+                        <a className="redirect" href="/registerUser"> Don't have an Account?</a>
+                        <a className="redirect" href="/forgotpassword" style={{ display: this.state.showAlert }}> Forgot your password?</a>
+                    </div>
+                    
                 </form>
             </div>
         )

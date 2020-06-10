@@ -10,7 +10,7 @@
 
 .authForm{
     position: absolute;
-    top: 40%;
+    top: 35%;
     left:50%;
     transform: translate(-50%,-50%);
     padding-top: 30px;
@@ -68,6 +68,7 @@
 
 .authForm a{
     font-size: 12px;
+    margin-right: 10px;
 
 }
 #congratulationContainer{
