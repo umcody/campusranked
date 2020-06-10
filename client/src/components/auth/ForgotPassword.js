@@ -43,6 +43,8 @@ class ForgotPassword extends React.Component {
         return (
             <div>
                 <form className="authForm" onSubmit={this.handleSubmit}>
+                    <h1 style ={{"margin":"0px 0px 10px 0px"}}>Forgot Password?</h1>
+                    <h4 style ={{"margin":"0px 0px 20px 0px"}}>So disappointing...</h4>
                     <input id="email" placeholder="email" onChange={this.handleChange} type="email"></input>
                     <div class="alertText" style={{ display: this.state.showAlert }}>The account does not exist</div>
                     <button type="submit">Reset</button>

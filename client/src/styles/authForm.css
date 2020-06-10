@@ -27,7 +27,10 @@
 #email:invalid{
     border:solid red 1px;
 }
-
+.authForm .header{
+    font-size: 30px;
+    margin-bottom: 20px;
+}
 
 
 

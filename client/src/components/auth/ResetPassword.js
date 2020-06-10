@@ -60,9 +60,10 @@ class resetPassword extends React.Component {
         return (
             <div>
                 <form className="authForm" onSubmit={this.handleSubmit}>
-                    <input id="password" placeholder="password" onChange={this.handleChange}
+                <h1 style ={{"margin":"0px 0px 50px 0px"}}>Let's reset this thing!</h1>
+                    <input id="password" placeholder="New Password" onChange={this.handleChange}
                         pattern="^[a-zA-Z0-9$!=+&^%*~]{5,15}$" title="The password can be of any letters and digits and special characters($!=+&^%*~)"></input>
-                    <input id="passwordVer" placeholder="password verification" onChange={this.handleChange}
+                    <input id="passwordVer" placeholder="New Password Verification" onChange={this.handleChange}
                         pattern="^[a-zA-Z0-9$!=+&^%*~]{5,15}$" title="The password can be of any letters and digits and special characters($!=+&^%*~)"></input>
 
                     <div class="alertText" style={{ display: this.state.showAlertPassword }}>The passwords must match!</div>
