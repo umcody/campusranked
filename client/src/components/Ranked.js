@@ -4,7 +4,6 @@ import Popup from "reactjs-popup";
 import Login from "./auth/Login";
 import OverallRatings from "./overallRatings.js";
 
-
 let index = 1;
 // THIS INDEX SYSTEM NEEDS TO BE FIXED. Sometimes, the rank is repeated -- refresh the page multiple times.
 class Ranked extends React.Component {
@@ -20,7 +19,7 @@ class Ranked extends React.Component {
       category: "",
       index: 1,
       averageRating: 0,
-      collapseHeight: "600px"
+      collapseHeight: "fit-content"
     };
     this.toggleVoteLimitAlert = this.toggleVoteLimitAlert.bind(this);
     this.openPopup = this.openPopup.bind(this);
@@ -114,7 +113,7 @@ class Ranked extends React.Component {
           Vote Limit has Been Reached!
         </p>
         <OverallRatings ratings={this.state.averageRating} />
-        <div className="collapsable">
+        {/* <div className="collapsable">  *****    EXPANDABLE BOX (DISABLED)*/ }
           <table className="ranked_table" style = {{"max-height":this.state.collapseHeight}}>
             <tbody>
               {/* Creates row cell for every item in the body */}
@@ -130,11 +129,11 @@ class Ranked extends React.Component {
               )}
             </tbody>
           </table>
-          <div className = "expandBtn" onClick = {this.handleExpandMore}>
+        {/*  <div className = "expandBtn" onClick = {this.handleExpandMore}>
             <img className="expandImg" src="/asset/expandMore.svg"></img>
             <div className="smallText">Show More</div>
           </div>
-        </div>
+         </div> */}
         <img id="graphics_ranked" src={`../asset/undraw_${this.state.category}.svg`} />
         <div className="notice">
           The rank will be sorted once you refresh/exit the page

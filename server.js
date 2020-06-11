@@ -23,7 +23,7 @@ app.use(passport.initialize());
 
 const port = process.env.PORT || 8000;
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://codyum:appalanchia@cluster0-tfxwi.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true })
+mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://codyum:appalanchia@cluster0-tfxwi.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true})
 
 passportAuth(app,mongoose);
 search(app,mongoose);
