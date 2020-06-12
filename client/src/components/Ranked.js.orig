@@ -15,7 +15,6 @@ class Ranked extends React.Component {
     };
   }
 
-<<<<<<< HEAD
     constructor(props) {
         super(props);
         this.state = {
@@ -44,15 +43,6 @@ class Ranked extends React.Component {
             });
 
 
-=======
-  // When mounted, fetch all necessary data such as Items, Title, total Count respectively
-  componentDidMount() {
-    fetch("/search/" + this.props.match.params.item)
-      .then((res) => res.json())
-      .then((body) => {
-        this.setState({ totalCount: body[0].totalCount });
-      });
->>>>>>> 99a51c1a9379285afc9ada349b885baa35e99e24
 
     fetch(this.state.link)
       .then((res) => res.json())

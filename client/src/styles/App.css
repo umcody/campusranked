@@ -6,6 +6,7 @@
 @import "./Footer.css";
 @import "./Ranked.css";
 @import "./Profile.css";
+@import "./rateTags.css";
 * {
   font-family: "Poppins", sans-serif;
   font-weight: 400;

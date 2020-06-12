@@ -68,7 +68,10 @@ class RateActionDiningHall extends React.Component {
     }
  
     handleAddition(tag) {
+        tag.id=tag.id.replace(/\s/g,'').toLowerCase();
+        tag.text = tag.id;
         this.setState(state => ({ tags: [...state.tags, tag] }));
+        console.log(this.state.tags);
     }
  
     handleDrag(tag, currPos, newPos) {
@@ -226,17 +229,17 @@ class RateActionDiningHall extends React.Component {
                         </table>
                     </div>
 
+                    <div id="writingAreaContainer">
+                        <input placeholder="Name (OPTIONAL)" onChange={this.handleName}></input>
+                        <textarea type="text" id="writingArea" onChange={this.handleTextArea} placeholder="Write Your Review Here (OPTIONAL)"></textarea>
+                    </div>
+
                     <ReactTags tags={tags}
                     suggestions={suggestions}
                     handleDelete={this.handleDelete}
                     handleAddition={this.handleAddition}
                     handleDrag={this.handleDrag}
                     delimiters={delimiters} />
-
-                    <div id="writingAreaContainer">
-                        <input placeholder="Name (OPTIONAL)" onChange={this.handleName}></input>
-                        <textarea type="text" id="writingArea" onChange={this.handleTextArea} placeholder="Write Your Review Here (OPTIONAL)"></textarea>
-                    </div>
 
                     <btn className="submitBtn" onClick={this.handleSubmit}> Submit </btn>
                     <div style = {{display:this.state.showAlert}}>You must rate on all criterions!</div>

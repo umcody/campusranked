@@ -3,8 +3,17 @@ import RateStars from "../RateStars";
 import RateStarsTest from "../RateStarsTest";
 import Popup from "reactjs-popup";
 import Login from "../../auth/Login.js";
+import { WithContext as ReactTags } from 'react-tag-input';
+
 
 import "./rateAction.css";
+
+const KeyCodes = {
+    comma: 188,
+    enter: 13,
+  };
+const delimiters = [KeyCodes.comma, KeyCodes.enter];
+
 
 class RateActionDiningHall extends React.Component {
 
@@ -23,6 +32,8 @@ class RateActionDiningHall extends React.Component {
             name: "",
             loginPopup: false,
             showAlert: "none",
+            tags:[],
+            suggestions:[]
         }
         this.changeOverall = this.changeOverall.bind(this);
         this.changeNoise = this.changeNoise.bind(this);
@@ -34,6 +45,9 @@ class RateActionDiningHall extends React.Component {
         this.handleName = this.handleName.bind(this);
         this.openPopup = this.openPopup.bind(this);
         this.closePopup = this.closePopup.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
+        this.handleAddition = this.handleAddition.bind(this);
+        this.handleDrag = this.handleDrag.bind(this);
     }
 
     openPopup() {
@@ -42,6 +56,33 @@ class RateActionDiningHall extends React.Component {
     closePopup() {
         this.setState({ loginPopup: false });
     }
+
+    //Functions for tagSystem
+    handleDelete(i) {
+        const { tags } = this.state;
+        this.setState({
+            tags: tags.filter((tag, index) => index !== i),
+        });
+    }
+
+    handleAddition(tag) {
+        tag.id = tag.id.replace(/\s/g, '').toLowerCase();
+        tag.text = tag.id;
+        this.setState(state => ({ tags: [...state.tags, tag] }));
+        console.log(this.state.tags);
+    }
+
+    handleDrag(tag, currPos, newPos) {
+        const tags = [...this.state.tags];
+        const newTags = tags.slice();
+
+        newTags.splice(currPos, 1);
+        newTags.splice(newPos, 0, tag);
+
+        // re-render
+        this.setState({ tags: newTags });
+    }
+
 
     // Functions to change the state of each criterions according to the user
     changeOverall(number) {
@@ -141,6 +182,7 @@ class RateActionDiningHall extends React.Component {
     }
 
     render() {
+        const { tags, suggestions } = this.state;
         return (
             <div className="rateFormContainer">
                 <Popup
@@ -181,6 +223,13 @@ class RateActionDiningHall extends React.Component {
                         <input placeholder="Name (OPTIONAL)" onChange={this.handleName}></input>
                         <textarea type="text" id="writingArea" onChange={this.handleTextArea} placeholder="Write Your Review Here (OPTIONAL)"></textarea>
                     </div>
+
+                    <ReactTags tags={tags}
+                        suggestions={suggestions}
+                        handleDelete={this.handleDelete}
+                        handleAddition={this.handleAddition}
+                        handleDrag={this.handleDrag}
+                        delimiters={delimiters} />
 
                     <btn className="submitBtn" onClick={this.handleSubmit}> Submit </btn>
                     <div style={{ display: this.state.showAlert }}>You must rate on all criterions!</div>

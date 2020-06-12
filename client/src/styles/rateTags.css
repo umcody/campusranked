@@ -1,0 +1,26 @@
+.ReactTags__tags span{
+    background-color: #f62459;
+    color:white;
+    border-radius: 13px;
+    font-size: 12px;
+    padding:3px 10px 3px 10px;
+    margin:5px 5px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.ReactTags__tagInput{
+    display:inline-block;
+}
+
+.ReactTags__tagInputField{
+    border:none;
+    border-bottom: solid black 1px;
+    min-width: 70px;
+    width: fit-content;
+}
+.ReactTags__tags{
+    margin: 15px 0px 40px 0;
+    height:10px;
+    width:fit-content;
+}

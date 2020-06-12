@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import posed from "react-pose";
 import rateStar from "./ratingSystem/RateStars";
+import Tags from "./tagsRanked.js"
 //import image from "../public/asset/kobeBryant.jpg";
 
 
@@ -27,7 +28,9 @@ class Cell extends React.Component {
             count: props[0].count,
             clicked: false,
             clickCount: 0,
-            hasRatings: "none"
+            hasRatings: "none",
+            tags:[],
+            tagsContainerClass: "",
         }
         this.controlVote = this.controlVote.bind(this);
 
@@ -47,7 +50,7 @@ class Cell extends React.Component {
     }
 
     // POSTS to Server that the item is voted
-    componentDidMount() {
+     componentDidMount() {
         const current = ReactDOM.findDOMNode(this);
         let button = current.querySelector(".upVote");
         let { name } = this.props[0];
@@ -55,6 +58,13 @@ class Cell extends React.Component {
         const JWToken = localStorage.getItem("JWT");
         if (this.props[0].ratings.overall === 0) {
             this.setState({ hasRatings: " " });
+        }
+
+        // If tag exists, update the state to display it
+        if(this.props[0].tags !== undefined){
+            let temp = Object.keys(this.props[0].tags);
+            this.setState({tags: temp, tagsContainerClass: "tagsContainer"});
+            console.log(temp);
         }
 
         // Updates the count value of the players. Upvote and Downvote(implicit). 
@@ -101,7 +111,7 @@ class Cell extends React.Component {
         return (
 
             <tr className="row">
-
+                
                 <th className="voteContainer">
                     {/* DIV cannot exist inside TR so the vote indicator is in TH with pos. abs*/}
                     <Vote className="vote1" pose={isVisible ? "visible" : "hidden"}></Vote>
@@ -116,9 +126,14 @@ class Cell extends React.Component {
                         </img>
                         <div className="medal"></div>
                     </div></th>
-                <th>
+                <th className = {this.state.tagsContainerClass}>
                     <a className="name" href={`/detailed/${this.props[5]}/${this.props[0].title}/${this.props[0].name}`}>
                         <div>{this.props[0].name}</div>
+                        <div>
+                            {this.state.tags.map((tag)=>
+                            React.createElement(Tags, [tag])
+                            )}
+                        </div>
                     </a>
                 </th>
                 <th> {/* RATINGS */}

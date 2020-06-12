@@ -1,9 +1,13 @@
 /* **** CELL DESIGN **** */
 
-.name{
+.ranked_table .name{
     text-align: left;
     text-decoration: none;
     color: black;
+}
+
+.ranked_table .tagsContainer{
+    transform: translate(0,24%);
 }
 
 .medal{
@@ -96,6 +100,16 @@ box-shadow: 2px 9px 21px -22px rgba(0,0,0,0.43);
     display:flex;
     position: relative;
     left: 20px;
+}
+
+.tagsRanked{
+    display:inline-block;
+    background-color: #465881;
+    color:white;
+    border-radius: 12px;
+    padding: 2px 7px 2px 7px;
+    font-size: 11px;
+    margin:0 5px 0 5px;
 }
 
 

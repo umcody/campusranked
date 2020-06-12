@@ -10,9 +10,19 @@ module.exports = function (app, mongoose) {
         category: String,
         ratings: Object,
         reviewCounts: Number,
-        reviews: Array
+        reviews: Array,
+        tags: Object,
     })
 
+    function generateTagsQuery(array){
+        let query = {}
+        array.forEach(element => {
+            query[`tags.${element.text}`] = 1;
+        });
+        return query;
+    }
+
+// SHOULD AUTOMATE THIS WITH A FUNCTION INSTEAD OF THREE SEPERATE HARD CODED GET METHODS
     app.post("/api/rate/gym/:title/:item", function (req, res) {
         const title = req.params.title;
         const item = req.params.item;
@@ -26,6 +36,7 @@ module.exports = function (app, mongoose) {
 
         console.log(req.body);
 
+        let query = generateTagsQuery(req.body.tags);
 
         Item.findOne({ name: item }, function (err, data) {
             console.log(data);
@@ -45,15 +56,15 @@ module.exports = function (app, mongoose) {
             let tempFriendliness = tempRatings[2][1] * data.reviewCounts;
             tempFriendliness = (tempFriendliness + parseFloat(req.body.friendliness) * 100) / (data.reviewCounts + 1);
 
-
             let name = req.body.name;
+
             if (req.body.review === " " || req.body.review === "") { // If there is no review, empty the name too. 
                 name = "";
                 Item.findOneAndUpdate({ name: item }, {
                     "ratings.Overall": tempOverall,
                     "ratings.Space": tempSpace,
                     "ratings.Friendliness": tempFriendliness,
-                    $inc: { reviewCounts: 1 },
+                    $inc: { reviewCounts: 1 , query},
                     $push: {
                         reviews
                     }
@@ -68,13 +79,13 @@ module.exports = function (app, mongoose) {
                 }
                 const review = req.body.review;
                 const reviews = [[name, review]]
-    
-    
+
+
                 Item.findOneAndUpdate({ name: item }, {
                     "ratings.Overall": tempOverall,
                     "ratings.Space": tempSpace,
                     "ratings.Friendliness": tempFriendliness,
-                    $inc: { reviewCounts: 1 },
+                    $inc: { reviewCounts: 1 , query},
                     $push: {
                         reviews
                     }
@@ -84,7 +95,7 @@ module.exports = function (app, mongoose) {
                     }
                 })
             }
-           
+
         })
     })
     app.post("/api/rate/dininghall/:title/:item", function (req, res) {
@@ -102,12 +113,10 @@ module.exports = function (app, mongoose) {
 
 
         Item.findOne({ name: item }, function (err, data) {
-            console.log(data);
             const tempRatings = Object.entries(data.ratings);
-            console.log(tempRatings);
 
             // Average calculations for each criterions
-            
+
             let tempOverall = tempRatings[0][1] * data.reviewCounts;
             console.log(tempOverall);
             tempOverall = (tempOverall + parseFloat(req.body.overall) * 100) / (data.reviewCounts + 1);
@@ -134,7 +143,15 @@ module.exports = function (app, mongoose) {
             if (req.body.review === ' ' || req.body.review === "") { // If there is no review, empty the name too.
 
                 name = "";
-                console.log("HEREEE");
+
+                //PREPARE THE $INC QUERY FOR THE TAGS
+                let query = {}
+                req.body.tags.forEach(element => {
+                    query[`tags.${element.text}`] = 1;
+                });
+                console.log(query);
+
+
                 Item.findOneAndUpdate({ name: item }, {
                     "ratings.overall": tempOverall,
                     "ratings.taste": tempTaste,
@@ -142,43 +159,61 @@ module.exports = function (app, mongoose) {
                     "ratings.variety": tempVariety,
                     "ratings.nutrition": tempNutrition,
                     "ratings.price": tempPrice,
-    
+
                     $inc: { reviewCounts: 1 },
+
+                    $inc:query
+                    
+
 
                 }, function (err, data) {
                     if (err) {
                         console.log(err);
                     }
                 })
-            } else {
+            } else { // If there is review ...
                 console.log("HERE");
-                console.log(req.body.name);
                 if (req.body.name === "" || req.body.name === undefined) {
                     name = "Anonymous";
                 }
                 const review = req.body.review;
-            const reviews = [[name, review]]
+                const reviews = [[name, review]];
 
 
-            Item.findOneAndUpdate({ name: item }, {
-                "ratings.overall": tempOverall,
-                "ratings.taste": tempTaste,
-                "ratings.hygiene": tempHygiene,
-                "ratings.variety": tempVariety,
-                "ratings.nutrition": tempNutrition,
-                "ratings.price": tempPrice,
+                //PREPARE THE $INC QUERY FOR THE TAGS
+                let query = {}
+                req.body.tags.forEach(element => {
+                    query[`tags.${element.text}`] = 1;
+                });
+                console.log(query);
 
-                $inc: { reviewCounts: 1 },
-                $push: {
-                    reviews
-                }
-            }, function (err, data) {
-                if (err) {
-                    console.log(err);
-                }
-            })
+                //UPDATE
+                Item.findOneAndUpdate({ name: item }, {
+                    "ratings.overall": tempOverall,
+                    "ratings.taste": tempTaste,
+                    "ratings.hygiene": tempHygiene,
+                    "ratings.variety": tempVariety,
+                    "ratings.nutrition": tempNutrition,
+                    "ratings.price": tempPrice,
+
+                    $inc: { reviewCounts: 1 },
+                    $push: {
+                        reviews
+                    },
+                    $set: {
+                        tags: {
+                            $inc: {
+                                query
+                            }
+                        }
+                    }
+                }, { strict: false }, function (err, data) {
+                    if (err) {
+                        console.log(err);
+                    }
+                })
             }
-            
+
         })
     })
     app.post("/api/rate/library/:title/:item", function (req, res) {
@@ -194,6 +229,7 @@ module.exports = function (app, mongoose) {
 
         console.log(req.body);
 
+        let query = generateTagsQuery(req.body.tags);
 
         Item.findOne({ name: item }, function (err, data) {
             console.log(data);
@@ -219,7 +255,7 @@ module.exports = function (app, mongoose) {
 
 
             let name = req.body.name;
-            if (req.body.review === ' '  || req.body.review === "") { // If there is no review, empty the name too. 
+            if (req.body.review === ' ' || req.body.review === "") { // If there is no review, empty the name too. 
                 name = "";
                 Item.findOneAndUpdate({ name: item }, {
                     "ratings.overall": tempOverall,
@@ -228,14 +264,14 @@ module.exports = function (app, mongoose) {
                     "ratings.accessibility": tempAccessibility,
                     "ratings.resource": tempResource,
 
-                    $inc: { reviewCounts: 1 },
-                    
+                    $inc: { reviewCounts: 1 , query},
+
                 }, function (err, data) {
                     if (err) {
                         console.log(err);
                     }
                 })
-                
+
             } else {
                 console.log("HERE");
                 console.log(req.body.name);
@@ -244,16 +280,16 @@ module.exports = function (app, mongoose) {
                 }
                 const review = req.body.review;
                 const reviews = [[name, review]]
-    
-    
+
+
                 Item.findOneAndUpdate({ name: item }, {
                     "ratings.overall": tempOverall,
                     "ratings.noise": tempNoise,
                     "ratings.space": tempSpace,
                     "ratings.accessibility": tempAccessibility,
                     "ratings.resource": tempResource,
-    
-                    $inc: { reviewCounts: 1 },
+
+                    $inc: { reviewCounts: 1 , query},
                     $push: {
                         reviews
                     }
@@ -263,7 +299,7 @@ module.exports = function (app, mongoose) {
                     }
                 })
             }
-           
+
         })
     })
 }
