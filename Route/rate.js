@@ -1,6 +1,7 @@
-
+const ratingsCriterions = require("./ratingCriterions.json");
 
 module.exports = function (app, mongoose) {
+
     let itemSchema = new mongoose.Schema({
         rank: Number,
         image: String,
@@ -14,15 +15,88 @@ module.exports = function (app, mongoose) {
         tags: Object,
     })
 
-    function generateTagsQuery(array){
+    function generateTagsQuery(array) {
         let query = {}
         array.forEach(element => {
             query[`tags.${element.text}`] = 1;
         });
+        console.log(query);
         return query;
     }
 
-// SHOULD AUTOMATE THIS WITH A FUNCTION INSTEAD OF THREE SEPERATE HARD CODED GET METHODS
+    app.post("/api/rate/:category/:title/:item", function (req, res) {
+
+        const title = req.params.title;
+        const item = req.params.item;
+        const category = req.params.category;
+
+        let Item
+        try {
+            Item = mongoose.model(title);
+        } catch (error) {
+            Item = mongoose.model(title, itemSchema);
+        }
+
+        console.log(req.body);
+
+        let query = generateTagsQuery(req.body.tags);
+
+        Item.findOne({ name: item }, function (err, data) {
+            console.log(data);
+            const tempRatings = Object.entries(data.ratings);
+            let averageQuery = {};
+
+            // Average calculations
+            for (let i = 0; i < ratingsCriterions[category].length; i++) {
+                let criterion = ratingsCriterions[category][i];
+                let temp = tempRatings[i][1] * data.reviewCounts;
+                averageQuery[`ratings.${criterion}`] = (temp + parseFloat(req.body[criterion] * 100)) / (data.reviewCounts + 1);
+            }
+
+            let name = req.body.name;
+            if (req.body.review === ' ' || req.body.review === "") { // If there is no review, empty the name too. 
+                name = "";
+                Item.findOneAndUpdate({ name: item }, {
+                    $set:averageQuery,
+                    $inc: { reviewCounts: 1 },
+                    $inc: query
+
+                }, function (err, data) {
+                    if (err) {
+                        console.log(err);
+                    }
+                })
+
+            } else {
+                console.log("HERE");
+                console.log(req.body.name);
+                if (req.body.name === "" || req.body.name === undefined) {
+                    name = "Anonymous";
+                }
+                const review = req.body.review;
+                const reviews = [[name, review]]
+
+
+                Item.findOneAndUpdate({ name: item }, {
+                    $set:averageQuery,
+                    $inc: { reviewCounts: 1 },
+                    $push: {
+                        reviews
+                    },
+                    $inc: query
+                }, function (err, data) {
+                    if (err) {
+                        console.log(err);
+                    }
+                })
+            }
+
+        })
+
+    })
+{
+/*
+    // SHOULD AUTOMATE THIS WITH A FUNCTION INSTEAD OF THREE SEPERATE HARD CODED GET METHODS
     app.post("/api/rate/gym/:title/:item", function (req, res) {
         const title = req.params.title;
         const item = req.params.item;
@@ -64,7 +138,7 @@ module.exports = function (app, mongoose) {
                     "ratings.Overall": tempOverall,
                     "ratings.Space": tempSpace,
                     "ratings.Friendliness": tempFriendliness,
-                    $inc: { reviewCounts: 1 , query},
+                    $inc: { reviewCounts: 1, query },
                     $push: {
                         reviews
                     }
@@ -85,7 +159,7 @@ module.exports = function (app, mongoose) {
                     "ratings.Overall": tempOverall,
                     "ratings.Space": tempSpace,
                     "ratings.Friendliness": tempFriendliness,
-                    $inc: { reviewCounts: 1 , query},
+                    $inc: { reviewCounts: 1, query },
                     $push: {
                         reviews
                     }
@@ -98,6 +172,7 @@ module.exports = function (app, mongoose) {
 
         })
     })
+
     app.post("/api/rate/dininghall/:title/:item", function (req, res) {
         const title = req.params.title;
         const item = req.params.item;
@@ -162,8 +237,8 @@ module.exports = function (app, mongoose) {
 
                     $inc: { reviewCounts: 1 },
 
-                    $inc:query
-                    
+                    $inc: query
+
 
 
                 }, function (err, data) {
@@ -237,9 +312,12 @@ module.exports = function (app, mongoose) {
             console.log(tempRatings);
 
             // Average calculations for each criterions
+            console.log(tempRatings[0][1])
+            let tempOverall = tempRatings[0][1] * parseFloat(data.reviewCounts);
+            console.log(tempOverall);
 
-            let tempOverall = tempRatings[0][1] * data.reviewCounts;
             tempOverall = (tempOverall + parseFloat(req.body.overall) * 100) / (data.reviewCounts + 1);
+            console.log(tempOverall);
 
             let tempNoise = tempRatings[1][1] * data.reviewCounts;
             tempNoise = (tempNoise + parseFloat(req.body.noise) * 100) / (data.reviewCounts + 1);
@@ -264,7 +342,8 @@ module.exports = function (app, mongoose) {
                     "ratings.accessibility": tempAccessibility,
                     "ratings.resource": tempResource,
 
-                    $inc: { reviewCounts: 1 , query},
+                    $inc: { reviewCounts: 1 },
+                    $inc: query
 
                 }, function (err, data) {
                     if (err) {
@@ -289,10 +368,11 @@ module.exports = function (app, mongoose) {
                     "ratings.accessibility": tempAccessibility,
                     "ratings.resource": tempResource,
 
-                    $inc: { reviewCounts: 1 , query},
+                    $inc: { reviewCounts: 1 },
                     $push: {
                         reviews
-                    }
+                    },
+                    $inc: query
                 }, function (err, data) {
                     if (err) {
                         console.log(err);
@@ -302,4 +382,6 @@ module.exports = function (app, mongoose) {
 
         })
     })
+    */
+}
 }
