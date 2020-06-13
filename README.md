@@ -37,6 +37,7 @@
 * Modified the footer
 * Set up Amazon S3 Buckets for media storage - MOSTLY DONE
 * Added reset password function
+* Added tag system *** 
 
 
 
@@ -45,5 +46,6 @@
 * Link login button (from Popup Login) to previous user location for better user experience *** -- HALF DONE
 * Add Gyms and Residential Hall category
 * Make the web app mobile friendly
+* A bug exits in the rating system. Sometimes the ratings go to NaN
 
 
