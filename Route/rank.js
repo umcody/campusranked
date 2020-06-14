@@ -15,7 +15,8 @@ module.exports = function (app, mongoose) {
         count: Number,
         category: String,
         ratings: Object,
-        reviews: Array
+        reviews: Array,
+        tags:Object
     })
 
 
@@ -28,11 +29,10 @@ module.exports = function (app, mongoose) {
         } catch (error) {
             Item = new mongoose.model(title, itemSchema);
         }
-        Item.find({}).sort({ count: -1 }).exec(function (err, docs) {
+        Item.find({}).sort({ count: -1}).exec(function (err, docs) {
             if (err) {
                 return console.log(err);
             }
-            console.log(docs);
             res.json(docs);
         })
     });

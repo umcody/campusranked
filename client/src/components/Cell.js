@@ -49,6 +49,15 @@ class Cell extends React.Component {
         }
     }
 
+    //Convert tag objects to Array, sort them, and set state
+    sortAndConvertTags(tags){
+            tags = Object.entries(tags);
+            tags = tags.sort(function(a, b){return b[1] - a[1]});
+            this.setState({tags: tags, tagsContainerClass: "tagsContainer"});
+            console.log(tags);
+    }
+
+
     // POSTS to Server that the item is voted
      componentDidMount() {
         const current = ReactDOM.findDOMNode(this);
@@ -62,9 +71,7 @@ class Cell extends React.Component {
 
         // If tag exists, update the state to display it
         if(this.props[0].tags !== undefined){
-            let temp = Object.keys(this.props[0].tags);
-            this.setState({tags: temp, tagsContainerClass: "tagsContainer"});
-            console.log(temp);
+            this.sortAndConvertTags(this.props[0].tags);
         }
 
         // Updates the count value of the players. Upvote and Downvote(implicit). 
@@ -130,8 +137,8 @@ class Cell extends React.Component {
                     <a className="name" href={`/detailed/${this.props[5]}/${this.props[0].title}/${this.props[0].name}`}>
                         <div>{this.props[0].name}</div>
                         <div>
-                            {this.state.tags.map((tag)=>
-                            React.createElement(Tags, [tag])
+                            {this.state.tags.slice(0,2).map((tag)=>
+                            React.createElement(Tags, [tag[0]])
                             )}
                         </div>
                     </a>

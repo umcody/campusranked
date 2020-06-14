@@ -1,6 +1,7 @@
 import React from "react";
 import ReviewCell from "../ReviewCell.js";
 import RateCell from "../RateCell.js";
+import Tags from "../../tagsRanked.js";
 
 
 
@@ -12,9 +13,19 @@ class RateGym extends React.Component {
             ratings: [],
             reviews: [],
             category:"",
-            hasReview: "none"
+            hasReview: "none",
+            tags:[],
+            tagsContainerClass:"" // DOES NOTHING FOR NOW
         }
     }
+
+    sortAndConvertTags(tags){
+        tags = Object.entries(tags);
+        tags = tags.sort(function(a, b){return b[1] - a[1]});
+        this.setState({tags: tags, tagsContainerClass: "tagsContainer"});
+        console.log(tags);
+    }
+
 
     async componentDidMount() {
         const { match: { params } } = this.props;
@@ -32,10 +43,10 @@ class RateGym extends React.Component {
 
         document.title = `CampusRanked - Review ${this.state.body.name}`
 
-
+        
         const tempRatings = Object.entries(this.state.body.ratings);
         this.setState({ ratings: tempRatings });
-        this.ratings = Math.floor(this.state.body.ratings.overall)
+        this.ratings = Math.floor(this.state.body.ratings.overall);
         if (this.state.body.reviews) {
             if(this.state.body.reviews.length === 0){
                 this.setState({hasReview:" "});
@@ -44,6 +55,11 @@ class RateGym extends React.Component {
                 console.log(tempReview);
                 this.setState({ reviews: tempReview });
             }
+        }
+
+        // If tag exists, update the state to display it
+        if(this.state.body.tags !== undefined){
+            this.sortAndConvertTags(this.state.body.tags);
         }
     }
 
@@ -54,6 +70,11 @@ class RateGym extends React.Component {
                 <div className="rateContainer">
                     <div className="leftContainer">
                         <div id="title" style = {{"max-width":"600px"}}>{this.state.body.name}</div>
+                        <div>
+                            {this.state.tags.slice(0,5).map((tag)=>
+                            React.createElement(Tags, [tag[0]])
+                            )}
+                        </div>
                         <div id="overallRating">Overall : {this.ratings / 100}</div>
                         <div className="ratingsContainer">
                             {this.state.ratings.map(item =>

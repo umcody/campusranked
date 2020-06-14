@@ -60,10 +60,10 @@ module.exports = function (app, mongoose) {
                 name = "";
                 Item.findOneAndUpdate({ name: item }, {
                     $set:averageQuery,
-                    $inc: { reviewCounts: 1 },
-                    $inc: query
+                    $inc:{ reviewCounts: 1 },
+                    $inc:query
 
-                }, function (err, data) {
+                },{strict:false}, function (err, data) {
                     if (err) {
                         console.log(err);
                     }
@@ -86,7 +86,7 @@ module.exports = function (app, mongoose) {
                         reviews
                     },
                     $inc: query
-                }, function (err, data) {
+                },{strict:false}, function (err, data) {
                     if (err) {
                         console.log(err);
                     }
