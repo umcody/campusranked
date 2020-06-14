@@ -105,6 +105,6 @@ class RateGym extends React.Component {
     }
 
 
-}
+} 
 
 export default RateGym;

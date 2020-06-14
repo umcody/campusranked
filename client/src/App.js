@@ -10,6 +10,7 @@ import RegisterComplete from "./components/auth/RegisterComplete";
 import Profile from "./components/profile/profile.js";
 import ForgotPassword from "./components/auth/ForgotPassword.js";
 import ResetPassword from "./components/auth/ResetPassword.js";
+import HomeProto from "./components/homeProto.js";
 
 
 import Home from "./components/Home";
@@ -66,6 +67,7 @@ class App extends React.Component {
         <Route exact path="/profile" component={Profile}/>
         <Route path ="/forgotPassword" component={ForgotPassword}/>
         <Route path ="/reset/:token" component={ResetPassword}/>
+        <Route exact path ="/homeProto" component={HomeProto}/>
 
         <Route exact path="/rating" component = {Rating}/>
         <Route path = "/detailed/:category/:title/:item" component = {Review}/>
