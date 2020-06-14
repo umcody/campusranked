@@ -30,14 +30,17 @@ class RateGym extends React.Component {
             body: json
         })
 
-        const tempRatings = await Object.entries(this.state.body.ratings);
+        document.title = `CampusRanked - Review ${this.state.body.name}`
+
+
+        const tempRatings = Object.entries(this.state.body.ratings);
         this.setState({ ratings: tempRatings });
         this.ratings = Math.floor(this.state.body.ratings.overall)
         if (this.state.body.reviews) {
             if(this.state.body.reviews.length === 0){
                 this.setState({hasReview:" "});
             }else{
-                const tempReview = await Object.entries(this.state.body.reviews);
+                const tempReview = Object.entries(this.state.body.reviews);
                 console.log(tempReview);
                 this.setState({ reviews: tempReview });
             }
@@ -59,7 +62,7 @@ class RateGym extends React.Component {
                         </div>
                     </div>
                     <div className="rightContainer">
-                    <img  id="itemImage" />
+                    <img  id="itemImage" src ={this.state.body.image}/>
                         <div className="reviewsContainer">
                             {this.state.body.reviews.map((item) =>
                                 React.createElement(ReviewCell, item)

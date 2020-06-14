@@ -93,7 +93,7 @@ class Ranked extends React.Component {
   render() {
     return (
       <div className="ranked">
-        <img id="imgBanner" src="/asset/uwmadison_banner.jpg" />
+        <img id="imgBanner" src="https://campusranked.s3.us-east-2.amazonaws.com/uwmadison/uwmadison_banner.jpg" />
         <Popup
           open={this.state.loginPopup}
           closeOnDocumentClick

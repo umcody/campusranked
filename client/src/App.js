@@ -28,6 +28,7 @@ class App extends React.Component {
       isLoggedIn: false,
       body: [],
     };
+    document.title="CampusRanked";
   }
 
   logIn() {

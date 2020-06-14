@@ -49,6 +49,8 @@ module.exports = function (app, mongoose) {
             // Average calculations
             for (let i = 0; i < ratingsCriterions[category].length; i++) {
                 let criterion = ratingsCriterions[category][i];
+                console.log(data.reviewCounts);
+                console.log(tempRatings[i][1]);
                 let temp = tempRatings[i][1] * data.reviewCounts;
                 averageQuery[`ratings.${criterion}`] = (temp + parseFloat(req.body[criterion] * 100)) / (data.reviewCounts + 1);
             }
