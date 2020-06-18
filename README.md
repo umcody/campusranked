@@ -14,7 +14,7 @@
 * Avery Chan jachan@wisc.edu
 * Nags Tavon 
 
-
+## Currently, most of the API endpoints are BROKEN. In progress of updating it.
 
 ### PROGRESS (Chronologically)
 * Came up with two possible "tier" systems of voting and drag and drop.
