@@ -1,4 +1,5 @@
-var Search = require('../Model/searchModel.js');
+var SchoolModel = require('../Model/schoolModel.js');
+var SearchModel = require('../Model/searchModel.js');
 
 module.exports=function(app,mongoose){
 
@@ -6,7 +7,7 @@ module.exports=function(app,mongoose){
 
     app.get("/search",function(req,res){
 
-        Search.find({},function(err,data){
+        SchoolModel.find({},function(err,data){
             if(err){
                 return err;
             }
@@ -15,10 +16,13 @@ module.exports=function(app,mongoose){
             }
         });
     });
-    app.get("/search/:item",function(req,res){
+
+    /*
+    app.get("/search/:school/:item",function(req,res){
 
         const item = req.params.item;
-        Search.find({url:item},function(err,data){
+        const school = req.params.item;
+        SchoolModel.find({name:item},function(err,data){
             if(err){
                 return err;
             }
@@ -41,4 +45,5 @@ module.exports=function(app,mongoose){
             }
         });
     })
+    */
 }

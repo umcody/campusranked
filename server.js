@@ -13,6 +13,7 @@ const rate = require("./Route/rate");
 const temp = require("./Route/tempCreate");
 const update = require("./Route/tempUpdate");
 const resetPassword = require("./Auth/resetPassword.js");
+const schoolOverview = require('./Route/schoolOverview');
 
 app.use(Cors());
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -25,8 +26,10 @@ const port = process.env.PORT || 8000;
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://codyum:appalanchia@cluster0-tfxwi.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true})
 
+
 passportAuth(app,mongoose);
 search(app,mongoose);
+schoolOverview(app,mongoose);
 authRoute(app,mongoose);
 rank(app,mongoose);
 reviewPage(app,mongoose);
@@ -34,6 +37,7 @@ rate(app,mongoose);
 temp(app,mongoose);
 update(app,mongoose);
 resetPassword(app,mongoose);
+
 
 
 if(process.env.NODE_ENV === 'production'){

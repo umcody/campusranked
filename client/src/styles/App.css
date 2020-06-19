@@ -7,12 +7,18 @@
 @import "./Ranked.css";
 @import "./Profile.css";
 @import "./rateTags.css";
+@import "./schoolOverview.css";
 * {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   text-align: center;
   overflow: visible;
   z-index: 0;
+}
+
+
+:root{
+  --main-color: #f62459;
 }
 
 #root {
@@ -54,7 +60,7 @@ body {
 }
 
 .title {
-  background-color: #f62459;
+  background-color: var(--main-color);
   color: white;
   height: 100px;
   width: fit-content;

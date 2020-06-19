@@ -20,12 +20,14 @@
 -moz-box-shadow: 0px 24px 16px -17px rgba(0,0,0,0.25);
 box-shadow: 0px 24px 16px -17px rgba(0,0,0,0.25);
 }
+
 .search {
   outline: none;
   border: none;
   height: 40px;
   border-radius: 5px;
   min-width: 400px;
+  width: 100%;
   top:2px;
   font-size: 15px;
   font-weight: 700;
@@ -34,7 +36,7 @@ box-shadow: 0px 24px 16px -17px rgba(0,0,0,0.25);
 }
 .searchDropDownItem {
   margin: 0 auto;
-  width: 400px;
+  width: 100%;
   min-height: 50px;
   position: relative;
   color: #3f3f3f;
@@ -53,7 +55,7 @@ box-shadow: 0px 24px 16px -17px rgba(0,0,0,0.25);
 }
 .searchItems {
   top: 7px;
-  position: absolute;
+  position: relative;
   display: block;
   border-radius: 10px 10px 10px 10px;
 }
@@ -61,6 +63,7 @@ box-shadow: 0px 24px 16px -17px rgba(0,0,0,0.25);
 .searchDropDownItem a {
   color: #3f3f3f;
   text-decoration: none;
+  font-size: 14px;
 }
 .accountBtn {
   position: absolute;

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import posed from "react-pose";
-import rateStar from "./ratingSystem/RateStars";
+import rateStar from "../ratingSystem/RateStars";
 import Tags from "./tagsRanked.js"
 //import image from "../public/asset/kobeBryant.jpg";
 

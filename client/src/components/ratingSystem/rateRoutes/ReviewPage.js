@@ -1,7 +1,7 @@
 import React from "react";
 import ReviewCell from "../ReviewCell.js";
 import RateCell from "../RateCell.js";
-import Tags from "../../tagsRanked.js";
+import Tags from "../../ranked/tagsRanked.js";
 
 
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SearchDropDown from "./SearchDropDown";
 import Fuse from "fuse.js";
+import Search from "./Search.js";
 import AccountBtn from "./AccountBtn";
 
 const options = {
@@ -9,17 +10,6 @@ const options = {
 };
 
 function SearchBar(props) {
-  console.log("props.searchBody");
-  console.log(props.searchBody);
-
-  const [dropDown, setDropDown] = useState([]);
-
-  const fuse = new Fuse(props.searchBody, options);
-
-  function handleChange(event) {
-    setDropDown(fuse.search(event.target.value));
-  }
-
   return (
     <div className="searchBar">
       <a href="/Home">
@@ -29,18 +19,7 @@ function SearchBar(props) {
           alt="campus ranked logo"
         />
       </a>
-      <div className="searchItems">
-        <input
-          className="search"
-          placeholder="Search Any Noun"
-          onChange={handleChange}
-        ></input>
-        <div className = "dropDownContainer">
-          {dropDown.map((dropDownItems) =>
-            React.createElement(SearchDropDown, dropDownItems)
-          )}
-        </div>
-      </div>
+      <Search searchBody={props.searchBody}/>
       <AccountBtn />
     </div>
   );

@@ -21,7 +21,7 @@ module.exports = function (app, mongoose) {
 
 
     //Get information of the items in the appropriate title
-    app.get("/api/ranked/:title", (req, res) => {
+    app.get("/api/ranked/:school/:title", (req, res) => {
         let title = req.params.title;
         let Item;
         try {
@@ -35,14 +35,16 @@ module.exports = function (app, mongoose) {
             }
             res.json(docs);
         })
+        
     });
 
 
-    // API call when the user votes up for the selected item. 
-    app.get("/ranked/:title/api/upvote/:item", function (req, res) {
+    // API call when the user 'votes up' for the selected item. 
+    app.get("/ranked/:school/:title/api/upvote/:item", function (req, res) {
 
         let title = req.params.title;
         let item = req.params.item;
+
         let shouldInc = false;
         console.log("LOOKING FOR IT");
 
@@ -62,29 +64,34 @@ module.exports = function (app, mongoose) {
                         console.log("accessed");
 
                         //Update the item votes
+
+                        
+
                         Item.findOneAndUpdate({ name: item }, { $inc: { count: 1 } }, function (err, data) {
                             if (err) {
                                 return console.log(err);
                             }
                             if (data === null) {
-                                console.log("NO SUCH ITEM FOUND!!");
+                                return console.log("NO SUCH ITEM FOUND!!");
                             } else {
-                                console.log(data + " is incrmented too")
-                            }
-                            console.log("UPDATED: " + data);
-                        });
+                                console.log(data + " is incremented too")
+                            
+                                console.log("UPDATED: " + data);
 
-                        Search.findOneAndUpdate({ url: title }, { $inc: { totalCount: 1 } }, function (err, data) {
-                            if (err) {
-                                return console.log(err);
+                                let schoolName = data.title.replace(data.category,""); // Find school name
+                                let SearchModel = Search(schoolName);
+
+                                // increment the total Count too
+                                SearchModel.findOneAndUpdate({ url: title }, { $inc: { totalCount: 1 } }, function (err, data) {
+                                    if (err) {
+                                        return console.log(err);
+                                    }
+                                    console.log("UPDATED: " + data);
+                                });
                             }
-                            console.log("UPDATED: " + data);
                         });
                         shouldInc = false;
                 }
-
-
-
                 UserModel.findOne({ email: user.email, "voted.title": title }, function (err, data) {
                     console.log(data);
                     if (err) {

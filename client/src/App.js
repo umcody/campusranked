@@ -1,5 +1,5 @@
 import React from "react";
-import Ranked from "./components/Ranked.js";
+import Ranked from "./components/ranked/Ranked.js";
 import { Route } from "react-router-dom";
 import SearchBar from "./components/searchBar/SearchBar.js";
 import Dummy from "./components/dummy";
@@ -11,9 +11,8 @@ import Profile from "./components/profile/profile.js";
 import ForgotPassword from "./components/auth/ForgotPassword.js";
 import ResetPassword from "./components/auth/ResetPassword.js";
 import HomeProto from "./components/homeProto.js";
+import SchoolOverview from "./components/schoolOverview/schoolOverview.js";
 
-
-import Home from "./components/Home";
 import Rating from "./components/ratingSystem/rateRoutes/ReviewPage";
 import Review from "./components/ratingSystem/rateRoutes/ReviewPage";
 import RateGym from "./components/ratingSystem/rateActionRoutes/RateActionGym";
@@ -50,16 +49,18 @@ class App extends React.Component {
       <div id="content">
         <SearchBar searchBody={this.state.body} />
         {/* <Route exact path="/home" component={Home} options={this.state.body} /> */}
-        <Route
+        {/*Route
           exact
           path="/home"
           component={() => <Home options={this.state.body} />}
-        />
+        />*/}
+
+        <Route exact path ="/home" component={HomeProto}/>
 
         <Route exact path="/ranked" component={Dummy} />
         <Route
           exact
-          path="/ranked/:item"
+          path="/ranked/:school/:item"
           render={(props) => <Ranked {...props} />}
         />
         <Route exact path="/registeruser" component={Register} />
@@ -67,7 +68,9 @@ class App extends React.Component {
         <Route exact path="/profile" component={Profile}/>
         <Route path ="/forgotPassword" component={ForgotPassword}/>
         <Route path ="/reset/:token" component={ResetPassword}/>
-        <Route exact path ="/homeProto" component={HomeProto}/>
+
+        <Route path = "/schoolOverview/:school" component={SchoolOverview}/>
+
 
         <Route exact path="/rating" component = {Rating}/>
         <Route path = "/detailed/:category/:title/:item" component = {Review}/>
@@ -80,7 +83,7 @@ class App extends React.Component {
         <Route
           exact
           path="/"
-          component={() => <Home options={this.state.body} />}
+          component={() => <HomeProto searchBody = {this.state.body}/>}
         />
         <Footer />
 

@@ -1,0 +1,46 @@
+.rankOverViewContainer{
+    text-align: center;
+}
+.categoryOverviewContainer{
+    display:inline-block;
+    text-align:center;
+    border-collapse: collapse;
+
+    -webkit-box-shadow: 0px 13px 15px 3px rgba(0,0,0,0.17);
+    -moz-box-shadow: 0px 13px 15px 3px rgba(0,0,0,0.17);
+    box-shadow: 0px 13px 15px 3px rgba(0,0,0,0.17);
+    color:black;
+    margin-right:50px;
+    max-width: 300px;
+    width:300px;
+    font-size: 16px;
+}
+.categoryOverviewContainer tr , tbody{
+    width:100%;
+    display: table;
+}
+.categoryCell th,td{
+    padding:10px 0px 10px 0px;
+}
+.categoryOverviewContainer .header{
+    background-color: var(--main-color);
+    color:white;
+    width:100%;
+    margin:0;padding:0;border:0;
+    text-align: center;
+    font-size: 21px;
+}
+
+#imgBannerOverlay{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,0);
+    z-index: 1;
+    font-size: 70px;
+    color:white;
+}
+
+#schoolBanner{
+    position: relative;
+}

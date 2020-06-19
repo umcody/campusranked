@@ -1,8 +1,9 @@
 import React from "react";
 import Cell from "./Cell.js";
 import Popup from "reactjs-popup";
-import Login from "./auth/Login";
+import Login from "../auth/Login";
 import OverallRatings from "./overallRatings.js";
+
 
 let index = 1;
 // THIS INDEX SYSTEM NEEDS TO BE FIXED. Sometimes, the rank is repeated -- refresh the page multiple times.
@@ -48,7 +49,7 @@ class Ranked extends React.Component {
   }
   // When mounted, fetch all necessary data such as Items, Title, total Count respectively
   componentDidMount() {
-    fetch("/search/" + this.props.match.params.item)
+    fetch("/search/"+this.props.match.params.school+"/"+this.props.match.params.item)
 
       .then(res => res.json())
       .then(body => {
