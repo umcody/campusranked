@@ -35,7 +35,9 @@ module.exports = function(app,mongoose){
                 .limit(5)
                 .exec(function(err,docs){
                     data[categories[i]] = docs;
-                    if(i === categories.length-1){
+                    
+                    if(data[categories[i]]!== null && i === (categories.length-1)){
+                        console.log(data);
                         res.json(data);
                         console.log("School data sent out.")
                     }

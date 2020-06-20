@@ -55,7 +55,11 @@ class App extends React.Component {
           component={() => <Home options={this.state.body} />}
         />*/}
 
-        <Route exact path ="/home" component={HomeProto}/>
+        <Route
+          exact
+          path="/home"
+          component={() => <HomeProto searchBody = {this.state.body}/>}
+        />
 
         <Route exact path="/ranked" component={Dummy} />
         <Route

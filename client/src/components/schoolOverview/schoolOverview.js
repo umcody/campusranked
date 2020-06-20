@@ -4,16 +4,19 @@ class SchoolOverview extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            data:{library:[]}
+            data:{library:[]},
+            title:props.match.params.school
         }
     }
 
     async componentDidMount(){
         let data = await fetch("/api/schoolOverview/"+this.props.match.params.school);
-        console.log(this.props.match.params.school);
         data = await data.json();
         this.setState({data:data})
-        console.log(this.state.data);
+        let schoolTitle = await fetch("/api/search/"+this.props.match.params.school);
+        schoolTitle = await schoolTitle.json();
+        console.log(schoolTitle);
+        this.setState({title: schoolTitle[0].name});
     }
 
     render(){
@@ -21,9 +24,9 @@ class SchoolOverview extends React.Component{
             <div>
                 <div id = "schoolBanner">
                     <div id = "imgBannerGradient"/>
-                    <div id = "imgBannerOverlay">{this.props.match.params.school}</div>
+                    <div id = "imgBannerOverlay">{this.state.title}</div>
                     <img id ="imgBanner" src = "https://campusranked.s3.us-east-2.amazonaws.com/uwmadison/uwmadison_banner.jpg"/>
-                    
+                    <div style = {{width:"100%", height: "30px", "background-color":"black"}}></div>
                 </div>
                 <div style = {{height:"30px"}}/>
                 <h3> TOP BUILDINGS</h3>
