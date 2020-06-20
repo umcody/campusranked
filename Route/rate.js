@@ -96,6 +96,7 @@ module.exports = function (app, mongoose) {
         })
 
     })
+
 {
 /*
     // SHOULD AUTOMATE THIS WITH A FUNCTION INSTEAD OF THREE SEPERATE HARD CODED GET METHODS

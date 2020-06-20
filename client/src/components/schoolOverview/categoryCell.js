@@ -5,7 +5,6 @@ function CategoryCell(props){
     console.log(props[0].name);
     return(
         <tr className = "categoryCell">
-            <th>1</th>
             <th>{props[0].name}</th>
         </tr>
     )

@@ -20,11 +20,13 @@ class SchoolOverview extends React.Component{
         return(
             <div>
                 <div id = "schoolBanner">
+                    <div id = "imgBannerGradient"/>
                     <div id = "imgBannerOverlay">{this.props.match.params.school}</div>
                     <img id ="imgBanner" src = "https://campusranked.s3.us-east-2.amazonaws.com/uwmadison/uwmadison_banner.jpg"/>
-
+                    
                 </div>
                 <div style = {{height:"30px"}}/>
+                <h3> TOP BUILDINGS</h3>
                 <div id = "rankOverviewContainer">
                   <CategoryOverview school = {this.props.match.params.school} category = "Library"  items = {this.state.data.library}/>
                   <CategoryOverview school = {this.props.match.params.school} category = "Dininghall" items = {this.state.data.dininghall}/>

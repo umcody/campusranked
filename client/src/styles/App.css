@@ -9,7 +9,7 @@
 @import "./rateTags.css";
 @import "./schoolOverview.css";
 * {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   text-align: center;
   overflow: visible;
@@ -20,6 +20,12 @@
 :root{
   --main-color: #f62459;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+}
+
 
 #root {
   width: 100%;

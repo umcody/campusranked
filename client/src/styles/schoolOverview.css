@@ -3,17 +3,17 @@
 }
 .categoryOverviewContainer{
     display:inline-block;
-    text-align:center;
+    text-align: center;
     border-collapse: collapse;
-
     -webkit-box-shadow: 0px 13px 15px 3px rgba(0,0,0,0.17);
     -moz-box-shadow: 0px 13px 15px 3px rgba(0,0,0,0.17);
     box-shadow: 0px 13px 15px 3px rgba(0,0,0,0.17);
-    color:black;
+    color: #3f3f3f;
     margin-right:50px;
     max-width: 300px;
     width:300px;
     font-size: 16px;
+    vertical-align: top;
 }
 .categoryOverviewContainer tr , tbody{
     width:100%;
@@ -28,7 +28,10 @@
     width:100%;
     margin:0;padding:0;border:0;
     text-align: center;
-    font-size: 21px;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    height:35px;
 }
 
 #imgBannerOverlay{
@@ -43,4 +46,14 @@
 
 #schoolBanner{
     position: relative;
+}
+
+#imgBannerGradient{
+    top:30px;
+    z-index: 1;
+    position: absolute;
+    width:100%;
+    height:100%;
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(30,30,30,1) 10%, rgba(255,255,255,0) 56%);
 }

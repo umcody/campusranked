@@ -7,7 +7,16 @@ module.exports = function(schoolName){
         name:String,
         totalCount: Number,
         category: String
-    })
-    return mongoose.model(schoolName, searchSchema); 
+    });
+
+    let tempModel;
+
+    try {
+        tempModel = mongoose.model(schoolName);
+    }catch{
+        tempModel = new mongoose.model(schoolName, searchSchema);
+    }
+
+    return tempModel;
 }
 

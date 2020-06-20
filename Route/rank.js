@@ -1,6 +1,7 @@
 var Search = require('../Model/searchModel.js');
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
+const schoolCategorySchema = require("../Model/schoolCategorySchema");
 var UserModel = require("../Model/userModel");
 const VOTELIMIT = 3;
 
@@ -38,6 +39,33 @@ module.exports = function (app, mongoose) {
         
     });
 
+    //Get schoolCategory information based on the school and school category 
+    app.get("/api/:school/:schoolCategory", function(req,res){
+        const school = req.params.school;
+        const schoolCategory = req.params.schoolCategory.toLowerCase();
+        
+        let SchoolCategoryModel; 
+
+        try {
+            SchoolCategoryModel = mongoose.model(schoolCategorySchema);
+        } catch (error) {
+            SchoolCategoryModel = new mongoose.model(school, schoolCategorySchema);
+        }
+
+        SchoolCategoryModel.findOne({url: schoolCategory},function(err,data){
+            if(err){
+                console.log(err);
+            }else{
+                if(data){
+                    res.json(data);
+                }else{
+                    console.log("Does not exist");
+                }
+            }
+            
+        })
+
+    })
 
     // API call when the user 'votes up' for the selected item. 
     app.get("/ranked/:school/:title/api/upvote/:item", function (req, res) {
@@ -168,6 +196,7 @@ module.exports = function (app, mongoose) {
 
 
     })
+
 
     // TO BE DEVELOPED. DOWN VOTE SYSTEM.
     app.post("/ranked/api/:title/downvote/:item", function (req, res) {

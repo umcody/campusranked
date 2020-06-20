@@ -49,14 +49,15 @@ class Ranked extends React.Component {
   }
   // When mounted, fetch all necessary data such as Items, Title, total Count respectively
   componentDidMount() {
-    fetch("/search/"+this.props.match.params.school+"/"+this.props.match.params.item)
+    fetch("/api/"+this.props.match.params.school+"/"+this.props.match.params.item)
 
       .then(res => res.json())
       .then(body => {
 
         this.setState({
-          totalCount: body[0].totalCount,
-          category: body[0].category
+          totalCount: body.totalCount,
+          category: body.category,
+          title: body.name
         });
       });
 
@@ -70,7 +71,6 @@ class Ranked extends React.Component {
         let averageRating = 0;
         let validItemCount = 0;
         this.state.body.map(item => {
-          console.log(item);
           if (item.ratings.overall !== 0) {
             averageRating += (item.ratings.overall * item.reviewCounts);
             validItemCount += item.reviewCounts;
@@ -80,13 +80,7 @@ class Ranked extends React.Component {
         this.setState({ averageRating: averageRating });
       });
 
-    fetch("/getTitle/" + this.props.match.params.item)
-      .then((res) => res.json())
-      .then((body) => {
-        this.setState({ title: body[0].name });
-        document.title = body[0].name;
-        index = 1;
-      });
+  
     index = 1;
 
   }
