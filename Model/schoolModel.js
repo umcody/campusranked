@@ -6,6 +6,10 @@ let schoolSchema = new mongoose.Schema({
     fullName: {type:String, required: false},
     state: {type:String, required:true},
     public: {type:String, required:true},
+    location:{
+        latitude:Number,
+        longitude:Number,
+    }
 },{strict: true});
 
 module.exports = mongoose.model("School",schoolSchema);

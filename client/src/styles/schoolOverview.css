@@ -27,11 +27,11 @@
     color:white;
     width:100%;
     margin:0;padding:0;border:0;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
     font-size: 17px;
     height:35px;
+}
+.categoryOverviewContainer .header td{
+    text-align: center; vertical-align: middle;
 }
 
 #imgBannerOverlay{
@@ -42,6 +42,11 @@
     z-index: 1;
     font-size: 100px;
     color:white;
+}
+
+#imgBannerOverlaySub{
+    margin-top: 10px;
+    font-size: 13px;
 }
 
 #schoolBanner{

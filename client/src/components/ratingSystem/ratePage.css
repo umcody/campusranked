@@ -42,7 +42,8 @@
 #itemImage{
     height:200px;
     width:350px;
-    background-color: aliceblue;
+    object-fit: contain;
+    background-color: white;
 }
 
 #graphics_review{
