@@ -59,6 +59,7 @@ class Ranked extends React.Component {
           category: body.category,
           title: body.name
         });
+        console.log(this.state.category);
       });
 
     fetch("/api" + this.state.link)
@@ -129,7 +130,7 @@ class Ranked extends React.Component {
             <div className="smallText">Show More</div>
           </div>
          </div> */}
-        <img id="graphics_ranked" src={`../asset/undraw_${this.state.category}.svg`} />
+        <img id="graphics_ranked" src={`/asset/undraw_${this.state.category}.svg`} />
         <div className="notice">
           The rank will be sorted once you refresh/exit the page
         </div>
