@@ -17,20 +17,20 @@ module.exports = function(app,mongoose){
 
     app.get("/api/schoolOverview/:school",function(req,res){
         
-        const school = req.params.school;
+        const school = req.params.school.toLowerCase().replace(/\s/g, "").replace(/'/g, "");
 
         for(let i = 0; i < categories.length ; i++){
 
             let ItemModel;
             try {
-                ItemModel = mongoose.model((school+categories[i]));
+                ItemModel = mongoose.model((school+"campus"));
             } catch (error) {
-                ItemModel = new mongoose.model((school+categories[i]), itemSchema);
+                ItemModel = new mongoose.model((school+"campus"), itemSchema);
             }
             
 
             ItemModel
-                .find({})
+                .find({title:(school+categories[i])})
                 .sort({count:-1})
                 .limit(5)
                 .exec(function(err,docs){

@@ -18,6 +18,8 @@ import Review from "./components/ratingSystem/rateRoutes/ReviewPage";
 import RateGym from "./components/ratingSystem/rateActionRoutes/RateActionGym";
 import RateDiningHall from "./components/ratingSystem/rateActionRoutes/RateActionDiningHall";
 import RateLibrary from "./components/ratingSystem/rateActionRoutes/RateActionLibrary";
+import RateResidentialHall from "./components/ratingSystem/rateActionRoutes/RateActionResidentialHall.js";
+
 import "./components/ratingSystem/ratePage.css";
 
 
@@ -77,11 +79,14 @@ class App extends React.Component {
 
 
         <Route exact path="/rating" component = {Rating}/>
-        <Route path = "/detailed/:category/:title/:item" component = {Review}/>
-        <Route path = "/rate/gym/:title/:item" component = {RateGym}/>
-        <Route path = "/rate/dininghall/:title/:item" component = {RateDiningHall}/>
-        <Route path = "/rate/library/:title/:item" component = {RateLibrary}/>
-        <Route path = "/registerComplete/:username" component = {RegisterComplete}/>
+        
+        <Route path = "/detailed/:school/:category/:title/:item" component = {Review}/>
+        <Route path = "/rate/gym/:school/:title/:item" component = {RateGym}/>
+        <Route path = "/rate/dininghall/:school/:title/:item" component = {RateDiningHall}/>
+        <Route path = "/rate/library/:school/:title/:item" component = {RateLibrary}/>
+        <Route path = "/rate/residentialhall/:school/:title/:item" component = {RateResidentialHall}/>
+
+        <Route path = "/registerComplete/:school/:username" component = {RegisterComplete}/>
 
 
         <Route

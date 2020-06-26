@@ -101,7 +101,7 @@ class RateAction extends React.Component {
         } else if (this.state.friendliness === 0) {
             this.setState({showAlert:" "})
         } else {
-            fetch("/api/rate/gym/" + this.state.body.title + "/" + this.state.body.name, {
+            fetch(`/api/rate/${this.props.match.params.school}/gym/${this.props.match.params.title}/${this.props.match.params.item}`, {
                 method: "post",
                 headers: { 'Content-type': 'application/json' },
                 body: JSON.stringify(this.state)
@@ -137,6 +137,9 @@ class RateAction extends React.Component {
             this.openPopup();
         }
 
+        this.setState({title:this.props.match.params.item});
+
+    {/*
         // FETCH NECESSARY DATA FOR THE RATING CRITEREONS
         const { match: { params } } = this.props;
         const title = params.title;
@@ -148,6 +151,7 @@ class RateAction extends React.Component {
             body: json
         })
         console.log(this.state.body);
+    */}
     }
 
     render() {
@@ -161,7 +165,7 @@ class RateAction extends React.Component {
                     onClose={this.closePopup}>
                     <Login />
                 </Popup>
-                <div id="title">Rate For {this.state.body.name}</div>
+                <div id="title">Rate For {this.state.title}</div>
                 <form>
                     <div id="rateForm">
                         <table>

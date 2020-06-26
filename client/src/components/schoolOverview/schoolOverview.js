@@ -9,11 +9,11 @@ class SchoolOverview extends React.Component {
             data: { library: [] },
             school: {},
             title: props.match.params.school,
-            overallRating:{
-                library:0,
-                dininghall:0,
-                gym:0,
-                residentialhall:0
+            overallRating: {
+                library: 0,
+                dininghall: 0,
+                gym: 0,
+                residentialhall: 0
             }
         }
     }
@@ -43,7 +43,7 @@ class SchoolOverview extends React.Component {
                             {`Public: ${this.state.school.public} / State: ${this.state.school.state}`}
                         </div>
                     </div>
-                    
+
                     <img id="imgBanner" src="https://campusranked.s3.us-east-2.amazonaws.com/uwmadison/uwmadison_banner.jpg" />
                     <div style={{ width: "100%", height: "30px", "background-color": "black" }}></div>
                 </div>
@@ -51,9 +51,11 @@ class SchoolOverview extends React.Component {
                 {/*<MapComponent latitude = {this.state.school.latitude} longitude = {this.state.school.longitude}/>*/}
                 <h3> Top Buildings In Each Category</h3>
                 <div id="rankOverviewContainer">
+                    <CategoryOverview school={this.props.match.params.school} category="Residentialhall" items={this.state.data.residentialhall} />
                     <CategoryOverview school={this.props.match.params.school} category="Library" items={this.state.data.library} />
                     <CategoryOverview school={this.props.match.params.school} category="Dininghall" items={this.state.data.dininghall} />
                     <CategoryOverview school={this.props.match.params.school} category="Gym" items={this.state.data.gym} />
+
                 </div>
             </div>
         )

@@ -121,6 +121,7 @@ class Ranked extends React.Component {
                   this.toggleVoteLimitAlert,
                   this.openPopup,
                   this.state.category,
+                  this.props.match.params.school,
                 ])
               )}
             </tbody>

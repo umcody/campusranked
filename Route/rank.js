@@ -23,14 +23,15 @@ module.exports = function (app, mongoose) {
 
     //Get information of the items in the appropriate title
     app.get("/api/ranked/:school/:title", (req, res) => {
-        let title = req.params.title;
+        let title = req.params.title.toLowerCase();
+        let school = req.params.school.toLowerCase();
         let Item;
         try {
-            Item = mongoose.model(title);
+            Item = mongoose.model(school+"campus");
         } catch (error) {
-            Item = new mongoose.model(title, itemSchema);
+            Item = new mongoose.model(school+"campus",itemSchema);
         }
-        Item.find({}).sort({ count: -1}).exec(function (err, docs) {
+        Item.find({title:title}).sort({ count: -1}).exec(function (err, docs) {
             if (err) {
                 return console.log(err);
             }
@@ -47,7 +48,7 @@ module.exports = function (app, mongoose) {
         let SchoolCategoryModel; 
 
         try {
-            SchoolCategoryModel = mongoose.model(schoolCategorySchema);
+            SchoolCategoryModel = mongoose.model(school);
         } catch (error) {
             SchoolCategoryModel = new mongoose.model(school, schoolCategorySchema);
         }
@@ -69,7 +70,7 @@ module.exports = function (app, mongoose) {
 
     // API call when the user 'votes up' for the selected item. 
     app.get("/ranked/:school/:title/api/upvote/:item", function (req, res) {
-
+        let school = req.params.school.toLowerCase();
         let title = req.params.title;
         let item = req.params.item;
 
@@ -85,9 +86,9 @@ module.exports = function (app, mongoose) {
                 function incrementItem (){ // FUNCTION TO INCREMENT ITEM COUNT -- TO BE CALLED LATER WHEN CONDITION IS MET
                         let Item;
                         try {
-                            Item = mongoose.model(title);
+                            Item = mongoose.model(school+"campus");
                         } catch (error) {
-                            Item = new mongoose.model(title, itemSchema);
+                            Item = new mongoose.model(school+"campus",itemSchema);
                         }
                         console.log("accessed");
 
@@ -95,7 +96,7 @@ module.exports = function (app, mongoose) {
 
                         
 
-                        Item.findOneAndUpdate({ name: item }, { $inc: { count: 1 } }, function (err, data) {
+                        Item.findOneAndUpdate({ name: item, title:title}, { $inc: { count: 1 } }, function (err, data) {
                             if (err) {
                                 return console.log(err);
                             }
@@ -222,4 +223,7 @@ module.exports = function (app, mongoose) {
             console.log("UPDATED: " + data);
         });
     })
+
+
+
 }

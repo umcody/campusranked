@@ -24,24 +24,25 @@ module.exports = function (app, mongoose) {
         return query;
     }
 
-    app.post("/api/rate/:category/:title/:item", function (req, res) {
+    app.post("/api/rate/:school/:category/:title/:item", function (req, res) {
 
+        const school = req.params.school;
         const title = req.params.title;
         const item = req.params.item;
         const category = req.params.category;
 
-        let Item
+        let Item;
         try {
-            Item = mongoose.model(title);
+            Item = mongoose.model(school+"campus");
         } catch (error) {
-            Item = mongoose.model(title, itemSchema);
+            Item = new mongoose.model(school+"campus",itemSchema);
         }
 
         console.log(req.body);
 
         let query = generateTagsQuery(req.body.tags);
 
-        Item.findOne({ name: item }, function (err, data) {
+        Item.findOne({name: item, title:title}, function (err, data) {
             console.log(data);
             const tempRatings = Object.entries(data.ratings);
             let averageQuery = {};
@@ -58,7 +59,7 @@ module.exports = function (app, mongoose) {
             let name = req.body.name;
             if (req.body.review === ' ' || req.body.review === "") { // If there is no review, empty the name too. 
                 name = "";
-                Item.findOneAndUpdate({ name: item }, {
+                Item.findOneAndUpdate({name: item,title:title}, {
                     $set:averageQuery,
                     $inc:{ reviewCounts: 1 },
                     $inc:query
@@ -79,7 +80,7 @@ module.exports = function (app, mongoose) {
                 const reviews = [[name, review]]
 
 
-                Item.findOneAndUpdate({ name: item }, {
+                Item.findOneAndUpdate({name: item,title:title}, {
                     $set:averageQuery,
                     $inc: { reviewCounts: 1 },
                     $push: {

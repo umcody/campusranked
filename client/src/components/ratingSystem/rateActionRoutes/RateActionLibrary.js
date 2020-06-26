@@ -124,7 +124,7 @@ class RateActionDiningHall extends React.Component {
                 } else if (this.state.friendliness === 0) {
                     this.setState({ showAlert: " " })
                 } else {
-                    fetch("/api/rate/library/" + this.state.body.title + "/" + this.state.body.name, {
+                    fetch(`/api/rate/${this.props.match.params.school}/library/${this.props.match.params.title}/${this.props.match.params.item}`, {
                         method: "post",
                         headers: { 'Content-type': 'application/json' },
                         body: JSON.stringify(this.state)
@@ -164,6 +164,9 @@ class RateActionDiningHall extends React.Component {
             this.openPopup();
         }
 
+        this.setState({title:this.props.match.params.item});
+
+        {/*
         // FETCH NECESSARY DATA FOR THE RATING CRITEREONS
         const { match: { params } } = this.props;
         const title = params.title;
@@ -179,6 +182,7 @@ class RateActionDiningHall extends React.Component {
         console.log("HEY!");
         console.log(this.state.body);
         console.log(this.state);
+    */}
     }
 
     render() {

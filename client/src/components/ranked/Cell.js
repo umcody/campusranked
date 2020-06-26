@@ -134,7 +134,7 @@ class Cell extends React.Component {
                         <div className="medal"></div>
                     </div></th>
                 <th className = {this.state.tagsContainerClass}>
-                    <a className="name" href={`/detailed/${this.props[5]}/${this.props[0].title}/${this.props[0].name}`}>
+                    <a className="name" href={`/detailed/${this.props[6]}/${this.props[5]}/${this.props[0].title}/${this.props[0].name}`}>
                         <div>{this.props[0].name}</div>
                         <div>
                             {this.state.tags.slice(0,2).map((tag)=>

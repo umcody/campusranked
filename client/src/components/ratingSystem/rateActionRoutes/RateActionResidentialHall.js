@@ -15,7 +15,7 @@ const KeyCodes = {
 const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 
-class RateActionDiningHall extends React.Component {
+class RateActionResidentialHall extends React.Component {
 
     constructor(props) {
         super(props);
@@ -37,11 +37,11 @@ class RateActionDiningHall extends React.Component {
             suggestions:[]
         }
         this.changeOverall = this.changeOverall.bind(this);
-        this.changeTaste = this.changeTaste.bind(this);
-        this.changeHygiene = this.changeHygiene.bind(this);
-        this.changeVariety = this.changeVariety.bind(this);
-        this.changeNutrition = this.changeNutrition.bind(this);
-        this.changePrice = this.changePrice.bind(this);
+        this.changeCleanliness = this.changeCleanliness.bind(this);
+        this.changeLocation = this.changeLocation.bind(this);
+        this.changeNoise = this.changeNoise.bind(this);
+        this.changePrivacy = this.changePrivacy.bind(this);
+        this.changeBathroom = this.changeBathroom.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleTextArea = this.handleTextArea.bind(this);
         this.handleName = this.handleName.bind(this);
@@ -89,22 +89,22 @@ class RateActionDiningHall extends React.Component {
     changeOverall(number) {
         this.setState({ overall: number });
     }
-    changeTaste(number) {
+    changeCleanliness(number) {
         this.setState({ taste: number });
     }
-    changeHygiene(number) {
+    changeLocation(number) {
         this.setState({ hygiene: number });
         console.log(this.state);
     }
-    changeVariety(number) {
+    changeNoise(number) {
         this.setState({ variety: number });
         console.log(this.state);
     }
-    changeNutrition(number) {
+    changePrivacy(number) {
         this.setState({ nutrition: number });
         console.log(this.state);
     }
-    changePrice(number) {
+    changeBathroom(number) {
         this.setState({ price: number });
         console.log(this.state);
     }
@@ -130,7 +130,7 @@ class RateActionDiningHall extends React.Component {
                 } else if (this.state.friendliness === 0) {
                     this.setState({showAlert:" "})
                 } else {
-                    fetch(`/api/rate/${this.props.match.params.school}/dininghall/${this.props.match.params.title}/${this.props.match.params.item}`, {
+                    fetch(`/api/rate/${this.props.match.params.school}/residentialhall/${this.props.match.params.title}/${this.props.match.params.item}`, {
                         method: "post",
                         headers: { 'Content-type': 'application/json' },
                         body: JSON.stringify(this.state)
@@ -208,23 +208,23 @@ class RateActionDiningHall extends React.Component {
                             </tr>
                             <tr>
                                 <th>Taste</th>
-                                <th><RateStars name="taste" whenClicked={this.changeTaste} /></th>
+                                <th><RateStars name="cleanliness" whenClicked={this.changeCleanliness} /></th>
                             </tr>
                             <tr>
                                 <th>Hygiene</th>
-                                <th><RateStars name="hygiene" whenClicked={this.changeHygiene} /></th>
+                                <th><RateStars name="location" whenClicked={this.changeLocation} /></th>
                             </tr>
                             <tr>
                                 <th>variety</th>
-                                <th><RateStars name="variety" whenClicked={this.changeVariety} /></th>
+                                <th><RateStars name="noise" whenClicked={this.changeNoise} /></th>
                             </tr>
                             <tr>
                                 <th>Nutrition</th>
-                                <th><RateStars name="nutrition" whenClicked={this.changeNutrition} /></th>
+                                <th><RateStars name="privacy" whenClicked={this.changePrivacy} /></th>
                             </tr>
                             <tr>
                                 <th>Price</th>
-                                <th><RateStars name="price" whenClicked={this.changePrice} /></th>
+                                <th><RateStars name="bathroom" whenClicked={this.changeBathroom} /></th>
                             </tr>
                         </table>
                     </div>
@@ -249,4 +249,4 @@ class RateActionDiningHall extends React.Component {
     }
 }
 
-export default RateActionDiningHall;
+export default RateActionResidentialHall;

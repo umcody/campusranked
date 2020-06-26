@@ -26,7 +26,7 @@ const port = process.env.PORT || 8000;
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://codyum:appalanchia@cluster0-tfxwi.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true})
 
-
+temp(app,mongoose);
 passportAuth(app,mongoose);
 search(app,mongoose);
 schoolOverview(app,mongoose);
@@ -34,7 +34,7 @@ authRoute(app,mongoose);
 rank(app,mongoose);
 reviewPage(app,mongoose);
 rate(app,mongoose);
-temp(app,mongoose);
+
 update(app,mongoose);
 resetPassword(app,mongoose);
 
