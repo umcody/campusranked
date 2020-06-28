@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 
 function CreateSchool() {
 
@@ -14,7 +14,7 @@ function CreateSchool() {
     const [dininghall, setDininghall] = useState([]);
     const [library, setLibrary] = useState([]);
 
-    function submit(){
+    function submit() {
         const data = fetch("/api/admin/newSchool", { // FETCH TO LOGIN
             method: "post",
             headers: { 'Content-Type': 'application/json' },
@@ -25,36 +25,52 @@ function CreateSchool() {
                 public: isPublic,
                 latitude: latitude,
                 longitude: longitude,
-                gym:gym,
-                residentialhall:residentialhall,
-                dininghall:dininghall,
-                library:library
+                gym: gym,
+                residentialhall: residentialhall,
+                dininghall: dininghall,
+                library: library
             })
         });
     }
 
-  return (
-  <div style = {{"position":"absolute", "top":"40%", "left": "50%", "transform":"translate(-50%,-50%)"}}>
-      <form>
-          <input type = "text" onChange={(e)=> {setSchoolName(e.target.value)} } placeholder = "School Name"></input>
-          <input type = "text" onChange={(e)=> {setSchoolFullName(e.target.value)}} placeholder = "School Full Name" ></input>
-          <input type = "text" onChange={(e)=> {setState(e.target.value)} } placeholder = "State"></input>
+    return (
+        <div style={{ "position": "absolute", "top": "40%", "left": "50%", "transform": "translate(-50%,-50%)" }}>
+            <form>
+                <div style={{ display: "inline-block", "vertical-align":"top"}}>
+                    <p>School Name</p>
+                    <input type="text" onChange={(e) => { setSchoolName(e.target.value) }} placeholder="School Name"></input>
+                    <p>School Full Name</p>
+                    <input type="text" onChange={(e) => { setSchoolFullName(e.target.value) }} placeholder="School Full Name" ></input>
+                    <p>State</p>
+                    <input type="text" onChange={(e) => { setState(e.target.value) }} placeholder="State"></input>
 
-          <input type = "text" onChange={(e)=> {setLatitude(e.target.value)} } placeholder = "Latitude"></input>
-          <input type = "text" onChange={(e)=> {setLongitude(e.target.value)} } placeholder = "Longitude"></input>
+                    <p>Latitude</p>
+                    <input type="text" onChange={(e) => { setLatitude(e.target.value) }} placeholder="Latitude"></input>
+                    <p>Longitude</p>
+                    <input type="text" onChange={(e) => { setLongitude(e.target.value) }} placeholder="Longitude"></input>
 
+                    <p>Public</p>
+                    <input type="radio" value="true" onClick={(e) => { setPublic(Boolean(e.target.value)) }} placeholder="Public"></input>
+                    <p>Private</p>
+                    <input type="radio" value="false" onClick={(e) => { setPublic(Boolean(e.target.value)) }} placeholder="Private"></input>
 
-          <input type = "radio" value = "true"onClick={(e)=> {setPublic(Boolean(e.target.value))} } placeholder = "Public"></input>
-          <input type = "radio" value = "false" onClick={(e)=> {setPublic(Boolean(e.target.value))} } placeholder = "Private"></input>
+                </div>
 
-          <input type = "text" onChange={(e)=> {setGym(e.target.value.split(","))} } placeholder = "Gym Buildings"></input>
-          <input type = "text" onChange={(e)=> {setResidentialhall(e.target.value.split(","))} } placeholder = "ResidentialHall Buildings"></input>
-          <input type = "text" onChange={(e)=> {setDininghall(e.target.value.split(","))} } placeholder = "Dininghall Buildings"></input>
-          <input type = "text" onChange={(e)=> {setLibrary(e.target.value.split(","))} } placeholder = "Library Buildings"></input>
+                <div style={{ display: "inline-block", "vertical-align":"top"}}>
+                    <h6>Here you put the list of buildings. *** Seperate the buildings by "," (NO SPACE AFTER COMMA) ***</h6>
 
-      </form>
-      <p onClick= {submit}> SUBMIT</p>
-  </div>
-  );
+                    <p>Gym</p>
+                    <input type="text" onChange={(e) => { setGym(e.target.value.split(",")) }} placeholder="Gym Buildings"></input>
+                    <p>ResidentialHall</p>
+                    <input type="text" onChange={(e) => { setResidentialhall(e.target.value.split(",")) }} placeholder="ResidentialHall Buildings"></input>
+                    <p>Dining Hall</p>
+                    <input type="text" onChange={(e) => { setDininghall(e.target.value.split(",")) }} placeholder="Dininghall Buildings"></input>
+                    <p>Library</p>
+                    <input type="text" onChange={(e) => { setLibrary(e.target.value.split(",")) }} placeholder="Library Buildings"></input>
+                </div>
+            </form>
+            <p onClick={submit}> SUBMIT</p>
+        </div>
+    );
 }
 export default CreateSchool;
