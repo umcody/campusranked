@@ -15,6 +15,8 @@ const update = require("./Route/tempUpdate");
 const resetPassword = require("./Auth/resetPassword.js");
 const schoolOverview = require('./Route/schoolOverview');
 
+const addSchool = require("./Route/admin/addSchool.js");
+
 app.use(Cors());
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
@@ -34,6 +36,8 @@ authRoute(app,mongoose);
 rank(app,mongoose);
 reviewPage(app,mongoose);
 rate(app,mongoose);
+addSchool(app,mongoose);
+
 
 update(app,mongoose);
 resetPassword(app,mongoose);

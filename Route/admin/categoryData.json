@@ -1,0 +1,32 @@
+{
+    "libraryQuery": {
+        "overall": 0,
+        "noise": 0,
+        "space": 0,
+        "accessibility": 0,
+        "resource": 0
+    },
+    "dininghallQuery": {
+        "overall": 0,
+        "taste": 0,
+        "hygiene": 0,
+        "variety": 0,
+        "nutrition": 0,
+        "price": 0
+    },
+    "residentialhallQuery": {
+        "overall": 0,
+        "cleanliness": 0,
+        "location": 0,
+        "noise": 0,
+        "privacy": 0,
+        "bathroom":0
+    },
+    "gymQuery": {
+        "overall":0,
+        "space":0,
+        "equipment":0,
+        "cleanliness":0,
+        "community":0
+    }
+}

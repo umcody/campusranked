@@ -13,6 +13,8 @@ import ResetPassword from "./components/auth/ResetPassword.js";
 import HomeProto from "./components/homeProto.js";
 import SchoolOverview from "./components/schoolOverview/schoolOverview.js";
 
+import CreateSchool from "./components/admin/createSchool";
+
 import Rating from "./components/ratingSystem/rateRoutes/ReviewPage";
 import Review from "./components/ratingSystem/rateRoutes/ReviewPage";
 import RateGym from "./components/ratingSystem/rateActionRoutes/RateActionGym";
@@ -21,6 +23,7 @@ import RateLibrary from "./components/ratingSystem/rateActionRoutes/RateActionLi
 import RateResidentialHall from "./components/ratingSystem/rateActionRoutes/RateActionResidentialHall.js";
 
 import "./components/ratingSystem/ratePage.css";
+import createSchool from "./components/admin/createSchool";
 
 
 class App extends React.Component {
@@ -87,6 +90,9 @@ class App extends React.Component {
         <Route path = "/rate/residentialhall/:school/:title/:item" component = {RateResidentialHall}/>
 
         <Route path = "/registerComplete/:school/:username" component = {RegisterComplete}/>
+
+
+        <Route exact path ="/admin/createSchool" component = {createSchool}/>
 
 
         <Route
