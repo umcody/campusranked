@@ -5,7 +5,7 @@ let schoolSchema = new mongoose.Schema({
     url:{type:String, required:true},
     fullName: {type:String, required: false},
     state: {type:String, required:true},
-    public: {type:String, required:true},
+    public: {type:Boolean, required:true},
     location:{
         latitude:Number,
         longitude:Number,

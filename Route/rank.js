@@ -42,8 +42,8 @@ module.exports = function (app, mongoose) {
 
     //Get schoolCategory information based on the school and school category 
     app.get("/api/:school/:schoolCategory", function(req,res){
-        const school = req.params.school;
-        const schoolCategory = req.params.schoolCategory.toLowerCase();
+        const school = req.params.school.toLowerCase().replace(/\s/g, "").replace(/'/g, "");
+        const schoolCategory = req.params.schoolCategory.toLowerCase().replace(/\s/g, "").replace(/'/g, "");
         
         let SchoolCategoryModel; 
 

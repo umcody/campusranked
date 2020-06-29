@@ -5,6 +5,6 @@ let schoolCategoryModel = new mongoose.Schema({
     title: {type:String, required: false},
     totalCount: Number,
     category: String
-},{strict: true});
+},{strict: false});
 
 module.exports = schoolCategoryModel;

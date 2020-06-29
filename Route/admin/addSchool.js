@@ -8,11 +8,12 @@ module.exports = function (app, mongoose) {
 
         console.log(req.body);
         const school = req.body.schoolName;
+        const schoolLowered = school.toLowerCase().replace(/\s/g, "").replace(/'/g, "");
 
         //create school in school (collective) document
         schoolModel.create({
             name:school,
-            url:school.toLowerCase().replace(/\s/g, "").replace(/'/g, ""),
+            url:schoolLowered,
             fullName: req.body.schoolFullName,
             state: req.body.state,
             public: req.body.public,
@@ -37,21 +38,26 @@ module.exports = function (app, mongoose) {
             tags: Object
         })
 
-        const Item = mongoose.model(school+"campus", itemSchema);
-        category["dininghall"] = req.body.dininghall;
-        category["residentialhall"] = req.body.residentialhall;
-        category["library"] = req.body.library;
-        category["gym"] = req.body.gym;
+        let Item;
+        try{
+            Item = mongoose.model(schoolLowered+"campus");
+        }catch{
+            Item = new mongoose.model(schoolLowered+"campus", itemSchema);
+        }
+        category["Dining Hall"] = req.body.dininghall;
+        category["Residential Hall"] = req.body.residentialhall;
+        category["Library"] = req.body.library;
+        category["Gym"] = req.body.gym;
 
         for (let key in category) {
-
+            let keyLowered = key.toLowerCase().replace(/\s/g, "").replace(/'/g, "");
             //create in the schools (overall) document
-            SearchModel = searchModel(school)
+            SearchModel = searchModel(schoolLowered)
             SearchModel.create({
-                url:school.toLowerCase().replace(/\s/g, "").replace(/'/g, ""),
-                name: req.body.schoolName,
+                url:schoolLowered + keyLowered,
+                name: school + " "+key,
                 totalCount:0,
-                category:key
+                category:keyLowered
             })
 
             let modified = [];
@@ -65,10 +71,10 @@ module.exports = function (app, mongoose) {
                     rank: 1,
                     image: `https://campusranked.s3.us-east-2.amazonaws.com/${school}/gym/${modified[i]}.jpg`,
                     name: category[key][i],
-                    title: (school+key),
-                    category: key,
+                    title: (schoolLowered+keyLowered),
+                    category: keyLowered,
                     reviews: [],
-                    ratings: categoryData[(key+"Query")],
+                    ratings: categoryData[(keyLowered+"Query")],
                     count: 0,
                     reviewCounts: 0,
                     __v: 1
