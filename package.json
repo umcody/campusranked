@@ -15,7 +15,6 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.14",
     "nodemailer": "^6.4.8",
-    "nodemon": "^2.0.4",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
@@ -28,5 +27,8 @@
     "heroku-postbuild": "npm run install-client && npm run build",
     "start": "node server.js",
     "client": "cd client && npm start"
+  },
+  "devDependecies":{
+    "nodemon": "^2.0.4"
   }
 }
