@@ -28,6 +28,8 @@ const port = process.env.PORT || 8000;
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://codyum:appalanchia@cluster0-tfxwi.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true})
 
+
+
 temp(app,mongoose);
 passportAuth(app,mongoose);
 search(app,mongoose);
@@ -43,11 +45,15 @@ update(app,mongoose);
 resetPassword(app,mongoose);
 
 
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+});
 
+{/*
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static('client/build'));
 }
-
+*/}
 
 
 app.listen(port, () => {
