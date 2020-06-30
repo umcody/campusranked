@@ -1,6 +1,6 @@
 import React from "react";
 import CategoryOverview from "./categoryOverview.js";
-import MapComponent from "./mapComponent.js";
+//import MapComponent from "./mapComponent.js";
 
 class SchoolOverview extends React.Component {
     constructor(props) {
