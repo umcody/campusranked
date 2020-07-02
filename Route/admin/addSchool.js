@@ -69,7 +69,7 @@ module.exports = function (app, mongoose) {
             for (let i = 0; i < category[key].length; i++) {
                 Item.create({
                     rank: 1,
-                    image: `https://campusranked.s3.us-east-2.amazonaws.com/${schoolLowered}/${key}/${modified[i]}.jpg`,
+                    image: `https://campusranked.s3.us-east-2.amazonaws.com/${schoolLowered}/${key.toLowerCase().replace(/\s/g, "")}/${modified[i]}.jpg`,
                     name: category[key][i],
                     title: (schoolLowered+keyLowered),
                     category: keyLowered,
