@@ -125,9 +125,15 @@ class RateActionDiningHall extends React.Component {
 
                 if (this.state.overall === 0) {
                     this.setState({showAlert:" "})
-                } else if (this.state.space === 0) {
+                } else if (this.state.variety === 0) {
                     this.setState({showAlert:" "})
-                } else if (this.state.friendliness === 0) {
+                } else if (this.state.taste === 0) {
+                    this.setState({showAlert:" "})
+                } else if (this.state.hygiene === 0) {
+                    this.setState({showAlert:" "})
+                } else if (this.state.price === 0) {
+                    this.setState({showAlert:" "})
+                } else if (this.state.nutrition === 0) {
                     this.setState({showAlert:" "})
                 } else {
                     fetch(`/api/rate/${this.props.match.params.school}/dininghall/${this.props.match.params.title}/${this.props.match.params.item}`, {
@@ -138,6 +144,7 @@ class RateActionDiningHall extends React.Component {
                 }
 
             }
+            window.location = `/detailed/${this.props.match.params.school}/dininghall/${this.props.match.params.title}/${this.props.match.params.item}`
         } else {
             this.openPopup();
         }

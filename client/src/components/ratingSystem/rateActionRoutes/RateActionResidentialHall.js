@@ -23,11 +23,12 @@ class RateActionResidentialHall extends React.Component {
             body: {
             },
             overall: 0,
-            taste: 0,
+            cleanliness: 0,
             hygiene: 0,
-            variety:0,
-            nutrition:0,
-            price:0,
+            location:0,
+            noise:0,
+            privacy:0,
+            bathroom:0,
             title:"",
             review: "",
             name: "",
@@ -90,22 +91,22 @@ class RateActionResidentialHall extends React.Component {
         this.setState({ overall: number });
     }
     changeCleanliness(number) {
-        this.setState({ taste: number });
+        this.setState({ cleanliness: number });
     }
     changeLocation(number) {
-        this.setState({ hygiene: number });
+        this.setState({ location: number });
         console.log(this.state);
     }
     changeNoise(number) {
-        this.setState({ variety: number });
+        this.setState({ noise: number });
         console.log(this.state);
     }
     changePrivacy(number) {
-        this.setState({ nutrition: number });
+        this.setState({ privacy: number });
         console.log(this.state);
     }
     changeBathroom(number) {
-        this.setState({ price: number });
+        this.setState({ bathroom: number });
         console.log(this.state);
     }
     //
@@ -125,9 +126,15 @@ class RateActionResidentialHall extends React.Component {
 
                 if (this.state.overall === 0) {
                     this.setState({showAlert:" "})
-                } else if (this.state.space === 0) {
+                } else if (this.state.cleanliness === 0) {
                     this.setState({showAlert:" "})
-                } else if (this.state.friendliness === 0) {
+                } else if (this.state.location === 0) {
+                    this.setState({showAlert:" "})
+                } else if (this.state.noise === 0) {
+                    this.setState({showAlert:" "})
+                } else if (this.state.privacy === 0) {
+                    this.setState({showAlert:" "})
+                } else if (this.state.bathroom === 0) {
                     this.setState({showAlert:" "})
                 } else {
                     fetch(`/api/rate/${this.props.match.params.school}/residentialhall/${this.props.match.params.title}/${this.props.match.params.item}`, {
@@ -138,6 +145,7 @@ class RateActionResidentialHall extends React.Component {
                 }
 
             }
+            window.location = `/detailed/${this.props.match.params.school}/residentialhall/${this.props.match.params.title}/${this.props.match.params.item}`
         } else {
             this.openPopup();
         }

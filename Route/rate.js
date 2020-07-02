@@ -38,23 +38,20 @@ module.exports = function (app, mongoose) {
             Item = new mongoose.model(school+"campus",itemSchema);
         }
 
-        console.log(req.body);
 
         let query = generateTagsQuery(req.body.tags);
 
         Item.findOne({name: item, title:title}, function (err, data) {
-            console.log(data);
+
             const tempRatings = Object.entries(data.ratings);
             let averageQuery = {};
-
             // Average calculations
             for (let i = 0; i < ratingsCriterions[category].length; i++) {
                 let criterion = ratingsCriterions[category][i];
-                console.log(data.reviewCounts);
-                console.log(tempRatings[i][1]);
                 let temp = tempRatings[i][1] * data.reviewCounts;
-                averageQuery[`ratings.${criterion}`] = (temp + parseFloat(req.body[criterion] * 100)) / (data.reviewCounts + 1);
+                averageQuery[`ratings.${criterion}`] = (temp + parseFloat(req.body[criterion]) * 100) / (data.reviewCounts + 1);
             }
+            console.log(averageQuery);
 
             let name = req.body.name;
             if (req.body.review === ' ' || req.body.review === "") { // If there is no review, empty the name too. 
@@ -67,12 +64,14 @@ module.exports = function (app, mongoose) {
                 },{strict:false}, function (err, data) {
                     if (err) {
                         console.log(err);
+                    }else{
+                        res.status(200);
                     }
+                    console.log(data);
                 })
 
             } else {
-                console.log("HERE");
-                console.log(req.body.name);
+
                 if (req.body.name === "" || req.body.name === undefined) {
                     name = "Anonymous";
                 }
@@ -90,6 +89,8 @@ module.exports = function (app, mongoose) {
                 },{strict:false}, function (err, data) {
                     if (err) {
                         console.log(err);
+                    }else{
+                        res.status(200);
                     }
                 })
             }

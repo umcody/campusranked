@@ -54,7 +54,6 @@ class Cell extends React.Component {
             tags = Object.entries(tags);
             tags = tags.sort(function(a, b){return b[1] - a[1]});
             this.setState({tags: tags, tagsContainerClass: "tagsContainer"});
-            console.log(tags);
     }
 
 
@@ -76,9 +75,6 @@ class Cell extends React.Component {
 
         // Updates the count value of the players. Upvote and Downvote(implicit). 
         button.addEventListener("click", async (e) => {
-
-            console.log(url + "/api/upvote/" + name);
-
 
             if (JWToken === null) { // If no JWToken, open Popup
                 this.props[4]();

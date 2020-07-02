@@ -72,11 +72,16 @@ class Ranked extends React.Component {
         let averageRating = 0;
         let validItemCount = 0;
         this.state.body.map(item => {
-          if (item.ratings.overall !== 0) {
+          if (item.ratings.overall !== 0 && !isNaN(item.ratings.overall)) {
+            console.log(item.ratings.overall);
+            console.log(item);
             averageRating += (item.ratings.overall * item.reviewCounts);
             validItemCount += item.reviewCounts;
+            console.log("average : "+averageRating);
+            console.log("valid : "+validItemCount);
           }
         })
+        console.log(averageRating);
         averageRating = (averageRating / validItemCount / 100).toFixed(2);
         this.setState({ averageRating: averageRating });
       });
@@ -108,7 +113,9 @@ class Ranked extends React.Component {
         >
           Vote Limit has Been Reached!
         </p>
-        <OverallRatings ratings={this.state.averageRating} />
+        {
+          (isNaN(this.state.averageRating)) ? <OverallRatings ratings={"There is no rating yet"} /> : <OverallRatings ratings={this.state.averageRating} />
+        }
         {/* <div className="collapsable">  *****    EXPANDABLE BOX (DISABLED)*/ }
           <table className="ranked_table" style = {{"max-height":this.state.collapseHeight}}>
             <tbody>

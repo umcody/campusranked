@@ -17,6 +17,7 @@ module.exports = function (app, mongoose) {
         category: String,
         ratings: Object,
         reviews: Array,
+        reviewCounts:Number,
         tags:Object
     })
 
