@@ -42,7 +42,7 @@ module.exports = function (app, mongoose) {
         try{
             Item = mongoose.model(schoolLowered+"campus");
         }catch{
-            Item = new mongoose.model(schoolLowered+"campus", itemSchema);
+            Item = mongoose.model(schoolLowered+"campus", itemSchema);
         }
         category["Dining Hall"] = req.body.dininghall;
         category["Residential Hall"] = req.body.residentialhall;

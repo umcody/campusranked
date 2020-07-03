@@ -215,23 +215,23 @@ class RateActionResidentialHall extends React.Component {
                                 <th><RateStars name="overall" whenClicked={this.changeOverall} /></th>
                             </tr>
                             <tr>
-                                <th>Taste</th>
+                                <th>Cleanliness</th>
                                 <th><RateStars name="cleanliness" whenClicked={this.changeCleanliness} /></th>
                             </tr>
                             <tr>
-                                <th>Hygiene</th>
+                                <th>Location</th>
                                 <th><RateStars name="location" whenClicked={this.changeLocation} /></th>
                             </tr>
                             <tr>
-                                <th>variety</th>
+                                <th>Noise</th>
                                 <th><RateStars name="noise" whenClicked={this.changeNoise} /></th>
                             </tr>
                             <tr>
-                                <th>Nutrition</th>
+                                <th>Privacy</th>
                                 <th><RateStars name="privacy" whenClicked={this.changePrivacy} /></th>
                             </tr>
                             <tr>
-                                <th>Price</th>
+                                <th>Bathroom</th>
                                 <th><RateStars name="bathroom" whenClicked={this.changeBathroom} /></th>
                             </tr>
                         </table>

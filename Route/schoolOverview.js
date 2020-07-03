@@ -12,6 +12,7 @@ module.exports = function(app,mongoose){
         category: String,
         ratings: Object,
         reviews: Array,
+        reviewCounts:Number,
         tags:Object
     })
 
@@ -25,7 +26,7 @@ module.exports = function(app,mongoose){
             try {
                 ItemModel = mongoose.model((school+"campus"));
             } catch (error) {
-                ItemModel = new mongoose.model((school+"campus"), itemSchema);
+                ItemModel = mongoose.model((school+"campus"), itemSchema);
             }
             
 

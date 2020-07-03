@@ -57,8 +57,8 @@ module.exports = function (app, mongoose) {
             if (req.body.review === ' ' || req.body.review === "") { // If there is no review, empty the name too. 
                 name = "";
                 Item.findOneAndUpdate({name: item,title:title}, {
+                    $inc:{reviewCounts:1},
                     $set:averageQuery,
-                    $inc:{ reviewCounts: 1 },
                     $inc:query
 
                 },{strict:false}, function (err, data) {

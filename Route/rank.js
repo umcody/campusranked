@@ -30,7 +30,7 @@ module.exports = function (app, mongoose) {
         try {
             Item = mongoose.model(school+"campus");
         } catch (error) {
-            Item = new mongoose.model(school+"campus",itemSchema);
+            Item = mongoose.model(school+"campus",itemSchema);
         }
         Item.find({title:title}).sort({ count: -1}).exec(function (err, docs) {
             if (err) {
@@ -51,7 +51,7 @@ module.exports = function (app, mongoose) {
         try {
             SchoolCategoryModel = mongoose.model(school);
         } catch (error) {
-            SchoolCategoryModel = new mongoose.model(school, schoolCategorySchema);
+            SchoolCategoryModel = mongoose.model(school, schoolCategorySchema);
         }
 
         SchoolCategoryModel.findOne({url: schoolCategory},function(err,data){
@@ -89,7 +89,7 @@ module.exports = function (app, mongoose) {
                         try {
                             Item = mongoose.model(school+"campus");
                         } catch (error) {
-                            Item = new mongoose.model(school+"campus",itemSchema);
+                            Item = mongoose.model(school+"campus",itemSchema);
                         }
                         console.log("accessed");
 
@@ -207,7 +207,7 @@ module.exports = function (app, mongoose) {
         let item = req.params.item;
         console.log(req);
 
-        const Item = new mongoose.model(title, itemSchema);
+        const Item = mongoose.model(title, itemSchema);
         console.log("accessed");
 
         Item.findOneAndUpdate({ name: item }, { $inc: { count: -1 } }, function (err, data) {
