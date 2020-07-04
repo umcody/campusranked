@@ -44,7 +44,7 @@ class SchoolOverview extends React.Component {
                         </div>
                     </div>
 
-                    <img id="imgBanner" src="https://campusranked.s3.us-east-2.amazonaws.com/uwmadison/uwmadison_banner.jpg" />
+                    <img id="imgBanner" src={`https://campusranked.s3.us-east-2.amazonaws.com/${this.props.match.params.school}/${this.props.match.params.school}_banner.jpg`}/>
                     <div style={{ width: "100%", height: "30px", "background-color": "black" }}></div>
                 </div>
                 <div style={{ height: "30px" }} />
