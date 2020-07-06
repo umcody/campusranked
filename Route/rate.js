@@ -35,9 +35,8 @@ module.exports = function (app, mongoose) {
         try {
             Item = mongoose.model(school+"campus");
         } catch (error) {
-            Item = new mongoose.model(school+"campus",itemSchema);
+            Item = mongoose.model(school+"campus",itemSchema);
         }
-
 
         let query = generateTagsQuery(req.body.tags);
 
@@ -57,10 +56,8 @@ module.exports = function (app, mongoose) {
             if (req.body.review === ' ' || req.body.review === "") { // If there is no review, empty the name too. 
                 name = "";
                 Item.findOneAndUpdate({name: item,title:title}, {
-                    $inc:{reviewCounts:1},
+                    $inc:{...query,"reviewCounts":1},
                     $set:averageQuery,
-                    $inc:query
-
                 },{strict:false}, function (err, data) {
                     if (err) {
                         console.log(err);
@@ -81,11 +78,10 @@ module.exports = function (app, mongoose) {
 
                 Item.findOneAndUpdate({name: item,title:title}, {
                     $set:averageQuery,
-                    $inc: { reviewCounts: 1 },
+                    $inc: {...query,"reviewCounts": 1 },
                     $push: {
                         reviews
-                    },
-                    $inc: query
+                    }
                 },{strict:false}, function (err, data) {
                     if (err) {
                         console.log(err);

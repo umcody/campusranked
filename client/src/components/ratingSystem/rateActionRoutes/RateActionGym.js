@@ -1,6 +1,7 @@
 import React from "react";
 import RateStars from "../RateStars";
 import RateStarsTest from "../RateStarsTest";
+import {Redirect} from "react-router-dom";
 import Popup from "reactjs-popup";
 import Login from "../../auth/Login.js";
 import { WithContext as ReactTags } from 'react-tag-input';
@@ -21,6 +22,7 @@ class RateAction extends React.Component {
         super(props);
         this.state = {
             body: {},
+            redirect:null,
             overall: 0,
             space: 0,
             equipment: 0,
@@ -133,7 +135,7 @@ class RateAction extends React.Component {
                 }
 
             }
-            window.location = `/detailed/${this.props.match.params.school}/gym/${this.props.match.params.title}/${this.props.match.params.item}`
+            this.setState({redirect:`/ranked/${this.props.match.params.school}/${this.props.match.params.title}`});
         } else {
             this.openPopup();
         }
@@ -187,7 +189,9 @@ class RateAction extends React.Component {
 
     render() {
         const { tags, suggestions } = this.state;
-
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect} />
+        }
         return (
             <div className="rateFormContainer">
                 <Popup
