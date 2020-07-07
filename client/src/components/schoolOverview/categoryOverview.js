@@ -8,11 +8,12 @@ function CategoryOverview(props) {
         return null;
     } else {
 
+        const categoryLowered = props.category.toLowerCase();
         let items = Object.values(props.items);
         console.log(items);
 
         return (
-            <Link to = {`/ranked/${props.school}/${props.school+props.category}`}>
+            <Link to = {`/ranked/${props.school}/${props.school+categoryLowered}`}>
                 <table className="categoryOverviewContainer">
                     <tbody>
                         <tr className = "header"><td>{`${props.category} Overview`}</td></tr>

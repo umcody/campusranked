@@ -92,9 +92,10 @@ class Ranked extends React.Component {
   }
 
   render() {
+    const schoolLowered = this.props.match.params.school.toLowerCase();
     return (
       <div className="ranked">
-        <img id="imgBanner" src="https://campusranked.s3.us-east-2.amazonaws.com/uwmadison/uwmadison_banner.jpg" />
+        <img id="imgBanner" src={`https://campusranked.s3.us-east-2.amazonaws.com/${schoolLowered}/${schoolLowered}_banner.jpg`} />
         <Popup
           open={this.state.loginPopup}
           closeOnDocumentClick

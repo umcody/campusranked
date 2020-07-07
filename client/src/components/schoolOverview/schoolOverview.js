@@ -31,12 +31,13 @@ class SchoolOverview extends React.Component {
     }
 
     render() {
+        const schoolLowered = this.props.match.params.school.toLowerCase();
         return (
             <div>
                 <div id="schoolBanner">
                     <div id="imgBannerGradient" />
                     <div id="imgBannerOverlay">
-                        <div id="imgBannerOverlayTitle">
+                        <div id="imgBannerOverlayTitle" className = "noBreak">
                             {this.state.title}
                         </div>
                         <div id="imgBannerOverlaySub">
@@ -44,17 +45,17 @@ class SchoolOverview extends React.Component {
                         </div>
                     </div>
 
-                    <img id="imgBanner" src={`https://campusranked.s3.us-east-2.amazonaws.com/${this.props.match.params.school}/${this.props.match.params.school}_banner.jpg`}/>
+                    <img id="imgBanner" src={`https://campusranked.s3.us-east-2.amazonaws.com/${schoolLowered}/${schoolLowered}_banner.jpg`}/>
                     <div style={{ width: "100%", height: "30px", "background-color": "black" }}></div>
                 </div>
                 <div style={{ height: "30px" }} />
                 {/*<MapComponent latitude = {this.state.school.latitude} longitude = {this.state.school.longitude}/>*/}
                 <h3> Top Buildings In Each Category</h3>
                 <div id="rankOverviewContainer">
-                    <CategoryOverview school={this.props.match.params.school} category="Residentialhall" items={this.state.data.residentialhall} />
-                    <CategoryOverview school={this.props.match.params.school} category="Library" items={this.state.data.library} />
-                    <CategoryOverview school={this.props.match.params.school} category="Dininghall" items={this.state.data.dininghall} />
-                    <CategoryOverview school={this.props.match.params.school} category="Gym" items={this.state.data.gym} />
+                    <CategoryOverview school={schoolLowered} category="Residentialhall" items={this.state.data.residentialhall} />
+                    <CategoryOverview school={schoolLowered} category="Library" items={this.state.data.library} />
+                    <CategoryOverview school={schoolLowered} category="Dininghall" items={this.state.data.dininghall} />
+                    <CategoryOverview school={schoolLowered} category="Gym" items={this.state.data.gym} />
 
                 </div>
             </div>
