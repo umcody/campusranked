@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 import React from "react";
 import Ranked from "./components/ranked/Ranked.js";
 import { Route } from "react-router-dom";
@@ -5,7 +6,7 @@ import SearchBar from "./components/searchBar/SearchBar.js";
 import Dummy from "./components/dummy";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
-import Footer from "./components/Footer"
+import Footer from "./components/Footer";
 import RegisterComplete from "./components/auth/RegisterComplete";
 import Profile from "./components/profile/profile.js";
 import ForgotPassword from "./components/auth/ForgotPassword.js";
@@ -20,7 +21,6 @@ import RateDiningHall from "./components/ratingSystem/rateActionRoutes/RateActio
 import RateLibrary from "./components/ratingSystem/rateActionRoutes/RateActionLibrary";
 import "./components/ratingSystem/ratePage.css";
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -28,7 +28,7 @@ class App extends React.Component {
       isLoggedIn: false,
       body: [],
     };
-    document.title="CampusRanked";
+    document.title = "CampusRanked";
   }
 
   logIn() {
@@ -47,6 +47,8 @@ class App extends React.Component {
   render() {
     return (
       <div id="content">
+        <div id="searchbarspace"></div>
+        {/* Always show search bar */}
         <SearchBar searchBody={this.state.body} />
         {/* <Route exact path="/home" component={Home} options={this.state.body} /> */}
         {/*Route
@@ -55,10 +57,11 @@ class App extends React.Component {
           component={() => <Home options={this.state.body} />}
         />*/}
 
+        {/* Route different components */}
         <Route
           exact
           path="/home"
-          component={() => <HomeProto searchBody = {this.state.body}/>}
+          component={() => <HomeProto searchBody={this.state.body} />}
         />
 
         <Route exact path="/ranked" component={Dummy} />
@@ -67,30 +70,33 @@ class App extends React.Component {
           path="/ranked/:school/:item"
           render={(props) => <Ranked {...props} />}
         />
+
         <Route exact path="/registeruser" component={Register} />
         <Route exact path="/loginuser" component={Login} />
-        <Route exact path="/profile" component={Profile}/>
-        <Route path ="/forgotPassword" component={ForgotPassword}/>
-        <Route path ="/reset/:token" component={ResetPassword}/>
+        <Route exact path="/profile" component={Profile} />
+        <Route path="/forgotPassword" component={ForgotPassword} />
+        <Route path="/reset/:token" component={ResetPassword} />
 
-        <Route path = "/schoolOverview/:school" component={SchoolOverview}/>
-
-
-        <Route exact path="/rating" component = {Rating}/>
-        <Route path = "/detailed/:category/:title/:item" component = {Review}/>
-        <Route path = "/rate/gym/:title/:item" component = {RateGym}/>
-        <Route path = "/rate/dininghall/:title/:item" component = {RateDiningHall}/>
-        <Route path = "/rate/library/:title/:item" component = {RateLibrary}/>
-        <Route path = "/registerComplete/:username" component = {RegisterComplete}/>
-
+        <Route path="/schoolOverview/:school" component={SchoolOverview} />
+        <Route exact path="/rating" component={Rating} />
+        <Route path="/detailed/:category/:title/:item" component={Review} />
+        <Route path="/rate/gym/:title/:item" component={RateGym} />
+        <Route
+          path="/rate/dininghall/:title/:item"
+          component={RateDiningHall}
+        />
+        <Route path="/rate/library/:title/:item" component={RateLibrary} />
+        <Route
+          path="/registerComplete/:username"
+          component={RegisterComplete}
+        />
 
         <Route
           exact
           path="/"
-          component={() => <HomeProto searchBody = {this.state.body}/>}
+          component={() => <HomeProto searchBody={this.state.body} />}
         />
         <Footer />
-
       </div>
     );
   }

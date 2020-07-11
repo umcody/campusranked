@@ -9,45 +9,53 @@
 @import "./rateTags.css";
 @import "./schoolOverview.css";
 * {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
   text-align: center;
   overflow: visible;
   z-index: 0;
 }
 
-
-:root{
+:root {
   --main-color: #f62459;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Montserrat', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
 }
 
-
 #root {
-  width: 100%;
   position: relative;
   overflow: auto;
-  min-height: 100vh;
   height: fit-content;
-  /* min-height: 150vh; */
   position: relative;
   overflow: visible;
 }
 
+#searchbarspace {
+  height: 40px;
+}
+
 #content {
-  top: 0;
-  min-height: 130vh;
-  height: fit-content;
-  /* min-height: 150vh; */
-  text-align: center;
+  /* top: 0; */
+  /* min-height: 130vh; */
+  min-height: max-content;
+  /* height: fit-content; */
+  height: 100%;
   width: 100%;
-  overflow: visible;
-  margin-bottom: -330px;
+  overflow: auto;
+  /* margin-bottom: -10vh; */
   vertical-align: middle;
+
+  /* attempt to fix */
+  display: flex;
+  flex-direction: column;
 }
 
 input {
@@ -75,8 +83,13 @@ body {
   justify-content: center;
   align-items: center;
   display: flex;
-  left:20%;
+  left: 20%;
   margin-bottom: 30px;
   position: relative;
   padding: 0px 20px 0px 20px;
+}
+
+/* wireframe */
+* {
+  outline: 2px solid gray;
 }
