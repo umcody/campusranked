@@ -13,7 +13,6 @@
   font-weight: 400;
   text-align: center;
   overflow: visible;
-  z-index: 0;
 }
 
 :root {
@@ -95,6 +94,7 @@ body {
 }
 
 /* wireframe */
-* {
+/** {
   outline: 2px solid gray;
 }
+*/
