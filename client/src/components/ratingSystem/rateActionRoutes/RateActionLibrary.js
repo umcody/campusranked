@@ -1,6 +1,7 @@
 import React from "react";
 import RateStars from "../RateStars";
 import RateStarsTest from "../RateStarsTest";
+import {Redirect} from "react-router-dom";
 import Popup from "reactjs-popup";
 import Login from "../../auth/Login.js";
 import { WithContext as ReactTags } from 'react-tag-input';
@@ -22,6 +23,7 @@ class RateActionDiningHall extends React.Component {
         this.state = {
             body: {
             },
+            redirect:null,
             overall: 0,
             noise: 0,
             space: 0,
@@ -119,19 +121,23 @@ class RateActionDiningHall extends React.Component {
                 // CONDITIONS BEFORE SUBMITN THE REVIEW
                 if (this.state.overall === 0) {
                     this.setState({ showAlert: " " })
+                } else if (this.state.noise === 0) {
+                    this.setState({ showAlert: " " })
                 } else if (this.state.space === 0) {
                     this.setState({ showAlert: " " })
-                } else if (this.state.friendliness === 0) {
+                } else if (this.state.accessibility === 0) {
+                    this.setState({ showAlert: " " })
+                } else if (this.state.resource === 0) {
                     this.setState({ showAlert: " " })
                 } else {
-                    fetch("/api/rate/library/" + this.state.body.title + "/" + this.state.body.name, {
+                    fetch(`/api/rate/${this.props.match.params.school}/library/${this.props.match.params.title}/${this.props.match.params.item}`, {
                         method: "post",
                         headers: { 'Content-type': 'application/json' },
                         body: JSON.stringify(this.state)
                     })
                 }
-
             }
+            this.setState({redirect:`/ranked/${this.props.match.params.school}/${this.props.match.params.title}`});
         } else {
             this.openPopup();
         }
@@ -164,6 +170,9 @@ class RateActionDiningHall extends React.Component {
             this.openPopup();
         }
 
+        this.setState({title:this.props.match.params.item});
+
+        {/*
         // FETCH NECESSARY DATA FOR THE RATING CRITEREONS
         const { match: { params } } = this.props;
         const title = params.title;
@@ -179,10 +188,14 @@ class RateActionDiningHall extends React.Component {
         console.log("HEY!");
         console.log(this.state.body);
         console.log(this.state);
+    */}
     }
 
     render() {
         const { tags, suggestions } = this.state;
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect} />
+        }
         return (
             <div className="rateFormContainer">
                 <Popup

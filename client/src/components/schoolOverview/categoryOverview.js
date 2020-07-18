@@ -9,18 +9,24 @@ function CategoryOverview(props) {
     let items = Object.values(props.items);
     console.log(items);
 
-    return (
-      <Link to={`/ranked/${props.school}/${props.school + props.category}`}>
-        <table className="categoryOverviewContainer">
-          <tbody>
-            <tr className="header">
-              <td>{`${props.category} Overview`}</td>
-            </tr>
-            {items.map((item) => React.createElement(CategoryCell, [item]))}
-          </tbody>
-        </table>
-      </Link>
-    );
-  }
+    if (!props.items) {
+        return null;
+    } else {
+
+        const categoryLowered = props.category.toLowerCase();
+        let items = Object.values(props.items);
+        console.log(items);
+
+        return (
+            <Link to = {`/ranked/${props.school}/${props.school+categoryLowered}`}>
+                <table className="categoryOverviewContainer">
+                    <tbody>
+                        <tr className = "header"><td>{`${props.category} Overview`}</td></tr>
+                        {items.map((item) => React.createElement(CategoryCell, [item]))}
+                    </tbody>
+                </table>
+            </Link>
+        )
+    }
 }
 export default CategoryOverview;

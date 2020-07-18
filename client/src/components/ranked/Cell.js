@@ -54,7 +54,6 @@ class Cell extends React.Component {
             tags = Object.entries(tags);
             tags = tags.sort(function(a, b){return b[1] - a[1]});
             this.setState({tags: tags, tagsContainerClass: "tagsContainer"});
-            console.log(tags);
     }
 
 
@@ -76,9 +75,6 @@ class Cell extends React.Component {
 
         // Updates the count value of the players. Upvote and Downvote(implicit). 
         button.addEventListener("click", async (e) => {
-
-            console.log(url + "/api/upvote/" + name);
-
 
             if (JWToken === null) { // If no JWToken, open Popup
                 this.props[4]();
@@ -134,7 +130,7 @@ class Cell extends React.Component {
                         <div className="medal"></div>
                     </div></th>
                 <th className = {this.state.tagsContainerClass}>
-                    <a className="name" href={`/detailed/${this.props[5]}/${this.props[0].title}/${this.props[0].name}`}>
+                    <a className="name" href={`/detailed/${this.props[6]}/${this.props[5]}/${this.props[0].title}/${this.props[0].name}`}>
                         <div>{this.props[0].name}</div>
                         <div>
                             {this.state.tags.slice(0,2).map((tag)=>

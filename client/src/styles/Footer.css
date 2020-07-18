@@ -13,3 +13,9 @@
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif !important;
   background-color: #232a38;
 }
+
+#footer li{
+  display:inline-block;
+  margin : 10px;
+  text-decoration: underline;
+}

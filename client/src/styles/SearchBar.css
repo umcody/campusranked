@@ -41,11 +41,14 @@
   border: none;
   height: 40px;
   border-radius: 5px;
-  min-width: 200px;
-  width: 40%;
-  font-size: 15px;
-  font-weight: 700;
-  border: solid lightgray 1px;
+  min-width: 400px;
+  width: 100%;
+  top:2px;
+  font-size: 12px;
+  font-weight: 400;
+  position: relative;
+  border:solid lightgray 1px;
+  background-color: #ffffff;
 }
 
 /* for testing */

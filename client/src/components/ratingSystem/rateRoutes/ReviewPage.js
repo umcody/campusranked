@@ -34,7 +34,7 @@ class RateGym extends React.Component {
         const category = params.category // NOTE this.state.category != this.state.body.category. For now, the former means the actual category, and the latter is the title
         this.setState({category:category});
 
-        const data = await fetch("/api/detailed/" + title + "/" + item);
+        const data = await fetch(`/api/detailed/${this.props.match.params.school}/${title}/${item}`);
         const json = await data.json();
         console.log(json);
         this.setState({
@@ -94,7 +94,7 @@ class RateGym extends React.Component {
                         </div>
                     </div>
                     <div style={{ width: "100%" }}>
-                        <a id="rateBtn" href={`/rate/${this.state.category}/${this.state.body.title}/${this.state.body.name}`}>RATE NOW!</a>
+                        <a id="rateBtn" href={`/rate/${this.state.category}/${this.props.match.params.school}/${this.state.body.title}/${this.state.body.name}`}>RATE NOW!</a>
                     </div>
                     <img id = "graphics_review" src="/asset/undraw_char.svg"/>
                 </div>

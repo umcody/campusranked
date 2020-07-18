@@ -14,12 +14,17 @@ import ResetPassword from "./components/auth/ResetPassword.js";
 import HomeProto from "./components/homeProto.js";
 import SchoolOverview from "./components/schoolOverview/schoolOverview.js";
 
+import CreateSchool from "./components/admin/createSchool";
+
 import Rating from "./components/ratingSystem/rateRoutes/ReviewPage";
 import Review from "./components/ratingSystem/rateRoutes/ReviewPage";
 import RateGym from "./components/ratingSystem/rateActionRoutes/RateActionGym";
 import RateDiningHall from "./components/ratingSystem/rateActionRoutes/RateActionDiningHall";
 import RateLibrary from "./components/ratingSystem/rateActionRoutes/RateActionLibrary";
+import RateResidentialHall from "./components/ratingSystem/rateActionRoutes/RateActionResidentialHall.js";
+
 import "./components/ratingSystem/ratePage.css";
+import createSchool from "./components/admin/createSchool";
 
 class App extends React.Component {
   constructor(props) {
@@ -73,9 +78,26 @@ class App extends React.Component {
 
         <Route exact path="/registeruser" component={Register} />
         <Route exact path="/loginuser" component={Login} />
-        <Route exact path="/profile" component={Profile} />
-        <Route path="/forgotPassword" component={ForgotPassword} />
-        <Route path="/reset/:token" component={ResetPassword} />
+
+        <Route exact path="/profile" component={Profile}/>
+        <Route path ="/forgotPassword" component={ForgotPassword}/>
+        <Route path ="/reset/:token" component={ResetPassword}/>
+
+        <Route path = "/schoolOverview/:school" component={SchoolOverview}/>
+
+
+        <Route exact path="/rating" component = {Rating}/>
+        
+        <Route path = "/detailed/:school/:category/:title/:item" component = {Review}/>
+        <Route path = "/rate/gym/:school/:title/:item" component = {RateGym}/>
+        <Route path = "/rate/dininghall/:school/:title/:item" component = {RateDiningHall}/>
+        <Route path = "/rate/library/:school/:title/:item" component = {RateLibrary}/>
+        <Route path = "/rate/residentialhall/:school/:title/:item" component = {RateResidentialHall}/>
+
+        <Route path = "/registerComplete/:school/:username" component = {RegisterComplete}/>
+
+
+        <Route exact path ="/admin/createSchool" component = {createSchool}/>
 
         <Route path="/schoolOverview/:school" component={SchoolOverview} />
         <Route exact path="/rating" component={Rating} />

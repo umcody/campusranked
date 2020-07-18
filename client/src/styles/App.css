@@ -73,6 +73,11 @@ body {
   margin: 0px;
 }
 
+.noBreak{
+  white-space: nowrap;
+}
+
+
 .title {
   background-color: var(--main-color);
   color: white;

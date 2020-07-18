@@ -40,9 +40,10 @@ module.exports = function(app,mongoose){
 
 
     //update category and title 
-    app.get("/api/update/:category/:title",function(req,res){
+    app.get("/api/update/:school/:category/:title",function(req,res){
         const title = req.params.title;
         const category = req.params.category;
+        const school = req.params.school;
         let itemSchema = new mongoose.Schema({
             rank: Number,
             image: String,
@@ -55,15 +56,15 @@ module.exports = function(app,mongoose){
         });
         let Item;
         try {
-            Item = mongoose.model(title);
+            Item = mongoose.model(school+"campus");
         } catch (error) {
-            Item = new mongoose.model(title, itemSchema);
+            Item = new mongoose.model(school+"campus", itemSchema);
         }
-        Item.find({},function(err,data){
+        Item.find({title:title},function(err,data){
             data.forEach(element => {
-                Item.findOneAndUpdate({name: element.name},{
-                    title: title,
-                    category: category
+                let temp = element.name.toLowerCase().replace(/\s/g,"").replace(/'/g,"");
+                Item.findOneAndUpdate({name: element.name,title:title},{
+                    image:`https://campusranked.s3.us-east-2.amazonaws.com/${school}/${category}/${temp}.jpg`
                 },{strict:false},function(err,data){
                     console.log(data);
                 })

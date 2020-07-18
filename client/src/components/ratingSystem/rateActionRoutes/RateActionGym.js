@@ -1,6 +1,7 @@
 import React from "react";
 import RateStars from "../RateStars";
 import RateStarsTest from "../RateStarsTest";
+import {Redirect} from "react-router-dom";
 import Popup from "reactjs-popup";
 import Login from "../../auth/Login.js";
 import { WithContext as ReactTags } from 'react-tag-input';
@@ -11,7 +12,7 @@ import "./rateAction.css";
 const KeyCodes = {
     comma: 188,
     enter: 13,
-  };
+};
 const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 
@@ -21,19 +22,24 @@ class RateAction extends React.Component {
         super(props);
         this.state = {
             body: {},
+            redirect:null,
             overall: 0,
             space: 0,
-            friendliness: 0,
+            equipment: 0,
+            cleanliness:0,
+            community:0,
             review: "",
             name: "",
             loginPopup: false,
-            showAlert:"none",
+            showAlert: "none",
             tags: [],
-            suggestions:[]
+            suggestions: []
         }
         this.changeOverall = this.changeOverall.bind(this);
         this.changeSpace = this.changeSpace.bind(this);
-        this.changeFriendliness = this.changeFriendliness.bind(this);
+        this.changeEquipment = this.changeEquipment.bind(this);
+        this.changeCleanliness = this.changeCleanliness.bind(this);
+        this.changeCommunity = this.changeCommunity.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleTextArea = this.handleTextArea.bind(this);
         this.handleName = this.handleName.bind(this);
@@ -55,24 +61,24 @@ class RateAction extends React.Component {
     handleDelete(i) {
         const { tags } = this.state;
         this.setState({
-         tags: tags.filter((tag, index) => index !== i),
+            tags: tags.filter((tag, index) => index !== i),
         });
     }
- 
+
     handleAddition(tag) {
-        tag.id=tag.id.replace(/\s/g,'').toLowerCase();
+        tag.id = tag.id.replace(/\s/g, '').toLowerCase();
         tag.text = tag.id;
         this.setState(state => ({ tags: [...state.tags, tag] }));
         console.log(this.state.tags);
     }
- 
+
     handleDrag(tag, currPos, newPos) {
         const tags = [...this.state.tags];
         const newTags = tags.slice();
- 
+
         newTags.splice(currPos, 1);
         newTags.splice(newPos, 0, tag);
- 
+
         // re-render
         this.setState({ tags: newTags });
     }
@@ -85,28 +91,55 @@ class RateAction extends React.Component {
         this.setState({ space: number });
         console.log(this.state);
     }
-    changeFriendliness(number) {
-        this.setState({ friendliness: number });
+    changeEquipment(number) {
+        this.setState({ equipment: number });
+        console.log(this.state);
+    }
+    changeCleanliness(number) {
+        this.setState({ cleanliness: number });
+        console.log(this.state);
+    }
+    changeCommunity(number) {
+        this.setState({ community: number });
         console.log(this.state);
     }
 
-    handleSubmit(event) {
-        console.log(this.state.body);
+    async handleSubmit(event) {
+        const JWToken = localStorage.getItem("JWT");
+        if (JWToken !== null) {
 
-        // CONDITIONS BEFORE SUBMITN THE REVIEW
-        if (this.state.overall === 0) {
-            this.setState({showAlert:" "})
-        } else if (this.state.space === 0) {
-            this.setState({showAlert:" "})
-        } else if (this.state.friendliness === 0) {
-            this.setState({showAlert:" "})
+            const response = await fetch("/findUser", {
+                headers: { Authorization: `JWT ${JWToken}` }
+            });
+            const content = await response.json();
+            if (content == false) {
+                this.openPopup();
+            } else {
+
+                if (this.state.overall === 0) {
+                    this.setState({ showAlert: " " })
+                } else if (this.state.space === 0) {
+                    this.setState({ showAlert: " " })
+                } else if (this.state.equipment === 0) {
+                    this.setState({ showAlert: " " })
+                } else if (this.state.cleanliness=== 0) {
+                    this.setState({ showAlert: " " })
+                } else if (this.state.community === 0) {
+                    this.setState({ showAlert: " " })
+                } else {
+                    fetch(`/api/rate/${this.props.match.params.school}/gym/${this.props.match.params.title}/${this.props.match.params.item}`, {
+                        method: "post",
+                        headers: { 'Content-type': 'application/json' },
+                        body: JSON.stringify(this.state)
+                    })
+                }
+
+            }
+            this.setState({redirect:`/ranked/${this.props.match.params.school}/${this.props.match.params.title}`});
         } else {
-            fetch("/api/rate/gym/" + this.state.body.title + "/" + this.state.body.name, {
-                method: "post",
-                headers: { 'Content-type': 'application/json' },
-                body: JSON.stringify(this.state)
-            })
+            this.openPopup();
         }
+        window.location = `/detailed/${this.props.match.params.school}/gym/${this.props.match.params.title}/${this.props.match.params.item}`
 
 
     }
@@ -137,6 +170,9 @@ class RateAction extends React.Component {
             this.openPopup();
         }
 
+        this.setState({ title: this.props.match.params.item });
+
+        {/*
         // FETCH NECESSARY DATA FOR THE RATING CRITEREONS
         const { match: { params } } = this.props;
         const title = params.title;
@@ -148,11 +184,14 @@ class RateAction extends React.Component {
             body: json
         })
         console.log(this.state.body);
+    */}
     }
 
     render() {
         const { tags, suggestions } = this.state;
-
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect} />
+        }
         return (
             <div className="rateFormContainer">
                 <Popup
@@ -161,7 +200,7 @@ class RateAction extends React.Component {
                     onClose={this.closePopup}>
                     <Login />
                 </Popup>
-                <div id="title">Rate For {this.state.body.name}</div>
+                <div id="title">Rate For {this.state.title}</div>
                 <form>
                     <div id="rateForm">
                         <table>
@@ -175,8 +214,16 @@ class RateAction extends React.Component {
                                 <th><RateStars name="space" whenClicked={this.changeSpace} /></th>
                             </tr>
                             <tr>
-                                <th>Friendliness</th>
-                                <th><RateStars name="friendliness" whenClicked={this.changeFriendliness} /></th>
+                                <th>Equipment</th>
+                                <th><RateStars name="equipment" whenClicked={this.changeEquipment} /></th>
+                            </tr>
+                            <tr>
+                                <th>Cleanliness</th>
+                                <th><RateStars name="cleanliness" whenClicked={this.changeCleanliness} /></th>
+                            </tr>
+                            <tr>
+                                <th>Community</th>
+                                <th><RateStars name="community" whenClicked={this.changeCommunity} /></th>
                             </tr>
                         </table>
                     </div>
@@ -187,14 +234,14 @@ class RateAction extends React.Component {
                     </div>
 
                     <ReactTags tags={tags}
-                    suggestions={suggestions}
-                    handleDelete={this.handleDelete}
-                    handleAddition={this.handleAddition}
-                    handleDrag={this.handleDrag}
-                    delimiters={delimiters} />
+                        suggestions={suggestions}
+                        handleDelete={this.handleDelete}
+                        handleAddition={this.handleAddition}
+                        handleDrag={this.handleDrag}
+                        delimiters={delimiters} />
 
                     <btn className="submitBtn" onClick={this.handleSubmit}> Submit </btn>
-                    <p style = {{display:this.state.showAlert}}>You must rate on all criterions!</p>
+                    <p style={{ display: this.state.showAlert }}>You must rate on all criterions!</p>
                 </form>
             </div>
         )

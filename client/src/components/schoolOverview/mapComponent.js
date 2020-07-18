@@ -1,5 +1,5 @@
 import React from "react";
-import { Map, GoogleApiWrapper } from "google-maps-react";
+//import { Map, GoogleApiWrapper } from "google-maps-react";
 
 export class mapComponent extends React.Component {
     constructor(props) {

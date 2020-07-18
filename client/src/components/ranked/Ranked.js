@@ -73,12 +73,18 @@ class Ranked extends React.Component {
         // Finding the average overall rating of the items.
         let averageRating = 0;
         let validItemCount = 0;
-        this.state.body.map((item) => {
-          if (item.ratings.overall !== 0) {
-            averageRating += item.ratings.overall * item.reviewCounts;
+
+        this.state.body.map(item => {
+          if (item.ratings.overall !== 0 && !isNaN(item.ratings.overall)) {
+            console.log(item.ratings.overall);
+            console.log(item);
+            averageRating += (item.ratings.overall * item.reviewCounts);
             validItemCount += item.reviewCounts;
+            console.log("average : "+averageRating);
+            console.log("valid : "+validItemCount);
           }
-        });
+        })
+
         averageRating = (averageRating / validItemCount / 100).toFixed(2);
         this.setState({ averageRating: averageRating });
       });
@@ -87,12 +93,11 @@ class Ranked extends React.Component {
   }
 
   render() {
+    const schoolLowered = this.props.match.params.school.toLowerCase();
     return (
       <div className="ranked">
-        <img
-          id="imgBanner"
-          src="https://campusranked.s3.us-east-2.amazonaws.com/uwmadison/uwmadison_banner.jpg"
-        />
+
+        <img id="imgBanner" src={`https://campusranked.s3.us-east-2.amazonaws.com/${schoolLowered}/${schoolLowered}_banner.jpg`} />
 
         <Popup
           open={this.state.loginPopup}
@@ -113,33 +118,32 @@ class Ranked extends React.Component {
           Vote Limit has Been Reached!
         </p>
 
-        <OverallRatings ratings={this.state.averageRating} />
-        {/* <div className="collapsable">  *****    EXPANDABLE BOX (DISABLED)*/}
-
-        <table
-          className="ranked_table"
-          style={{ "max-height": this.state.collapseHeight }}
-        >
-          <tbody>
-            {/* Creates row cell for every item in the body */}
-            {this.state.body.map((item) =>
-              React.createElement(Cell, [
-                item,
-                index++,
-                item.count / this.state.totalCount,
-                this.toggleVoteLimitAlert,
-                this.openPopup,
-                this.state.category,
-              ])
-            )}
-          </tbody>
-        </table>
-
-        <img
-          id="graphics_ranked"
-          src={`/asset/undraw_${this.state.category}.svg`}
-        />
-
+        {
+          (isNaN(this.state.averageRating)) ? <OverallRatings ratings={"There is no rating yet"} /> : <OverallRatings ratings={this.state.averageRating} />
+        }
+        {/* <div className="collapsable">  *****    EXPANDABLE BOX (DISABLED)*/ }
+          <table className="ranked_table" style = {{"max-height":this.state.collapseHeight}}>
+            <tbody>
+              {/* Creates row cell for every item in the body */}
+              {this.state.body.map((item) =>
+                React.createElement(Cell, [
+                  item,
+                  index++,
+                  item.count / this.state.totalCount,
+                  this.toggleVoteLimitAlert,
+                  this.openPopup,
+                  this.state.category,
+                  this.props.match.params.school,
+                ])
+              )}
+            </tbody>
+          </table>
+        {/*  <div className = "expandBtn" onClick = {this.handleExpandMore}>
+            <img className="expandImg" src="/asset/expandMore.svg"></img>
+            <div className="smallText">Show More</div>
+          </div>
+         </div> */}
+        <img id="graphics_ranked" src={`/asset/undraw_${this.state.category}.svg`} />
         <div className="notice">
           The rank will be sorted once you refresh/exit the page
         </div>

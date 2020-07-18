@@ -14,20 +14,20 @@ module.exports =function(app,mongoose){
         reviews:Array
     })
 
-    app.get("/api/detailed/:title/:item", async function(req,res){
+    app.get("/api/detailed/:school/:title/:item", async function(req,res){
 
-
+        const school = req.params.school;
         const title = req.params.title;
         const item = req.params.item;
 
         let Item
-        try{
-            Item = mongoose.model(title);
-        }catch(error){
-            Item =  mongoose.model(title, itemSchema);
+        try {
+            Item = mongoose.model(school+"campus");
+        } catch (error) {
+            Item = new mongoose.model(school+"campus",itemSchema);
         }
 
-        Item.findOne({name:item}, function(err,data){
+        Item.findOne({name:item,title:title}, function(err,data){
             if(err){
                 console.log(err);
                 res.status(400);
