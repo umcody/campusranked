@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 import React, { useState } from "react";
 import SearchDropDown from "./SearchDropDown";
 import Fuse from "fuse.js";
@@ -19,18 +20,18 @@ function Search(props) {
   }
 
   return (
-      <div className="searchItems">
-        <input
-          className="search"
-          placeholder="Search Any Noun"
-          onChange={handleChange}
-        ></input>
-        <div className = "dropDownContainer">
-          {dropDown.map((dropDownItems) =>
-            React.createElement(SearchDropDown, dropDownItems)
-          )}
-        </div>
+    <div className="searchItems">
+      <input
+        className="search"
+        placeholder="Search Any Noun"
+        onChange={handleChange}
+      ></input>
+      <div className="dropDownContainer">
+        {dropDown.map((dropDownItems) =>
+          React.createElement(SearchDropDown, dropDownItems)
+        )}
       </div>
+    </div>
   );
 }
 export default Search;

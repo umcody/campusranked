@@ -1,9 +1,9 @@
+/*jshint esversion: 6 */
 import React from "react";
 import Cell from "./Cell.js";
 import Popup from "reactjs-popup";
 import Login from "../auth/Login";
 import OverallRatings from "./overallRatings.js";
-
 
 let index = 1;
 // THIS INDEX SYSTEM NEEDS TO BE FIXED. Sometimes, the rank is repeated -- refresh the page multiple times.
@@ -20,7 +20,7 @@ class Ranked extends React.Component {
       category: "",
       index: 1,
       averageRating: 0,
-      collapseHeight: "fit-content"
+      collapseHeight: "fit-content",
     };
     this.toggleVoteLimitAlert = this.toggleVoteLimitAlert.bind(this);
     this.openPopup = this.openPopup.bind(this);
@@ -39,25 +39,27 @@ class Ranked extends React.Component {
     this.setState({ showVoteLimitAlert: " " });
   }
 
-  handleExpandMore(event){
-    this.setState({collapseHeight: "fit-content"});
+  handleExpandMore(event) {
+    this.setState({ collapseHeight: "fit-content" });
   }
-
 
   componentDidUpdate() {
     index = 1;
   }
   // When mounted, fetch all necessary data such as Items, Title, total Count respectively
   componentDidMount() {
-    fetch("/api/"+this.props.match.params.school+"/"+this.props.match.params.item)
-
-      .then(res => res.json())
-      .then(body => {
-
+    fetch(
+      "/api/" +
+        this.props.match.params.school +
+        "/" +
+        this.props.match.params.item
+    )
+      .then((res) => res.json())
+      .then((body) => {
         this.setState({
           totalCount: body.totalCount,
           category: body.category,
-          title: body.name
+          title: body.name,
         });
         console.log(this.state.category);
       });
@@ -68,9 +70,10 @@ class Ranked extends React.Component {
         this.setState({ body });
         index = 1;
 
-        // Finding the average overall rating of the items. 
+        // Finding the average overall rating of the items.
         let averageRating = 0;
         let validItemCount = 0;
+
         this.state.body.map(item => {
           if (item.ratings.overall !== 0 && !isNaN(item.ratings.overall)) {
             console.log(item.ratings.overall);
@@ -81,21 +84,21 @@ class Ranked extends React.Component {
             console.log("valid : "+validItemCount);
           }
         })
-        console.log(averageRating);
+
         averageRating = (averageRating / validItemCount / 100).toFixed(2);
         this.setState({ averageRating: averageRating });
       });
 
-  
     index = 1;
-
   }
 
   render() {
     const schoolLowered = this.props.match.params.school.toLowerCase();
     return (
       <div className="ranked">
+
         <img id="imgBanner" src={`https://campusranked.s3.us-east-2.amazonaws.com/${schoolLowered}/${schoolLowered}_banner.jpg`} />
+
         <Popup
           open={this.state.loginPopup}
           closeOnDocumentClick
@@ -104,16 +107,17 @@ class Ranked extends React.Component {
           <Login />
         </Popup>
 
-
         <div className="title">
           <p>{this.state.title}</p>
         </div>
+
         <p
           id="voteLimitAlert"
           style={{ display: this.state.showVoteLimitAlert }}
         >
           Vote Limit has Been Reached!
         </p>
+
         {
           (isNaN(this.state.averageRating)) ? <OverallRatings ratings={"There is no rating yet"} /> : <OverallRatings ratings={this.state.averageRating} />
         }
@@ -143,6 +147,7 @@ class Ranked extends React.Component {
         <div className="notice">
           The rank will be sorted once you refresh/exit the page
         </div>
+
         <div className="spacer"></div>
       </div>
     );

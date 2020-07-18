@@ -1,6 +1,5 @@
+/*jshint esversion: 6 */
 import React, { useState } from "react";
-import SearchDropDown from "./SearchDropDown";
-import Fuse from "fuse.js";
 import Search from "./Search.js";
 import AccountBtn from "./AccountBtn";
 
@@ -12,14 +11,16 @@ const options = {
 function SearchBar(props) {
   return (
     <div className="searchBar">
-      <a href="/Home">
+      <a className="logolink" href="/Home">
         <img
           src="/asset/temp_logo.png"
           className="logo"
           alt="campus ranked logo"
         />
       </a>
-      <Search searchBody={props.searchBody}/>
+
+      <Search searchBody={props.searchBody} />
+
       <AccountBtn />
     </div>
   );
