@@ -73,14 +73,13 @@ body {
 .title {
   background-color: var(--main-color);
   color: white;
-  height: 100px;
+  height: fit-content;
   width: fit-content;
   font-size: 50px;
   display: inline-block;
   justify-content: center;
   align-items: center;
   display: flex;
-  left:20%;
   margin-bottom: 30px;
   position: relative;
   padding: 0px 20px 0px 20px;

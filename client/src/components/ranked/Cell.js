@@ -113,7 +113,7 @@ class Cell extends React.Component {
         const { isVisible1 } = this.state;
         return (
 
-            <div className="row no-gutters">
+            <div className="row no-gutters cell">
                 
                 <div className="voteContainer">
                     {/* DIV cannot exist inside TR so the vote indicator is in TH with pos. abs*/}

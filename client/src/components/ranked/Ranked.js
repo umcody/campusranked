@@ -95,7 +95,7 @@ class Ranked extends React.Component {
   render() {
     const schoolLowered = this.props.match.params.school.toLowerCase();
     return (
-      <div className="ranked">
+      <div className="ranked  container-fluid">
         <img id="imgBanner" src={`https://campusranked.s3.us-east-2.amazonaws.com/${schoolLowered}/${schoolLowered}_banner.jpg`} />
         <Popup
           open={this.state.loginPopup}
@@ -106,8 +106,8 @@ class Ranked extends React.Component {
         </Popup>
 
 
-        <div className="title">
-          <p>{this.state.title}</p>
+        <div className="title row">
+          <p className="col-12">{this.state.title}</p>
         </div>
         <p
           id="voteLimitAlert"
