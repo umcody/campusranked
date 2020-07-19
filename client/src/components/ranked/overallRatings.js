@@ -1,5 +1,4 @@
 import React from "react";
-import "../../styles/overallRatings.css";
 
 function overallRatings(props) {
     console.log(props);

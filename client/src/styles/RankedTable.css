@@ -58,3 +58,15 @@ tbody {
   display: inline-block;
   z-index: 2;
 }
+
+.overallRatingsContainer{
+  height: 30px;
+  width: 300px;
+  padding: 2px;
+  display: block;
+  position: relative;
+  left:20%;
+  margin-bottom: 20px;
+  text-align: left;
+  color: #3f3f3f;
+}

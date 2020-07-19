@@ -3,6 +3,7 @@ import Cell from "./Cell.js";
 import Popup from "reactjs-popup";
 import Login from "../auth/Login";
 import OverallRatings from "./overallRatings.js";
+import {Container} from "react-bootstrap";
 
 
 let index = 1;
@@ -118,8 +119,7 @@ class Ranked extends React.Component {
           (isNaN(this.state.averageRating)) ? <OverallRatings ratings={"There is no rating yet"} /> : <OverallRatings ratings={this.state.averageRating} />
         }
         {/* <div className="collapsable">  *****    EXPANDABLE BOX (DISABLED)*/ }
-          <table className="ranked_table" style = {{"max-height":this.state.collapseHeight}}>
-            <tbody>
+          <div className="ranked_table container" style = {{"max-height":this.state.collapseHeight}}>
               {/* Creates row cell for every item in the body */}
               {this.state.body.map((item) =>
                 React.createElement(Cell, [
@@ -132,8 +132,7 @@ class Ranked extends React.Component {
                   this.props.match.params.school,
                 ])
               )}
-            </tbody>
-          </table>
+          </div>
         {/*  <div className = "expandBtn" onClick = {this.handleExpandMore}>
             <img className="expandImg" src="/asset/expandMore.svg"></img>
             <div className="smallText">Show More</div>
