@@ -197,7 +197,7 @@ class RateActionDiningHall extends React.Component {
             return <Redirect to={this.state.redirect} />
         }
         return (
-            <div className="rateFormContainer">
+            <div className="rateFormContainer container">
                 <Popup
                     open={this.state.loginPopup}
                     closeOnDocumentClick

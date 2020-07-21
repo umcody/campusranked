@@ -100,7 +100,6 @@ class App extends React.Component {
           path="/"
           component={() => <HomeProto searchBody = {this.state.body}/>}
         />
-        <Footer />
 
       </div>
     );

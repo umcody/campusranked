@@ -18,7 +18,7 @@ class HomeProto extends React.Component{
                     <Search searchBody = {this.props.searchBody}/>
                 </div>
                 <img id= "char" src ="/asset/open-peeps.png"></img>
-                <div id = "backgroundTriangle"></div>
+                {/*<div id = "backgroundTriangle"></div>*/}
             </div>
         )
     }

@@ -205,7 +205,7 @@ class RateActionResidentialHall extends React.Component {
         }
 
         return (
-            <div className="rateFormContainer">
+            <div className="rateFormContainer container">
                 <Popup
                     open={this.state.loginPopup}
                     closeOnDocumentClick
