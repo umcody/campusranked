@@ -67,8 +67,8 @@ class RateGym extends React.Component {
     render() {
         if (this.state.body.ratings) {
             return (
-                <div className="rateContainer">
-                    <div className="leftContainer">
+                <div className="rateContainer container row">
+                    <div className="col-sm-6">
                         <div id="title" style = {{"max-width":"600px"}}>{this.state.body.name}</div>
                         <div>
                             {this.state.tags.slice(0,5).map((tag)=>
@@ -82,7 +82,7 @@ class RateGym extends React.Component {
                             }
                         </div>
                     </div>
-                    <div className="rightContainer">
+                    <div className="col-sm-6">
                     <img  id="itemImage" src ={this.state.body.image}/>
                         <div className="reviewsContainer">
                             {this.state.body.reviews.map((item) =>

@@ -76,6 +76,7 @@ body {
   height: fit-content;
   width: fit-content;
   font-size: 50px;
+  left: 10%;
   display: inline-block;
   justify-content: center;
   align-items: center;
@@ -83,4 +84,10 @@ body {
   margin-bottom: 30px;
   position: relative;
   padding: 0px 20px 0px 20px;
+}
+
+@media (max-width: 767px) {
+  .title{
+      left:0px;
+  }
 }

@@ -50,7 +50,7 @@ class SchoolOverview extends React.Component {
                 </div>
                 <div style={{ height: "30px" }} />
                 {/*<MapComponent latitude = {this.state.school.latitude} longitude = {this.state.school.longitude}/>*/}
-                <h3> Top Buildings In Each Category</h3>
+                <h4> Top Buildings In Each Category</h4>
                 <div id="rankOverviewContainer">
                     <CategoryOverview school={schoolLowered} category="Residentialhall" items={this.state.data.residentialhall} />
                     <CategoryOverview school={schoolLowered} category="Library" items={this.state.data.library} />
