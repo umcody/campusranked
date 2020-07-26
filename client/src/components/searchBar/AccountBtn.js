@@ -37,23 +37,25 @@ class AccountBtn extends React.Component {
 
         if (this.state.username === "") {
             return (
-                <div className="accountBtn">
+                <div className="accountBtn col-sm-3">
                     <Link to={{
                         pathname: "/registerUser",
                         state: {
                             redirectBack: document.location.href
                         }
                     }
-                    }> Log In / Sign Up</Link>
+                    } className = "center"> Log In / Sign Up</Link>
 
                 </div>
             );
         } else {
             return (
 
-                <div className="accountBtn">
-                    <div style={{ display: "inline-block" }}>{`It's time to Rank, `}</div>
-                    <a href = "/profile"><div className="username"> {` @${this.state.username}`}</div></a>
+                <div className="accountBtn col-sm-3">
+                    <div className = "center">
+                        <div style={{ display: "inline-block" }}>{`It's time to Rank, `}</div>
+                        <a href="/profile"><div className="username"> {` @${this.state.username}`}</div></a>
+                    </div>
                 </div>
             );
         }
