@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route,Redirect} from "react-router-dom";
 
 class Login extends React.Component {
     constructor(props) {
@@ -43,7 +43,8 @@ class Login extends React.Component {
             this.setState({ showAlert: " " });
         } else {
             localStorage.setItem("JWT", temp.token);
-            window.location.href = this.state.redirectBack;
+            await window.location.reload(true);
+            window.location.href = "/";
         }
 
     }
