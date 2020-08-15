@@ -71,7 +71,6 @@ class RateActionDiningHall extends React.Component {
         tag.id = tag.id.replace(/\s/g, '').toLowerCase();
         tag.text = tag.id;
         this.setState(state => ({ tags: [...state.tags, tag] }));
-        console.log(this.state.tags);
     }
 
     handleDrag(tag, currPos, newPos) {
@@ -98,11 +97,9 @@ class RateActionDiningHall extends React.Component {
     }
     changeAccessibility(number) {
         this.setState({ accessibility: number });
-        console.log(this.state);
     }
     changeResource(number) {
         this.setState({ resource: number });
-        console.log(this.state);
     }
     //
 
@@ -146,12 +143,10 @@ class RateActionDiningHall extends React.Component {
 
     handleTextArea(event) {
         this.setState({ review: event.target.value })
-        console.log(this.state.review);
     }
 
     handleName(event) {
         this.setState({ name: event.target.value })
-        console.log(this.state.name);
     }
 
     async componentDidMount() {

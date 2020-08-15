@@ -45,7 +45,6 @@ class App extends React.Component {
       .then((res) => res.json())
       .then((body) => {
         this.setState({ body });
-        console.log(this.state);
       });
   }
 
@@ -100,7 +99,7 @@ class App extends React.Component {
           path="/"
           component={() => <HomeProto searchBody = {this.state.body}/>}
         />
-
+        <Footer />
       </div>
     );
   }

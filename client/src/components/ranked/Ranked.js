@@ -60,7 +60,6 @@ class Ranked extends React.Component {
           category: body.category,
           title: body.name
         });
-        console.log(this.state.category);
       });
 
     fetch("/api" + this.state.link)
@@ -74,15 +73,11 @@ class Ranked extends React.Component {
         let validItemCount = 0;
         this.state.body.map(item => {
           if (item.ratings.overall !== 0 && !isNaN(item.ratings.overall)) {
-            console.log(item.ratings.overall);
-            console.log(item);
             averageRating += (item.ratings.overall * item.reviewCounts);
             validItemCount += item.reviewCounts;
-            console.log("average : "+averageRating);
-            console.log("valid : "+validItemCount);
+
           }
         })
-        console.log(averageRating);
         averageRating = (averageRating / validItemCount / 100).toFixed(2);
         this.setState({ averageRating: averageRating });
       });

@@ -69,7 +69,6 @@ class RateAction extends React.Component {
         tag.id = tag.id.replace(/\s/g, '').toLowerCase();
         tag.text = tag.id;
         this.setState(state => ({ tags: [...state.tags, tag] }));
-        console.log(this.state.tags);
     }
 
     handleDrag(tag, currPos, newPos) {
@@ -85,23 +84,18 @@ class RateAction extends React.Component {
 
     changeOverall(number) {
         this.setState({ overall: number });
-        console.log(this.state);
     }
     changeSpace(number) {
         this.setState({ space: number });
-        console.log(this.state);
     }
     changeEquipment(number) {
         this.setState({ equipment: number });
-        console.log(this.state);
     }
     changeCleanliness(number) {
         this.setState({ cleanliness: number });
-        console.log(this.state);
     }
     changeCommunity(number) {
         this.setState({ community: number });
-        console.log(this.state);
     }
 
     async handleSubmit(event) {
