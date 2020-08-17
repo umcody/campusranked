@@ -4,8 +4,6 @@ import React from "react";
 class RateCell extends React.Component {
     constructor(props) {
         super(props);
-        console.log("HERE");
-        console.log(props);
         this.ratings = Math.floor(props[1])
     }
     render() {

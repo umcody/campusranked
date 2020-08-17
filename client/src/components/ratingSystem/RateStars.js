@@ -8,7 +8,6 @@ class RateStars extends React.Component {
     }
 
     handleClick(event) {
-        console.log(this.props);
         this.props.whenClicked(event.target.value);
     }
 

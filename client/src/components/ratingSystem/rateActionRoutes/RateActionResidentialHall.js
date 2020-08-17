@@ -74,7 +74,6 @@ class RateActionResidentialHall extends React.Component {
         tag.id=tag.id.replace(/\s/g,'').toLowerCase();
         tag.text = tag.id;
         this.setState(state => ({ tags: [...state.tags, tag] }));
-        console.log(this.state.tags);
     }
  
     handleDrag(tag, currPos, newPos) {
@@ -97,19 +96,15 @@ class RateActionResidentialHall extends React.Component {
     }
     changeLocation(number) {
         this.setState({ location: number });
-        console.log(this.state);
     }
     changeNoise(number) {
         this.setState({ noise: number });
-        console.log(this.state);
     }
     changePrivacy(number) {
         this.setState({ privacy: number });
-        console.log(this.state);
     }
     changeBathroom(number) {
         this.setState({ bathroom: number });
-        console.log(this.state);
     }
     //
 
@@ -205,7 +200,7 @@ class RateActionResidentialHall extends React.Component {
         }
 
         return (
-            <div className="rateFormContainer">
+            <div className="rateFormContainer container">
                 <Popup
                     open={this.state.loginPopup}
                     closeOnDocumentClick

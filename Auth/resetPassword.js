@@ -83,7 +83,7 @@ module.exports = function (app, mongoose) {
                     user.resetPasswordExpiration = undefined;
                     user.save(function(err){
                         if(!err){
-                            console.log("user password successfully resetted");
+                            console.log("user password successfully reset");
                             res.status(200).send({
                                 success:true
                             })

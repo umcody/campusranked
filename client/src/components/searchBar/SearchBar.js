@@ -11,15 +11,17 @@ const options = {
 
 function SearchBar(props) {
   return (
-    <div className="searchBar">
-      <a href="/Home">
-        <img
+    <div className="searchBar container row">
+      <a href="/Home" className = "col-sm-3 col-xs-2">
+        <img 
           src="/asset/temp_logo.png"
           className="logo"
           alt="campus ranked logo"
         />
       </a>
-      <Search searchBody={props.searchBody}/>
+      <div className = "col-sm-6 col-xs-10">
+        <Search searchBody={props.searchBody}/>
+      </div>
       <AccountBtn />
     </div>
   );

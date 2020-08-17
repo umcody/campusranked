@@ -113,23 +113,23 @@ class Cell extends React.Component {
         const { isVisible1 } = this.state;
         return (
 
-            <tr className="row">
+            <div className="row no-gutters cell">
                 
-                <th className="voteContainer">
+                <div className="voteContainer">
                     {/* DIV cannot exist inside TR so the vote indicator is in TH with pos. abs*/}
                     <Vote className="vote1" pose={isVisible ? "visible" : "hidden"}></Vote>
                     <Vote className="vote2" pose={isVisible1 ? "visible" : "hidden"}></Vote>
                     <Vote className="vote3" pose={isVisible ? "visible" : "hidden"}></Vote>
-                </th>
-                <th>{this.props[1]}</th>
-                <th>
+                </div>
+                <div className = "col-sm-1 col-1">{this.props[1]}</div>
+                <div className = "col-sm-3 col-4">
                     {/* PROFILE PICTURE*/}
                     <div className="image_border">
                         <img src={this.props[0].image} className="profile_pic" alt="" >
                         </img>
                         <div className="medal"></div>
-                    </div></th>
-                <th className = {this.state.tagsContainerClass}>
+                    </div></div>
+                <div className = {this.state.tagsContainerClass+" col-sm-3 col-7"}>
                     <a className="name" href={`/detailed/${this.props[6]}/${this.props[5]}/${this.props[0].title}/${this.props[0].name}`}>
                         <div>{this.props[0].name}</div>
                         <div>
@@ -138,28 +138,28 @@ class Cell extends React.Component {
                             )}
                         </div>
                     </a>
-                </th>
-                <th> {/* RATINGS */}
+                </div>
+                <div className = "col-sm-2 col-4" > {/* RATINGS */}
                     <div className="Stars" style={{ "--rating": this.props[0].ratings.overall / 100 }}></div>
                     {/*<div style = {{display:this.state.hasRatings}}>
                         NO RATINGS
                     </div> ***** THIS DIV SHOWS WHEN THERE IS NO RATING -- WHETHER THIS WILL BE USED WILL BE DETERMINED  */}
-                </th>
-                <th>
+                </div>
+                <div className = "col-sm-1 col-4">
                     {/* VOTE LOGO/ BUTTON */}
                     <div className="upVote" onClick={this.handleClick}>
                         <img src="/asset/vote_btn.svg" className="voteSVG" alt="vote button"></img>
                     </div>
-                </th>
-                <th className="count">{this.state.count}</th>
-                <th className="testContainer">
+                </div>
+                <div className="count col-sm-2 col-4">{this.state.count}</div>
+                <div className="testContainer">
                     {/* *** UNDER DEVELOPMENT VOTE PERCENTAGE BAR */}
                     <div className = "perBarContainer">
                         <div className="bar" style={{ width: (this.props[2] * document.body.clientWidth / 3.5) }}></div>
                         <div className="per">{`  ${(this.props[2]*100).toFixed(1)}%`}</div>
                     </div>
-                </th>
-            </tr>
+                </div>
+            </div>
         );
     }
 }

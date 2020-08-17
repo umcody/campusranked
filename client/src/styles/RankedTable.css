@@ -8,6 +8,7 @@
   -webkit-box-shadow: 0px 13px 34px 3px rgba(0,0,0,0.17);
   -moz-box-shadow: 0px 13px 34px 3px rgba(0,0,0,0.17);
   box-shadow: 0px 13px 34px 3px rgba(0,0,0,0.17);
+  max-width: 600px;
   /* overflow: hidden; 
      */
 }
@@ -57,4 +58,16 @@
 tbody {
   display: inline-block;
   z-index: 2;
+}
+
+.overallRatingsContainer{
+  height: 30px;
+  width: 300px;
+  padding: 2px;
+  display: block;
+  position: relative;
+  left:20%;
+  margin-bottom: 20px;
+  text-align: left;
+  color: #3f3f3f;
 }

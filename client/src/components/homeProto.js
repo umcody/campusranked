@@ -17,8 +17,7 @@ class HomeProto extends React.Component{
                     <h6 style = {{"font-size":"14px"}}>Find Students' Favorite Library, Dininghall, And More</h6>
                     <Search searchBody = {this.props.searchBody}/>
                 </div>
-                <img id= "char" src ="/asset/open-peeps.png"></img>
-                <div id = "backgroundTriangle"></div>
+                {/*<div id = "backgroundTriangle"></div>*/}
             </div>
         )
     }

@@ -3,6 +3,7 @@ import Cell from "./Cell.js";
 import Popup from "reactjs-popup";
 import Login from "../auth/Login";
 import OverallRatings from "./overallRatings.js";
+import {Container} from "react-bootstrap";
 
 
 let index = 1;
@@ -59,7 +60,6 @@ class Ranked extends React.Component {
           category: body.category,
           title: body.name
         });
-        console.log(this.state.category);
       });
 
     fetch("/api" + this.state.link)
@@ -73,15 +73,11 @@ class Ranked extends React.Component {
         let validItemCount = 0;
         this.state.body.map(item => {
           if (item.ratings.overall !== 0 && !isNaN(item.ratings.overall)) {
-            console.log(item.ratings.overall);
-            console.log(item);
             averageRating += (item.ratings.overall * item.reviewCounts);
             validItemCount += item.reviewCounts;
-            console.log("average : "+averageRating);
-            console.log("valid : "+validItemCount);
+
           }
         })
-        console.log(averageRating);
         averageRating = (averageRating / validItemCount / 100).toFixed(2);
         this.setState({ averageRating: averageRating });
       });
@@ -94,7 +90,7 @@ class Ranked extends React.Component {
   render() {
     const schoolLowered = this.props.match.params.school.toLowerCase();
     return (
-      <div className="ranked">
+      <div className="ranked  container-fluid">
         <img id="imgBanner" src={`https://campusranked.s3.us-east-2.amazonaws.com/${schoolLowered}/${schoolLowered}_banner.jpg`} />
         <Popup
           open={this.state.loginPopup}
@@ -105,8 +101,8 @@ class Ranked extends React.Component {
         </Popup>
 
 
-        <div className="title">
-          <p>{this.state.title}</p>
+        <div className="title row">
+          <p className="col-12">{this.state.title}</p>
         </div>
         <p
           id="voteLimitAlert"
@@ -118,8 +114,7 @@ class Ranked extends React.Component {
           (isNaN(this.state.averageRating)) ? <OverallRatings ratings={"There is no rating yet"} /> : <OverallRatings ratings={this.state.averageRating} />
         }
         {/* <div className="collapsable">  *****    EXPANDABLE BOX (DISABLED)*/ }
-          <table className="ranked_table" style = {{"max-height":this.state.collapseHeight}}>
-            <tbody>
+          <div className="ranked_table container" style = {{"max-height":this.state.collapseHeight}}>
               {/* Creates row cell for every item in the body */}
               {this.state.body.map((item) =>
                 React.createElement(Cell, [
@@ -132,8 +127,7 @@ class Ranked extends React.Component {
                   this.props.match.params.school,
                 ])
               )}
-            </tbody>
-          </table>
+          </div>
         {/*  <div className = "expandBtn" onClick = {this.handleExpandMore}>
             <img className="expandImg" src="/asset/expandMore.svg"></img>
             <div className="smallText">Show More</div>
