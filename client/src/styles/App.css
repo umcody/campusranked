@@ -8,8 +8,10 @@
 @import "./Profile.css";
 @import "./rateTags.css";
 @import "./schoolOverview.css";
+
+
+
 * {
-  font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   text-align: center;
   overflow: visible;
@@ -19,11 +21,6 @@
 
 :root{
   --main-color: #f62459;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Montserrat', sans-serif !important;
-  font-weight: 400;
 }
 
 
@@ -62,10 +59,29 @@ body {
   margin: 0px;
 }
 
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+ }
+ 
+ h1, h2, h3, h4, h5, h6 {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 500;
+ }
+
 .noBreak{
   white-space: nowrap;
 }
 
+#title{
+  font-size: 50px;
+  font-weight: 500;
+  color: black;
+}
+
+.onePage{
+  min-height:100vh;
+}
 
 .title {
   background-color: var(--main-color);
