@@ -38,7 +38,7 @@ class SchoolOverview extends React.Component {
 
                     <div className = "divider">
                         <div id="title" className="noBreak">
-                            {this.state.title}
+                            <h1>{this.state.title}</h1>
                         </div>
                         <div id="sub">
                             {`Public: ${this.state.school.public} / State: ${this.state.school.state}`}

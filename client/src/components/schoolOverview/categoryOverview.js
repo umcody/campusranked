@@ -15,7 +15,7 @@ function CategoryOverview(props) {
             <Link to = {`/ranked/${props.school}/${props.school+categoryLowered}`}>
                 <table className="categoryOverviewContainer">
                     <tbody>
-                        <tr className = "header"><td>{`Best ${props.category}`}</td></tr>
+                        <tr className = "header"><td><h5>{`Best ${props.category}`}</h5></td></tr>
                         {items.map((item) => React.createElement(CategoryCell, [item]))}
                     </tbody>
                 </table>
