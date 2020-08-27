@@ -84,14 +84,16 @@ h1,h2,h3,h4,h5{
 }
 
 .title {
-  background-color: var(--main-color);
-  color: white;
+  background-color: white;
+  color: black;
   height: fit-content;
   width: fit-content;
   font-size: 50px;
   left: 10%;
   display: inline-block;
   justify-content: center;
+  border:1px solid;
+  top:-30px;
   align-items: center;
   display: flex;
   margin-bottom: 30px;

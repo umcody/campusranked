@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import posed from "react-pose";
+import {Link} from "react-router-dom";
 import rateStar from "../ratingSystem/RateStars";
 import Tags from "./tagsRanked.js"
 //import image from "../public/asset/kobeBryant.jpg";
@@ -130,14 +131,14 @@ class Cell extends React.Component {
                         <div className="medal"></div>
                     </div></div>
                 <div className = {this.state.tagsContainerClass+" col-sm-3 col-7"}>
-                    <a className="name" href={`/detailed/${this.props[6]}/${this.props[5]}/${this.props[0].title}/${this.props[0].name}`}>
+                    <Link className="name" to={`/detailed/${this.props[6]}/${this.props[5]}/${this.props[0].title}/${this.props[0].name}`}>
                         <div>{this.props[0].name}</div>
                         <div>
                             {this.state.tags.slice(0,2).map((tag)=>
                             React.createElement(Tags, [tag[0]])
                             )}
                         </div>
-                    </a>
+                    </Link>
                 </div>
                 <div className = "col-sm-2 col-4" > {/* RATINGS */}
                     <div className="Stars" style={{ "--rating": this.props[0].ratings.overall / 100 }}></div>

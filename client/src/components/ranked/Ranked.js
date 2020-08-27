@@ -102,7 +102,7 @@ class Ranked extends React.Component {
 
 
         <div className="title row">
-          <p className="col-12">{this.state.title}</p>
+          <p className="col-12" style = {{fontWeight:700}}>{this.state.title}</p>
         </div>
         <p
           id="voteLimitAlert"

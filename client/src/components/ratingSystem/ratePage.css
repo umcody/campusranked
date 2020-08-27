@@ -89,7 +89,7 @@
   }
   .Stars::before{
     content: "★★★★★";
-    background: linear-gradient(90deg, #fc0,var(--percent),#ffffff var(--percent));
+    background: linear-gradient(90deg, black,var(--percent),#ffffff var(--percent));
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }

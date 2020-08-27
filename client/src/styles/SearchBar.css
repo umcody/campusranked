@@ -83,7 +83,8 @@ padding: 6px 0px 6px 0px;
   white-space: nowrap;
 }
 .accountBtn .username{
-  background-color: #465881;
+  /*background-color: #465881;*/
+  background-color: black;
   display: inline-block;
   color: white;
   padding: 1px 7px 1px 7px;

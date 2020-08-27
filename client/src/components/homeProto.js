@@ -13,10 +13,23 @@ class HomeProto extends React.Component{
         return(
             <div id="protoContainer">
                 <div id = "middle">
-                    <div>Have The Best Of Your Campus</div>
+                    <div style =
+                    {{
+                        fontWeight:700
+                    }}>Have The Best Of Your Campus</div>
                     <h6 style = {{"font-size":"14px"}}>Find Students' Favorite Library, Dininghall, And More</h6>
                     <Search searchBody = {this.props.searchBody}/>
                 </div>
+                <img style = 
+                {{
+                    width:"100%",
+                    position:"absolute",
+                    bottom:"-10px",
+                    left:0,
+                    opacity:0.95
+                }}
+                src = "/asset/campusranked.svg"/>
+
                 {/*<div id = "backgroundTriangle"></div>*/}
             </div>
         )
