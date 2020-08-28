@@ -30,14 +30,6 @@ const port = process.env.PORT || 8000;
 mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://codyum:appalanchia@cluster0-tfxwi.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true})
 
 
-if(process.env.NODE_ENV === 'production'){
-  app.use(express.static('client/build'));
-
-    app.get('*', (req, res) => {
-      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-    });
-}
-
 
 temp(app,mongoose);
 passportAuth(app,mongoose);
@@ -53,6 +45,14 @@ addSchool(app,mongoose);
 update(app,mongoose);
 resetPassword(app,mongoose);
 
+
+if(process.env.NODE_ENV === 'production'){
+  app.use(express.static('client/build'));
+
+    app.get('*', (req, res) => {
+      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+}
 
 
 app.listen(port, () => {
