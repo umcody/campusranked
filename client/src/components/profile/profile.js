@@ -21,7 +21,7 @@ class profile extends React.Component {
 
     }
 
-    handleLogOut(event){
+    handleLogOut(event) {
         localStorage.removeItem("JWT");
         window.location = "/";
     }
@@ -29,37 +29,40 @@ class profile extends React.Component {
     render() {
         if (this.state.user.voted) {
             return (
-                <div id="profileContainer">
-                    <div id="profileIntro">
-                        <div>We don't keep much data.</div>
-                        <div>This is all we got.</div>
-                    </div>
-                    <div>
-                        <div id = "profileInfo">
-                            <div>
-                                <div className="inline">
-                                    Username:
+                <div className="onePage">
+                    <div className = "center" style = {{top:"40%"}}>
+                        <div id="profileIntro">
+                            <div>We don't keep much data.</div>
+                            <div>This is all we got.</div>
+                        </div>
+                        <div>
+                            <div id="profileInfo">
+                                <div>
+                                    <div className="inline">
+                                        Username:
                             </div>
-                                <div className="inline">
-                                    {` ${this.state.user.username}`}
+                                    <div className="inline">
+                                        {` ${this.state.user.username}`}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="inline">
+                                        Email:
+                            </div>
+                                    <div className="inline">
+                                        {` ${this.state.user.email}`}
+                                    </div>
                                 </div>
                             </div>
-                            <div>
-                                <div className="inline">
-                                    Email:
+                            <div id="profileVotedContainer">
+                                {this.state.user.voted.map((item) =>
+                                    React.createElement(ProfileVoted, item)
+                                )}
                             </div>
-                                <div className="inline">
-                                    {` ${this.state.user.email}`}
-                                </div>
-                            </div>
+                            <a onClick={this.handleLogOut}> LOG OUT </a>
                         </div>
-                        <div id="profileVotedContainer">
-                            {this.state.user.voted.map((item) =>
-                                React.createElement(ProfileVoted, item)
-                            )}
-                        </div>
-                        <a onClick={this.handleLogOut}> LOG OUT </a>
                     </div>
+
                 </div>
             )
         } else {

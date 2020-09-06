@@ -35,17 +35,19 @@ module.exports = function(app,mongoose){
                 .sort({count:-1})
                 .limit(5)
                 .exec(function(err,docs){
-                    data[categories[i]] = docs;
-                    
-                    if(data[categories[i]]!== null && i === (categories.length-1)){
-                        console.log(data);
+
+                    if(i === (categories.length-1)){
+                        data[categories[i]] = docs;
+                        console.log(docs);
                         res.json(data);
                         console.log("School data sent out.")
+                        return;
                     }
-                })
-            
+                    data[categories[i]] = docs;
+                })    
         }
-        
+
+    
 
     })
 

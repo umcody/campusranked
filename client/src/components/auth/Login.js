@@ -52,7 +52,7 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className = "onePage">
                 <form className="authForm" onSubmit={this.handleSubmit}>
                     <img src="/asset/temp_logo.png" />
                     <input id="email" placeholder="email" onChange={this.handleChange} type="email"></input>
