@@ -50,6 +50,13 @@
     height:100px;
 }
 
+/* Mobile View 
+@media only screen and (max-width: 600px) {
+    .rateContainer {
+      top: 60%;
+    }
+  }
+*/
 /****** Rating Section ******/
 .ratingsContainer{
     margin-top: 30px;

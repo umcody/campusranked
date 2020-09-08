@@ -6,7 +6,7 @@
   background-color: white;
   width: 100%;
   height: fit-content;
-  position: fixed;
+  position: relative;
   max-width: 100% !important;
   top: 0;
   left: 0;

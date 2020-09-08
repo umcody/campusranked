@@ -9,6 +9,7 @@
     width: 100%;  
     overflow: hidden;
     margin-bottom: 30vh;
+    padding:0 !important;
   }
 
 #graphics_ranked{
@@ -24,5 +25,4 @@
     height:175px;
     object-fit: cover;
     position: relative;
-    margin-top:30px;
 }
