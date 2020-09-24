@@ -203,7 +203,7 @@ class RateActionDiningHall extends React.Component {
         }
 
         return (
-            <div className="rateFormContainer container">
+            <div className="rateFormContainer">
                 <Popup
                     open={this.state.loginPopup}
                     closeOnDocumentClick

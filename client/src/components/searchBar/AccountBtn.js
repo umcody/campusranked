@@ -23,9 +23,14 @@ class AccountBtn extends React.Component {
             });
 
             const content = await response.json();
-            this.setState({
-                username: content.username
-            });
+
+            if(content.username == null){ // If User is undefined, clear local storage and navigate to Hompage
+                localStorage.clear();
+            }else{
+                this.setState({
+                    username: content.username
+                });
+            }
         }
         console.log(document.location.href);
 

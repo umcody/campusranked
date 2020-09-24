@@ -37,7 +37,7 @@ function CreateSchool() {
         <div className="onePage">
             <div style={{ "position": "absolute", "top": "40%", "left": "50%", "transform": "translate(-50%,-50%)" }}>
                 <form>
-                    <div style={{ display: "inline-block", "vertical-align": "top" }}>
+                    <div className = "col-6" style={{ display: "inline-block", "vertical-align": "top" }}>
                         <p>School Name</p>
                         <input type="text" onChange={(e) => { setSchoolName(e.target.value) }} placeholder="School Name"></input>
                         <p>School Full Name</p>
@@ -57,7 +57,7 @@ function CreateSchool() {
 
                     </div>
 
-                    <div style={{ display: "inline-block", "vertical-align": "top" }}>
+                    <div className = "col-6" style={{ display: "inline-block", "vertical-align": "top" }}>
                         <h6>Here you put the list of buildings. *** Seperate the buildings by "," (NO SPACE AFTER COMMA) ***</h6>
 
                         <p>Gym</p>

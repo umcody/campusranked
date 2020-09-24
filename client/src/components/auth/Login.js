@@ -43,8 +43,11 @@ class Login extends React.Component {
             this.setState({ showAlert: " " });
         } else {
             localStorage.setItem("JWT", temp.token);
-            await window.location.reload(true);
-            window.location.href = "/";
+            if(window.location.href == "/loginuser"){
+                window.location.href = "/";
+            }else{
+                window.location.reload();
+            }
         }
 
     }

@@ -1,6 +1,9 @@
 .rateFormContainer{
     background-color: white;
     max-width:100%;
+    left:50%;
+    transform:translate(-50%,0);
+    position: relative;
     width: fit-content;
     padding:60px !important;
     text-align: center;
@@ -53,3 +56,11 @@
     width: 50px;
     height:20px;
 }
+
+/* Mobile Screen Size*/
+@media (max-width: 767px) {
+    #writingArea{
+        width:100%;
+    }
+  }
+  
