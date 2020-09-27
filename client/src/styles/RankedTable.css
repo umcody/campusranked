@@ -71,3 +71,15 @@ tbody {
   text-align: left;
   color: #3f3f3f;
 }
+
+.instructionPopUp{
+  position:fixed;
+  bottom:0;
+  right:0;
+  background-color: white;
+  border: 1px solid black;
+  width: 300px;
+  color: black;
+  font-weight: 600;
+  padding: 30px 50px 30px 50px;
+}

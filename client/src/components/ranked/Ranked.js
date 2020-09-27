@@ -4,6 +4,7 @@ import Popup from "reactjs-popup";
 import Login from "../auth/Login";
 import OverallRatings from "./overallRatings.js";
 import {Container} from "react-bootstrap";
+import InstructionPopUp from "./instructionPopup.js";
 
 
 let index = 1;
@@ -99,6 +100,7 @@ class Ranked extends React.Component {
         >
           <Login />
         </Popup>
+        <InstructionPopUp/>
 
 
         <div className="title row">
