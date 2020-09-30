@@ -82,4 +82,5 @@ tbody {
   color: black;
   font-weight: 600;
   padding: 30px 50px 30px 50px;
+  z-index: 1000;
 }

@@ -7,15 +7,19 @@ const bcrypt = require("bcrypt")
 
 module.exports = function (app, mongoose) {
     dotenv.config();
+    app.post("/api/forgotpassword", function (req, res) {
+        console.log(req.body);
+        const email = req.body.email;
 
-    app.get("/api/forgotpassword/:email", function (req, res) {
-        const email = req.params.email;
+        console.log("EXISTS");
 
         User.findOne({ email: email }, function (err, user) {
             if (err) {
+
                 console.log(err);
                 //send error
             } else if (user) {
+                console.log("EXISTS");
                 Crypto.randomBytes(20, function (err, buf) {
                     let token = buf.toString("hex"); // *********
 
@@ -27,18 +31,18 @@ module.exports = function (app, mongoose) {
                         var smtpTransport = NodeMailer.createTransport({
                             service:"gmail",
                             auth:{
-                                user: "yunsuum@gmail.com",
+                                user: "campusranked@gmail.com",
                                 pass: process.env.emailPassword
                             }
                         });
     
                         var mailOptions = {
-                            from: "yunsuum@gmail.com",
+                            from: "campusranked@gmail.com",
                             to: user.email,
                             from: "Reset Password for Campus Ranked",
                             text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
                             'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-                            'http://www.campusranked/reset/' + token + '\n\n' +
+                            'https://www.campusranked/reset/' + token + '\n\n' +
                             'If you did not request this, please ignore this email and your password will remain unchanged.\n'
                         }
 

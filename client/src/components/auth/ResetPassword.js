@@ -58,7 +58,7 @@ class resetPassword extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className = "onePage">
                 <form className="authForm" onSubmit={this.handleSubmit}>
                 <h1 style ={{"margin":"0px 0px 50px 0px"}}>Let's reset this thing!</h1>
                     <input id="password" placeholder="New Password" onChange={this.handleChange}

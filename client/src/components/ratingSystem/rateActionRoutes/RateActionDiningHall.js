@@ -127,16 +127,22 @@ class RateActionDiningHall extends React.Component {
 
                 if (this.state.overall === 0) {
                     this.setState({showAlert:" "})
+                    return;
                 } else if (this.state.variety === 0) {
                     this.setState({showAlert:" "})
+                    return;
                 } else if (this.state.taste === 0) {
                     this.setState({showAlert:" "})
+                    return;
                 } else if (this.state.hygiene === 0) {
                     this.setState({showAlert:" "})
+                    return;
                 } else if (this.state.price === 0) {
                     this.setState({showAlert:" "})
+                    return;
                 } else if (this.state.nutrition === 0) {
                     this.setState({showAlert:" "})
+                    return;
                 } else {
                     fetch(`/api/rate/${this.props.match.params.school}/dininghall/${this.props.match.params.title}/${this.props.match.params.item}`, {
                         method: "post",
