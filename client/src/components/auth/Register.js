@@ -67,7 +67,7 @@ class Register extends React.Component {
                     <button type="submit">REGISTER!</button>
 
                     <Link to={{
-                        pathname: "/loginUser",
+                        pathname: "/loginuser",
                         state: {
                             redirectBack: this.state.redirectBack
                         }

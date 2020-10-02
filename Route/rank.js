@@ -169,7 +169,7 @@ module.exports = function (app, mongoose) {
                                     res.json({ count: data.voted[i].count++, increment: true });
                                 })
                             } else {
-                                if ((new Date().getDate() - data.voted[i].lastVoted.getDate()) !== 0) { // If it has been a day since last reached maximum, reset.
+                                if ((new Date().getDate() - data.voted[i].lastVoted.getDate()) > 0) { // If it has been a day since last reached maximum, reset.
                                     UserModel.findOneAndUpdate({ email: data.email, "voted.title": title }, {
                                         $set: {
                                             "voted.$.count": 1,

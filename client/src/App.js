@@ -12,6 +12,8 @@ import ForgotPassword from "./components/auth/ForgotPassword.js";
 import ResetPassword from "./components/auth/ResetPassword.js";
 import HomeProto from "./components/homeProto.js";
 import SchoolOverview from "./components/schoolOverview/schoolOverview.js";
+import AboutUs from "./components/info/aboutUs.js";
+import HowDoesItWork from "./components/info/howDoesItWork.js";
 
 import CreateSchool from "./components/admin/createSchool";
 
@@ -90,6 +92,8 @@ class App extends React.Component {
 
         <Route path = "/registerComplete/:school/:username" component = {RegisterComplete}/>
 
+        <Route path = "/aboutus" component = {AboutUs}/>
+        <Route path = "/howdoesitwork" component = {HowDoesItWork}/>
 
         <Route exact path ="/admin/createSchool" component = {createSchool}/>
 

@@ -27,7 +27,6 @@ class Cell extends React.Component {
             isVisible: false,
             isVisible1: false,
             count: props[0].count,
-            clicked: false,
             clickCount: 0,
             hasRatings: "none",
             tags:[],
@@ -81,7 +80,6 @@ class Cell extends React.Component {
                 this.props[4]();
             } else { // If yes JWToken, proceed to attempt to increment
 
-                if (this.state.clicked === false) {
 
                     let fetched = await fetch(url + "/api/upvote/" + name, {
                         headers: { Authorization: `JWT ${JWToken}` }
@@ -94,15 +92,6 @@ class Cell extends React.Component {
                         this.props[3]();
                     }
 
-                } else {
-                    fetch("ranked/nba/downvote/" + name, {
-                        method: "post",
-                        body: {
-                            "name": name
-                        }
-                    });
-                    this.setState({ count: this.state.count - 1, clicked: false });
-                }
             }
         });
 

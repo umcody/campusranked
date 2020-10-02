@@ -44,7 +44,7 @@ class AccountBtn extends React.Component {
             return (
                 <div className="accountBtn col-sm-3">
                     <Link to={{
-                        pathname: "/registerUser",
+                        pathname: "/registeruser",
                         state: {
                             redirectBack: document.location.href
                         }

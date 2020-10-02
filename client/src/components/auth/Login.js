@@ -1,5 +1,5 @@
 import React from "react";
-import { Route,Redirect} from "react-router-dom";
+import {Link, Route,Redirect} from "react-router-dom";
 
 class Login extends React.Component {
     constructor(props) {
@@ -43,7 +43,9 @@ class Login extends React.Component {
             this.setState({ showAlert: " " });
         } else {
             localStorage.setItem("JWT", temp.token);
-            if(window.location.href == "/loginuser"){
+            console.log(window.location);
+            console.log(window.location.href);
+            if(window.location.pathname === "/loginuser"){
                 window.location.href = "/";
             }else{
                 window.location.reload();
@@ -60,11 +62,11 @@ class Login extends React.Component {
                     <img src="/asset/temp_logo.png" />
                     <input id="email" placeholder="email" onChange={this.handleChange} type="email"></input>
                     <input placeholder="password" onChange={this.handleChange}></input>
-                    <div class="alertText" style={{ display: this.state.showAlert }}>Login Failed. The account either does not exist or your password is incorrect</div>
+                    <div className="alertText" style={{ display: this.state.showAlert }}>Login Failed. The account either does not exist or your password is incorrect</div>
                     <button type="submit">Let's Rank!</button>
                     <div>
-                        <a className="redirect" href="/registerUser"> Don't have an Account?</a>
-                        <a className="redirect" href="/forgotpassword" style={{ display: this.state.showAlert }}> Forgot your password?</a>
+                        <Link className="redirect" to="/registeruser"> Don't have an Account?</Link>
+                        <Link className="redirect" to="/forgotpassword" style={{ display: this.state.showAlert }}> Forgot your password?</Link>
                     </div>
                     
                 </form>
