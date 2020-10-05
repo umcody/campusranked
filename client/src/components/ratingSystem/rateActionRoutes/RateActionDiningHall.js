@@ -1,7 +1,7 @@
 import React from "react";
 import RateStars from "../RateStars";
 import RateStarsTest from "../RateStarsTest";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import Popup from "reactjs-popup";
 import Login from "../../auth/Login.js";
 import { WithContext as ReactTags } from 'react-tag-input';
@@ -12,7 +12,7 @@ import "./rateAction.css";
 const KeyCodes = {
     comma: 188,
     enter: 13,
-  };
+};
 const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 
@@ -23,20 +23,20 @@ class RateActionDiningHall extends React.Component {
         this.state = {
             body: {
             },
-            redirect:null,
+            redirect: null,
             overall: 0,
             taste: 0,
             hygiene: 0,
-            variety:0,
-            nutrition:0,
-            price:0,
-            title:"",
+            variety: 0,
+            nutrition: 0,
+            price: 0,
+            title: "",
             review: "",
             name: "",
             loginPopup: false,
-            showAlert:"none",
-            tags:[],
-            suggestions:[]
+            showAlert: "none",
+            tags: [],
+            suggestions: []
         }
         this.changeOverall = this.changeOverall.bind(this);
         this.changeTaste = this.changeTaste.bind(this);
@@ -65,24 +65,24 @@ class RateActionDiningHall extends React.Component {
     handleDelete(i) {
         const { tags } = this.state;
         this.setState({
-         tags: tags.filter((tag, index) => index !== i),
+            tags: tags.filter((tag, index) => index !== i),
         });
     }
- 
+
     handleAddition(tag) {
-        tag.id=tag.id.replace(/\s/g,'').toLowerCase();
+        tag.id = tag.id.replace(/\s/g, '').toLowerCase();
         tag.text = tag.id;
         this.setState(state => ({ tags: [...state.tags, tag] }));
         console.log(this.state.tags);
     }
- 
+
     handleDrag(tag, currPos, newPos) {
         const tags = [...this.state.tags];
         const newTags = tags.slice();
- 
+
         newTags.splice(currPos, 1);
         newTags.splice(newPos, 0, tag);
- 
+
         // re-render
         this.setState({ tags: newTags });
     }
@@ -113,6 +113,7 @@ class RateActionDiningHall extends React.Component {
     //
 
     async handleSubmit(event) {
+        event.preventDefault();
         // CONDITIONS BEFORE SUBMITN THE REVIEW
         const JWToken = localStorage.getItem("JWT");
         if (JWToken !== null) {
@@ -123,25 +124,25 @@ class RateActionDiningHall extends React.Component {
             const content = await response.json();
             if (content == false) {
                 this.openPopup();
-            }else{
-
+            } else {
+                console.log(this.state.overall);
                 if (this.state.overall === 0) {
-                    this.setState({showAlert:" "})
+                    this.setState({ showAlert: " " })
                     return;
                 } else if (this.state.variety === 0) {
-                    this.setState({showAlert:" "})
+                    this.setState({ showAlert: " " })
                     return;
                 } else if (this.state.taste === 0) {
-                    this.setState({showAlert:" "})
+                    this.setState({ showAlert: " " })
                     return;
                 } else if (this.state.hygiene === 0) {
-                    this.setState({showAlert:" "})
+                    this.setState({ showAlert: " " })
                     return;
                 } else if (this.state.price === 0) {
-                    this.setState({showAlert:" "})
+                    this.setState({ showAlert: " " })
                     return;
                 } else if (this.state.nutrition === 0) {
-                    this.setState({showAlert:" "})
+                    this.setState({ showAlert: " " })
                     return;
                 } else {
                     fetch(`/api/rate/${this.props.match.params.school}/dininghall/${this.props.match.params.title}/${this.props.match.params.item}`, {
@@ -152,7 +153,7 @@ class RateActionDiningHall extends React.Component {
                 }
 
             }
-            this.setState({redirect:`/ranked/${this.props.match.params.school}/${this.props.match.params.title}`});
+            this.setState({ redirect: `/ranked/${this.props.match.params.school}/${this.props.match.params.title}` });
         } else {
             this.openPopup();
         }
@@ -185,7 +186,7 @@ class RateActionDiningHall extends React.Component {
             this.openPopup();
         }
 
-        this.setState({title:this.props.match.params.item});
+        this.setState({ title: this.props.match.params.item });
         {/*
         // FETCH NECESSARY DATA FOR THE RATING CRITEREONS
         const { match: { params } } = this.props;
@@ -220,31 +221,33 @@ class RateActionDiningHall extends React.Component {
                 <form>
                     <div id="rateForm">
                         <table>
-                            <tr>
-                                <th>Overall</th>
+                            <tbody>
+                                <tr>
+                                    <th>Overall</th>
 
-                                <th><RateStars name="overall" whenClicked={this.changeOverall} /></th>
-                            </tr>
-                            <tr>
-                                <th>Taste</th>
-                                <th><RateStars name="taste" whenClicked={this.changeTaste} /></th>
-                            </tr>
-                            <tr>
-                                <th>Hygiene</th>
-                                <th><RateStars name="hygiene" whenClicked={this.changeHygiene} /></th>
-                            </tr>
-                            <tr>
-                                <th>variety</th>
-                                <th><RateStars name="variety" whenClicked={this.changeVariety} /></th>
-                            </tr>
-                            <tr>
-                                <th>Nutrition</th>
-                                <th><RateStars name="nutrition" whenClicked={this.changeNutrition} /></th>
-                            </tr>
-                            <tr>
-                                <th>Price</th>
-                                <th><RateStars name="price" whenClicked={this.changePrice} /></th>
-                            </tr>
+                                    <th><RateStars name="overall" whenClicked={this.changeOverall} /></th>
+                                </tr>
+                                <tr>
+                                    <th>Taste</th>
+                                    <th><RateStars name="taste" whenClicked={this.changeTaste} /></th>
+                                </tr>
+                                <tr>
+                                    <th>Hygiene</th>
+                                    <th><RateStars name="hygiene" whenClicked={this.changeHygiene} /></th>
+                                </tr>
+                                <tr>
+                                    <th>variety</th>
+                                    <th><RateStars name="variety" whenClicked={this.changeVariety} /></th>
+                                </tr>
+                                <tr>
+                                    <th>Nutrition</th>
+                                    <th><RateStars name="nutrition" whenClicked={this.changeNutrition} /></th>
+                                </tr>
+                                <tr>
+                                    <th>Price</th>
+                                    <th><RateStars name="price" whenClicked={this.changePrice} /></th>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
 
@@ -254,14 +257,14 @@ class RateActionDiningHall extends React.Component {
                     </div>
 
                     <ReactTags tags={tags}
-                    suggestions={suggestions}
-                    handleDelete={this.handleDelete}
-                    handleAddition={this.handleAddition}
-                    handleDrag={this.handleDrag}
-                    delimiters={delimiters} />
+                        suggestions={suggestions}
+                        handleDelete={this.handleDelete}
+                        handleAddition={this.handleAddition}
+                        handleDrag={this.handleDrag}
+                        delimiters={delimiters} />
 
-                    <btn className="submitBtn" onClick={this.handleSubmit}> Submit </btn>
-                    <div style = {{display:this.state.showAlert}}>You must rate on all criterions!</div>
+                    <button className="submitBtn" onClick={this.handleSubmit}> Submit </button>
+                    <div style={{ display: this.state.showAlert }}>You must rate on all criterions!</div>
                 </form>
             </div>
         )

@@ -92,7 +92,7 @@ class App extends React.Component {
 
         <Route path = "/registerComplete/:school/:username" component = {RegisterComplete}/>
 
-        <Route path = "/aboutus" component = {AboutUs}/>
+        <Route path = "/about" component = {AboutUs}/>
         <Route path = "/howdoesitwork" component = {HowDoesItWork}/>
 
         <Route exact path ="/admin/createSchool" component = {createSchool}/>

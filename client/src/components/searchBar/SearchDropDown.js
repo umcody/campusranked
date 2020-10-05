@@ -1,10 +1,11 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 function SearchDropDown(props) {
   const schoolName = props.item.name.toLowerCase().replace(/\s/g,"");
   return (
     <div className="searchDropDownItem">
-      <a href={"/schoolOverView/"+schoolName}>{props.item.name}</a>
+      <Link to={"/schooloverview/"+schoolName}>{props.item.name}</Link>
     </div>
   );
 }

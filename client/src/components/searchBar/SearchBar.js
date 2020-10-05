@@ -12,7 +12,7 @@ const options = {
 function SearchBar(props) {
   return (
     <div className="searchBar container row">
-      <a href="/Home" className = "col-sm-3 col-xs-2">
+      <a href="/home" className = "col-sm-3 col-xs-2">
         <img 
           src="/asset/temp_logo.png"
           className="logo"

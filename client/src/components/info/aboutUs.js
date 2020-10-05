@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import {Helmet} from "react-helmet"
 
 export default () => {
+    
     return (
         <div className="onePage">
             <div className = "center" style = {{top:"30%"}}>
@@ -9,7 +11,11 @@ export default () => {
                 <h5 style={{ marginTop: "50px" }}>There isn't anything that special about us</h5>
                 <h5>We are simply trying to help you make the best out of your college life</h5>
             </div>
-
+            <Helmet>
+                <title>About Us</title>
+                <meta name = "description"
+                    content = "We are simply trying to help you make the best out of your college life"/>
+            </Helmet>
         </div>
     )
 }

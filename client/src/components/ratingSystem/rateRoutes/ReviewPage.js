@@ -71,7 +71,7 @@ class RateGym extends React.Component {
                 <div className = "onePage">
                     <div className="rateContainer container row">
                         <div className="col-sm-6">
-                            <div id="title" style={{ "max-width": "600px" }}>{this.state.body.name}</div>
+                            <div id="title" style={{ "maxWidth": "600px" }}>{this.state.body.name}</div>
                             <div>
                                 {this.state.tags.slice(0, 5).map((tag) =>
                                     React.createElement(Tags, [tag[0]])

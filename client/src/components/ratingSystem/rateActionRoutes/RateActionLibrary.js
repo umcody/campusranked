@@ -1,7 +1,7 @@
 import React from "react";
 import RateStars from "../RateStars";
 import RateStarsTest from "../RateStarsTest";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import Popup from "reactjs-popup";
 import Login from "../../auth/Login.js";
 import { WithContext as ReactTags } from 'react-tag-input';
@@ -12,7 +12,7 @@ import "./rateAction.css";
 const KeyCodes = {
     comma: 188,
     enter: 13,
-  };
+};
 const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 
@@ -23,7 +23,7 @@ class RateActionDiningHall extends React.Component {
         this.state = {
             body: {
             },
-            redirect:null,
+            redirect: null,
             overall: 0,
             noise: 0,
             space: 0,
@@ -34,8 +34,8 @@ class RateActionDiningHall extends React.Component {
             name: "",
             loginPopup: false,
             showAlert: "none",
-            tags:[],
-            suggestions:[]
+            tags: [],
+            suggestions: []
         }
         this.changeOverall = this.changeOverall.bind(this);
         this.changeNoise = this.changeNoise.bind(this);
@@ -134,7 +134,7 @@ class RateActionDiningHall extends React.Component {
                     })
                 }
             }
-            this.setState({redirect:`/ranked/${this.props.match.params.school}/${this.props.match.params.title}`});
+            this.setState({ redirect: `/ranked/${this.props.match.params.school}/${this.props.match.params.title}` });
         } else {
             this.openPopup();
         }
@@ -165,7 +165,7 @@ class RateActionDiningHall extends React.Component {
             this.openPopup();
         }
 
-        this.setState({title:this.props.match.params.item});
+        this.setState({ title: this.props.match.params.item });
 
         {/*
         // FETCH NECESSARY DATA FOR THE RATING CRITEREONS
@@ -203,27 +203,29 @@ class RateActionDiningHall extends React.Component {
                 <form>
                     <div id="rateForm">
                         <table>
-                            <tr>
-                                <th>Overall</th>
+                            <tbody>
+                                <tr>
+                                    <th>Overall</th>
 
-                                <th><RateStars name="overall" whenClicked={this.changeOverall} /></th>
-                            </tr>
-                            <tr>
-                                <th>Noise</th>
-                                <th><RateStars name="noise" whenClicked={this.changeNoise} /></th>
-                            </tr>
-                            <tr>
-                                <th>Space</th>
-                                <th><RateStars name="space" whenClicked={this.changeSpace} /></th>
-                            </tr>
-                            <tr>
-                                <th>Accessibility</th>
-                                <th><RateStars name="accessibility" whenClicked={this.changeAccessibility} /></th>
-                            </tr>
-                            <tr>
-                                <th>Resource</th>
-                                <th><RateStars name="resource" whenClicked={this.changeResource} /></th>
-                            </tr>
+                                    <th><RateStars name="overall" whenClicked={this.changeOverall} /></th>
+                                </tr>
+                                <tr>
+                                    <th>Noise</th>
+                                    <th><RateStars name="noise" whenClicked={this.changeNoise} /></th>
+                                </tr>
+                                <tr>
+                                    <th>Space</th>
+                                    <th><RateStars name="space" whenClicked={this.changeSpace} /></th>
+                                </tr>
+                                <tr>
+                                    <th>Accessibility</th>
+                                    <th><RateStars name="accessibility" whenClicked={this.changeAccessibility} /></th>
+                                </tr>
+                                <tr>
+                                    <th>Resource</th>
+                                    <th><RateStars name="resource" whenClicked={this.changeResource} /></th>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
 
@@ -239,7 +241,7 @@ class RateActionDiningHall extends React.Component {
                         handleDrag={this.handleDrag}
                         delimiters={delimiters} />
 
-                    <btn className="submitBtn" onClick={this.handleSubmit}> Submit </btn>
+                    <button className="submitBtn" onClick={this.handleSubmit}> Submit </button>
                     <div style={{ display: this.state.showAlert }}>You must rate on all criterions!</div>
                 </form>
             </div>

@@ -112,14 +112,19 @@ class RateAction extends React.Component {
 
                 if (this.state.overall === 0) {
                     this.setState({ showAlert: " " })
+                    return;
                 } else if (this.state.space === 0) {
                     this.setState({ showAlert: " " })
+                    return;
                 } else if (this.state.equipment === 0) {
                     this.setState({ showAlert: " " })
+                    return;
                 } else if (this.state.cleanliness=== 0) {
                     this.setState({ showAlert: " " })
+                    return;
                 } else if (this.state.community === 0) {
                     this.setState({ showAlert: " " })
+                    return;
                 } else {
                     fetch(`/api/rate/${this.props.match.params.school}/gym/${this.props.match.params.title}/${this.props.match.params.item}`, {
                         method: "post",
@@ -198,6 +203,7 @@ class RateAction extends React.Component {
                 <form>
                     <div id="rateForm">
                         <table>
+                            <tbody>
                             <tr>
                                 <th>Overall</th>
 
@@ -219,6 +225,7 @@ class RateAction extends React.Component {
                                 <th>Community</th>
                                 <th><RateStars name="community" whenClicked={this.changeCommunity} /></th>
                             </tr>
+                            </tbody>
                         </table>
                     </div>
 
@@ -234,7 +241,7 @@ class RateAction extends React.Component {
                         handleDrag={this.handleDrag}
                         delimiters={delimiters} />
 
-                    <btn className="submitBtn" onClick={this.handleSubmit}> Submit </btn>
+                    <button className="submitBtn" onClick={this.handleSubmit}> Submit </button>
                     <p style={{ display: this.state.showAlert }}>You must rate on all criterions!</p>
                 </form>
             </div>

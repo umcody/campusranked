@@ -76,7 +76,6 @@ module.exports = function (app, mongoose) {
         let item = req.params.item;
 
         let shouldInc = false;
-        console.log("LOOKING FOR IT");
 
 
         // Check How many votes the user has already used in the selected title. If none, create. If limit, do not allow voting
@@ -91,7 +90,6 @@ module.exports = function (app, mongoose) {
                         } catch (error) {
                             Item = mongoose.model(school+"campus",itemSchema);
                         }
-                        console.log("accessed");
 
                         //Update the item votes
 
@@ -123,7 +121,6 @@ module.exports = function (app, mongoose) {
                         shouldInc = false;
                 }
                 UserModel.findOne({ email: user.email, "voted.title": title }, function (err, data) {
-                    console.log(data);
                     if (err) {
                         return console.log(err);
                     } else {
@@ -165,11 +162,14 @@ module.exports = function (app, mongoose) {
                                     console.log("Count successfully incremented");
                                     shouldInc = true; // set to True to update all the doc.
                                     incrementItem();
-                                    console.log(shouldInc);
                                     res.json({ count: data.voted[i].count++, increment: true });
                                 })
                             } else {
-                                if ((new Date().getDate() - data.voted[i].lastVoted.getDate()) > 0) { // If it has been a day since last reached maximum, reset.
+                                let currentTime = new Date();
+                                if (currentTime.getDate() - new Date().getDate() > 1
+                                ||  currentTime.getDate() - new Date().getMonth() > 1
+                                ||  currentTime.getDate() - new Date().getFullYear() > 1 )
+                                { // If it has been a day since last reached maximum, reset.
                                     UserModel.findOneAndUpdate({ email: data.email, "voted.title": title }, {
                                         $set: {
                                             "voted.$.count": 1,
@@ -203,12 +203,9 @@ module.exports = function (app, mongoose) {
     // TO BE DEVELOPED. DOWN VOTE SYSTEM.
     app.post("/ranked/api/:title/downvote/:item", function (req, res) {
         let title = req.params.title;
-        console.log(req.params);
         let item = req.params.item;
-        console.log(req);
 
         const Item = mongoose.model(title, itemSchema);
-        console.log("accessed");
 
         Item.findOneAndUpdate({ name: item }, { $inc: { count: -1 } }, function (err, data) {
             if (err) {
