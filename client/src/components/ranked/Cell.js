@@ -33,7 +33,6 @@ class Cell extends React.Component {
             tagsContainerClass: "",
         }
         this.controlVote = this.controlVote.bind(this);
-
     }
 
     // vote CLICKED HANDLER to Toggle animation 
@@ -67,7 +66,6 @@ class Cell extends React.Component {
         if (this.props[0].ratings.overall === 0) {
             this.setState({ hasRatings: " " });
         }
-
         // If tag exists, update the state to display it
         if(this.props[0].tags !== undefined){
             this.sortAndConvertTags(this.props[0].tags);
@@ -123,8 +121,8 @@ class Cell extends React.Component {
                     <Link className="name" to={`/detailed/${this.props[6]}/${this.props[5]}/${this.props[0].title}/${this.props[0].name}`}>
                         <div>{this.props[0].name}</div>
                         <div>
-                            {this.state.tags.slice(0,2).map((tag)=>
-                            React.createElement(Tags, [tag[0]])
+                            {this.state.tags.slice(0,2).map((tag,key)=>
+                            React.createElement(Tags, [tag[0]], {key:key})
                             )}
                         </div>
                     </Link>
@@ -137,7 +135,7 @@ class Cell extends React.Component {
                 </div>
                 <div className = "col-sm-1 col-4">
                     {/* VOTE LOGO/ BUTTON */}
-                    <div className="upVote" onClick={this.handleClick}>
+                    <div className="upVote">
                         <img src="/asset/vote_btn.svg" className="voteSVG" alt="vote button"></img>
                     </div>
                 </div>

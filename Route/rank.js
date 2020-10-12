@@ -166,9 +166,9 @@ module.exports = function (app, mongoose) {
                                 })
                             } else {
                                 let currentTime = new Date();
-                                if (currentTime.getDate() - new Date().getDate() > 1
-                                ||  currentTime.getDate() - new Date().getMonth() > 1
-                                ||  currentTime.getDate() - new Date().getFullYear() > 1 )
+                                if (currentTime.getDate() - data.voted[i].lastVoted.getDate() > 1
+                                ||  currentTime.getMonth() -data.voted[i].lastVoted.getMonth() > 1
+                                ||  currentTime.getFullYear() - data.voted[i].lastVoted.getFullYear() > 1 )
                                 { // If it has been a day since last reached maximum, reset.
                                     UserModel.findOneAndUpdate({ email: data.email, "voted.title": title }, {
                                         $set: {

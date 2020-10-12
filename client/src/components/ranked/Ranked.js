@@ -116,9 +116,9 @@ class Ranked extends React.Component {
           (isNaN(this.state.averageRating)) ? <OverallRatings ratings={"There is no rating yet"} /> : <OverallRatings ratings={this.state.averageRating} />
         }
         {/* <div className="collapsable">  *****    EXPANDABLE BOX (DISABLED)*/ }
-          <div className="ranked_table container" style = {{"max-height":this.state.collapseHeight}}>
+          <div className="ranked_table container" style = {{"maxHeight":this.state.collapseHeight}}>
               {/* Creates row cell for every item in the body */}
-              {this.state.body.map((item) =>
+              {this.state.body.map((item,key) =>
                 React.createElement(Cell, [
                   item,
                   index++,
@@ -127,7 +127,7 @@ class Ranked extends React.Component {
                   this.openPopup,
                   this.state.category,
                   this.props.match.params.school,
-                ])
+                ],{key:key})
               )}
           </div>
         {/*  <div className = "expandBtn" onClick = {this.handleExpandMore}>
