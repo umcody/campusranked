@@ -1,5 +1,6 @@
 import React from "react";
 import CategoryOverview from "./categoryOverview.js";
+import {Helmet} from "react-helmet";
 //import MapComponent from "./mapComponent.js";
 
 class SchoolOverview extends React.Component {
@@ -55,6 +56,12 @@ class SchoolOverview extends React.Component {
                     <CategoryOverview school={schoolLowered} category="Gym" items={this.state.data.gym} />
 
                 </div>
+                <Helmet>
+                    <title>{this.state.title} - Campus Overview</title>
+                    <meta name = "description"
+                        content = {`Learn more about how ${this.state.title}'s campus ranks and student's favorite buildings!`}
+                    />
+                </Helmet>
             </div>
         )
     }

@@ -61,7 +61,7 @@ class Register extends React.Component {
                     <input id="username" placeholder="username" onChange={this.handleChange} type="text"
                         pattern="^[a-z0-9]{3,12}$" title="The username must only be of lower-case letters or numbers"></input>
                     <input id="email" placeholder="email" onChange={this.handleChange} type="email"></input>
-                    <input id="password" placeholder="password" onChange={this.handleChange}
+                    <input id="password" placeholder="password" type = "password" onChange={this.handleChange}
                         pattern="^[a-zA-Z0-9$!=+&^%*~]{5,15}$" title="The password can be of any letters and digits and special characters($!=+&^%*~)"></input>
 
                     <button type="submit">REGISTER!</button>

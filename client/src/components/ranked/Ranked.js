@@ -5,6 +5,7 @@ import Login from "../auth/Login";
 import OverallRatings from "./overallRatings.js";
 import {Container} from "react-bootstrap";
 import InstructionPopUp from "./instructionPopup.js";
+import {Helmet} from "react-helmet";
 
 
 let index = 1;
@@ -140,6 +141,12 @@ class Ranked extends React.Component {
           The rank will be sorted once you refresh/exit the page
         </div>
         <div className="spacer"></div>
+        <Helmet>
+                    <title>{this.state.title} - Ranking</title>
+                    <meta name = "description"
+                        content = {`See the various ranking of ${this.state.title} buildings!`}
+                    />
+        </Helmet>
       </div>
     );
   }

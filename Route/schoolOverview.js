@@ -38,7 +38,6 @@ module.exports = function(app,mongoose){
 
                     if(i === (categories.length-1)){
                         data[categories[i]] = docs;
-                        console.log(docs);
                         res.json(data);
                         console.log("School data sent out.")
                         return;

@@ -102,10 +102,6 @@ module.exports = function (app, mongoose) {
                             if (data === null) {
                                 return console.log("NO SUCH ITEM FOUND!!");
                             } else {
-                                console.log(data + " is incremented too")
-                            
-                                console.log("UPDATED: " + data);
-
                                 let schoolName = data.title.replace(data.category,""); // Find school name
                                 let SearchModel = Search(schoolName);
 
@@ -114,7 +110,6 @@ module.exports = function (app, mongoose) {
                                     if (err) {
                                         return console.log(err);
                                     }
-                                    console.log("UPDATED: " + data);
                                 });
                             }
                         });

@@ -54,6 +54,7 @@ class profile extends React.Component {
                                     </div>
                                 </div>
                             </div>
+                            <div>Categories Voted:</div>
                             <div id="profileVotedContainer">
                                 {this.state.user.voted.map((item) =>
                                     React.createElement(ProfileVoted, item)

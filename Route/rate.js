@@ -50,7 +50,6 @@ module.exports = function (app, mongoose) {
                 let temp = tempRatings[i][1] * data.reviewCounts;
                 averageQuery[`ratings.${criterion}`] = (temp + parseFloat(req.body[criterion]) * 100) / (data.reviewCounts + 1);
             }
-            console.log(averageQuery);
 
             let name = req.body.name;
             if (req.body.review === ' ' || req.body.review === "") { // If there is no review, empty the name too. 
@@ -64,7 +63,6 @@ module.exports = function (app, mongoose) {
                     }else{
                         res.status(200);
                     }
-                    console.log(data);
                 })
 
             } else {
