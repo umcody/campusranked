@@ -253,6 +253,7 @@ class RateActionResidentialHall extends React.Component {
                         handleDrag={this.handleDrag}
                         delimiters={delimiters} />
 
+                    <p>press enter after each tags</p>
                     <button className="submitBtn" onClick={this.handleSubmit}> Submit </button>
                     <div style={{ display: this.state.showAlert }}>You must rate on all criterions!</div>
                 </form>

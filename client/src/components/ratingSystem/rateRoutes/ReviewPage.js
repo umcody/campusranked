@@ -95,8 +95,8 @@ class RateGym extends React.Component {
                                 <ReviewCell {...["", "Unfortunately, there is no review yet. Maybe you can write one!"]} />
                             </div>
                         </div>
-                        <div style={{ width: "100%" }}>
-                            <Link id="rateBtn" to={`/rate/${this.state.category}/${this.props.match.params.school}/${this.state.body.title}/${this.state.body.name}`}>RATE NOW!</Link>
+                        <div id = "rateBtn" style={{ width: "100%" }}>
+                            <Link to={`/rate/${this.state.category}/${this.props.match.params.school}/${this.state.body.title}/${this.state.body.name}`}>RATE NOW!</Link>
                         </div>
                         <img id="graphics_review" src="/asset/undraw_char.svg" />
                     </div>

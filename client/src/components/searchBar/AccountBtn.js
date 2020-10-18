@@ -59,7 +59,7 @@ class AccountBtn extends React.Component {
                 <div className="accountBtn col-sm-3">
                     <div className = "center">
                         <div style={{ display: "inline-block" }}>{`It's time to Rank, `}</div>
-                        <a href="/profile"><div className="username"> {` @${this.state.username}`}</div></a>
+                        <Link to="/profile"><div className="username"> {` @${this.state.username}`}</div></Link>
                     </div>
                 </div>
             );

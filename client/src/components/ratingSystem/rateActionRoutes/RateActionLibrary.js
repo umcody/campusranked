@@ -234,12 +234,15 @@ class RateActionDiningHall extends React.Component {
                         <textarea type="text" id="writingArea" onChange={this.handleTextArea} placeholder="Write Your Review Here (OPTIONAL)"></textarea>
                     </div>
 
-                    <ReactTags tags={tags}
-                        suggestions={suggestions}
-                        handleDelete={this.handleDelete}
-                        handleAddition={this.handleAddition}
-                        handleDrag={this.handleDrag}
-                        delimiters={delimiters} />
+                    <div>
+                        <ReactTags tags={tags}
+                            suggestions={suggestions}
+                            handleDelete={this.handleDelete}
+                            handleAddition={this.handleAddition}
+                            handleDrag={this.handleDrag}
+                            delimiters={delimiters} />
+                            <p>press enter after each tags</p>
+                    </div>
 
                     <button className="submitBtn" onClick={this.handleSubmit}> Submit </button>
                     <div style={{ display: this.state.showAlert }}>You must rate on all criterions!</div>

@@ -17,7 +17,7 @@ class HomeProto extends React.Component{
                     {{
                         fontWeight:700
                     }}>Have The Best Of Your Campus</div>
-                    <h6 style = {{"font-size":"14px"}}>Find Students' Favorite Library, Dininghall, And More</h6>
+                    <h6 style = {{"fontSize":"14px"}}>Find Students' Favorite Library, Dininghall, And More</h6>
                     <Search searchBody = {this.props.searchBody}/>
                 </div>
                 <img style = 

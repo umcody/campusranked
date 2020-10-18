@@ -20,6 +20,13 @@
     margin-bottom: 30px;
 }
 
+.rateFormContainer p{
+    font-size: 9px;
+    color: gray;
+    display: block;
+    text-align: left;
+}
+
 #writingAreaContainer{
     display:block;
     text-align: left;
