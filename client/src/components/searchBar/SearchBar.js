@@ -10,6 +10,7 @@ const options = {
   keys: ["name"],
 };
 
+
 function SearchBar(props) {
   return (
     <div className="searchBar container row">

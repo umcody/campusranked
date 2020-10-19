@@ -8,11 +8,9 @@ import "./styles/Home.css";
 import Footer from "./components/Footer";
 
 const stuff = (
-  <React.StrictMode>
     <BrowserRouter>
       <App />
       {/* <Footer /> */}
     </BrowserRouter>
-  </React.StrictMode>
 );
 ReactDOM.render(stuff, document.getElementById("root"));

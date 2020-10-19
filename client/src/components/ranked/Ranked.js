@@ -111,7 +111,7 @@ class Ranked extends React.Component {
           id="voteLimitAlert"
           style={{ display: this.state.showVoteLimitAlert }}
         >
-          Vote Limit has Been Reached!
+          Vote Limit Has Been Reached!
         </p>
         {
           (isNaN(this.state.averageRating)) ? <OverallRatings ratings={"There is no rating yet"} /> : <OverallRatings ratings={this.state.averageRating} />
