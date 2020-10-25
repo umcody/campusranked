@@ -3,9 +3,11 @@
 
 
 <hr />
-
 ## CAMPUS RANKED 
 (ORIGINALLY "TIER-CREATOR")
+
+**Campus Ranked is a web platform where students can rank and review their campus buildings by categories**
+
 
 ## Table of Contents
 
@@ -14,7 +16,9 @@
 * Avery Chan jachan@wisc.edu
 * Nags Tavon 
 
-## Currently, most of the API endpoints are BROKEN. In progress of updating it.
+https://www.campusranked.com
+
+## Currently, some of the API endpoints are BROKEN. In progress of updating it.
 
 ### PROGRESS (Chronologically)
 * Came up with two possible "tier" systems of voting and drag and drop.
