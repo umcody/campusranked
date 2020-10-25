@@ -1,8 +1,8 @@
 <img src = "/client/public/asset/temp_logo.png" width = "300px">
 
 
-
 <hr />
+
 ## CAMPUS RANKED 
 (ORIGINALLY "TIER-CREATOR")
 
